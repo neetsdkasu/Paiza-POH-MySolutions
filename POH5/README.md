@@ -34,4 +34,10 @@ https://paiza.jp/poh/enshura-story/80a1c664
 
 
 
+Mission 3 (MINAMI)  
+C  
+https://paiza.jp/poh/enshura-minami-ending/93ca440e  
+
+
+
 
