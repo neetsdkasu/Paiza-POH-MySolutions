@@ -16,15 +16,21 @@ https://paiza.jp/poh/enshura-third/34d74b59
 
 
 
-Mission 3  
+Mission 3 (RENA)   
 C  
 https://paiza.jp/poh/enshura-story/147d267e  
 
 
 
-Mission 4  
+Mission 4 (RENA)   
 C  
 https://paiza.jp/poh/enshura-rena-ending/345d183b  
+
+
+Mission 3 (MINAMI)  
+C  
+https://paiza.jp/poh/enshura-story/80a1c664  
+
 
 
 
