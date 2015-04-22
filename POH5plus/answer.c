@@ -148,6 +148,7 @@ void tryit(Puzzle *puzzle, PuzzleCreater create, int showpuzzle, int showroot) {
 	fillTabelColumn(fixes, 0, FIXED);
 	fillTabelColumn(fixes, TABLE_X_SIZE - 1, FIXED);
 	
+	puzzle->show = 0;
 	create(puzzle);
 	
 	if (showpuzzle != 0) {
