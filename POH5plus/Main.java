@@ -21,17 +21,25 @@ class Main
 		
 		Map<Long, Long> map = makeRoot();
 		
+		int p1 = problem.getPos(1L);
+		int p2 = problem.getPos(2L);
+		if (p1 < p2) {
+			if (p2 > 5) {
+				if ((p2 & 3) == 0) {
+					problem = solve3(map, problem, flags, problem.getPos(2L), 4);
+				} else {
+					problem = solve3(map, problem, flags, problem.getPos(2L), 5);
+				}
+			}
+		}
+		
 		problem = solve3(map, problem, flags, problem.getPos(1L), 0);
-		if (problem == null) return;
 		flags[0] = true;
 		problem = solve3(map, problem, flags, problem.getPos(2L), 1);
-		if (problem == null) return;
 		flags[1] = true;
 		problem = solve3(map, problem, flags, problem.getPos(5L), 4);
-		if (problem == null) return;
 		flags[4] = true;
 		problem = solve3(map, problem, flags, problem.getPos(6L), 5);
-		if (problem == null) return;
 		flags[5] = true;
 		
 		
@@ -220,8 +228,8 @@ class Main
 	}
 	
 	static Map<Long, Long> makeRoot() throws Exception {
-		Map<Puzzle, Long> hs1 = new HashMap<>(100000), hs2 = new HashMap<>(100000), hs3;
-		Map<Long, Long> map = new HashMap<>(200000);
+		Map<Puzzle, Long> hs1 = new HashMap<>(200000), hs2 = new HashMap<>(200000), hs3;
+		Map<Long, Long> map = new HashMap<>(400000);
 		
 		{
 			Puzzle pzl = new Puzzle();
@@ -242,8 +250,7 @@ class Main
 						continue;
 					}
 					Long d = temp.data;
-					Long s = Puzzle.symmetry(temp.data);
-					if (map.containsKey(d) || map.containsKey(s)) {
+					if (map.containsKey(d) || map.containsKey(Puzzle.symmetry(temp.data))) {
 						continue;
 					}
 					map.put(d, pd);
@@ -289,8 +296,8 @@ class Main
 	}
 	
 	static boolean solve2(Map<Long, Long> map, Puzzle problem) {
-		Map<Puzzle, Long> hs1 = new HashMap<>(100000), hs2 = new HashMap<>(100000), hs3;
-		Map<Long, Long> map2 = new HashMap<>(200000);
+		Map<Puzzle, Long> hs1 = new HashMap<>(200000), hs2 = new HashMap<>(200000), hs3;
+		Map<Long, Long> map2 = new HashMap<>(400000);
 		
 		hs1.put(problem, problem.data);
 		map2.put(problem.data, 0L);
