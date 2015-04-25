@@ -1,7 +1,7 @@
 //////////////////////////////////////
 // 15 puzzle solver                 //
 //                                  //
-// 2015-04-25                       //
+// 2015-04-26                       //
 // Leonardone @ NEETSDKASU          //
 //////////////////////////////////////
 import java.io.*;
@@ -21,6 +21,39 @@ class Main
 		
 		Map<Long, Long> map = makeRoot();
 		
+		problem = solve3(map, problem, flags, problem.getPos(1L), 0);
+		if (problem == null) return;
+		flags[0] = true;
+		problem = solve3(map, problem, flags, problem.getPos(2L), 1);
+		if (problem == null) return;
+		flags[1] = true;
+		problem = solve3(map, problem, flags, problem.getPos(5L), 4);
+		if (problem == null) return;
+		flags[4] = true;
+		problem = solve3(map, problem, flags, problem.getPos(6L), 5);
+		if (problem == null) return;
+		flags[5] = true;
+		
+		
+		if (problem.getPos(3L) > 7) {
+			problem = solve3(map, problem, flags, problem.getPos(3L), 3);
+			if (problem == null) return;
+		}
+		if (problem.getPos(4L) > 7) {
+			problem = solve3(map, problem, flags, problem.getPos(4L), 3);
+			if (problem == null) return;
+		}
+		/*
+		if (problem.getPos(7L) > 7) {
+			problem = solve3(map, problem, flags, problem.getPos(7L), 7);
+			if (problem == null) return;
+		}
+		if (problem.getPos(8L) > 7) {
+			problem = solve3(map, problem, flags, problem.getPos(8L), 7);
+			if (problem == null) return;
+		}
+		*/
+		
 		if (solve1(map, problem)) {
 			return;
 		}
@@ -28,170 +61,7 @@ class Main
 		if (solve2(map, problem)) {
 			return;
 		}
-		/*
-		{
-			int x = 0;
-			for (int i = rand.nextInt(5) + 4; i > 0; i--) {
-				int r = rand.nextInt(3) + 1;
-				for (int j = 0; j < r; j++) {
-					Puzzle temp = problem.move(x);
-					if (temp != problem) {
-						System.out.println(Puzzle.moveNumber(temp.data, problem.data));
-						problem = temp;
-						if (solve1(map, problem)) {
-							return;
-						}
-					}
-				}
-				x = (x + 1) & 3;
-				if (solve2(map, problem)) {
-					return;
-				}
-			}
-		}
-		*/
 		
-		// a 1234 b 1234 69.2
-		// a 1243 b 1234 69.2
-		// a 1324 b 1234 69.6
-		// a 1342 b 1234 68.8
-		// a 1423 b 1234 68.8
-		// a 1432 b 1234 68.8
-		// a 2134 b 1234 69.2
-		// a 2143 b 1234 69.2
-		// a 2314 b 1234 76.0
-		// a 2341 b 1234 76.0
-		// a 2413 b 1234 69.2
-		// a 2431 b 1234 76.0
-		// a 3124 b 1234 72.0
-		// a 3142 b 1234 67.6 *
-		// a 3214 b 1234 72.0
-		// a 3241 b 1234 72.0
-		// a 3412 b 1234 67.6 *
-		// a 3421 b 1234 67.6 *
-		// a 4123 b 1234 68.8
-		// a 4132 b 1234 68.8
-		// a 4213 b 1234 68.8
-		// a 4231 b 1234 78.2
-		// a 4312 b 1234 67.6 *
-		// a 4321 b 1234 67.6 *
-		
-		// a 4321 b 1243 70.8
-		// a 4321 b 1324 70.4
-		// a 4321 b 1342 66.0
-		// a 4321 b 1423 70.4
-		// a 4321 b 1432 64.8 *
-		// a 4321 b 2134 71.6
-		// a 4321 b 2143 70.0
-		// a 4321 b 2314 71.6
-		// a 4321 b 2341 71.6
-		// a 4321 b 2413 70.0
-		// a 4321 b 2431 70.0
-		// a 4321 b 3124 70.4
-		// a 4321 b 3142 66.0
-		// a 4321 b 3214 68.8
-		// a 4321 b 3241 68.8
-		// a 4321 b 3412 66.0
-		// a 4321 b 3421 68.4
-		// a 4321 b 4123 70.4
-		// a 4321 b 4132 64.8 *
-		// a 4321 b 4213 68.4
-		// a 4321 b 4231 68.4
-		// a 4321 b 4312 64.8 *
-		// a 4321 b 4321 69.2
-
-		// a 4231 b 4132 70.0
-		
-		for (int n = 0; n < 15; n++) {
-			
-			if (solve1(map, problem)) {
-				return;
-			}
-			
-			if (solve2(map, problem)) {
-				return;
-			}
-			
-			
-			
-			if (n < 8) {
-				boolean f1;
-				switch (n & 3) {
-				case 0:
-				case 1:
-					problem = solve3(map, problem, flags, problem.getPos(n + 1), n);
-					if (problem == null) return;
-					flags[n] = true;
-					break;
-				case 2:
-					if (problem.getNum(n) == (long)(n + 1) && problem.getNum(n + 1) == (long)(n + 2)) {
-						break;
-					}
-					if (problem.getNum(n + 1) == (long)(n + 1) && problem.getNum(n + 5) == (long)(n + 2)) {
-						flags[n + 5] = true;
-						problem = solve3(map, problem, flags, problem.getPos(n + 1), n);
-						if (problem == null) return;
-						flags[n + 5] = false;
-						flags[n] = true;
-						problem = solve3(map, problem, flags, problem.getPos(n + 2), n + 1);
-						if (problem == null) return;
-						flags[n + 1]= true;
-						break;
-					}
-					if (problem.getNum(n + 4) == (long)(n + 1) && problem.getNum(n) == (long)(n + 2)) {
-						flags[n + 4] = true;
-						problem = solve3(map, problem, flags, problem.getPos(n + 2), n + 1);
-						if (problem == null) return;
-						flags[n + 4] = false;
-						flags[n + 1] = true;
-						problem = solve3(map, problem, flags, problem.getPos(n + 1), n);
-						if (problem == null) return;
-						flags[n] = true;
-						break;
-					}
-					if (problem.getNum(n) == 0L && problem.getNum(n + 4) == (long)(n + 1)
-							&& problem.getNum(n + 1) == (long)(n + 2)) {
-						flags[n + 1] = true;
-						problem = solve3(map, problem, flags, problem.getPos(n + 1), n);
-						if (problem == null) return;
-						flags[n] = true;
-						break;
-					}
-					if (problem.getNum(n + 1) == 0L && problem.getNum(n) == (long)(n + 1)
-							&& problem.getNum(n + 5) == (long)(n + 2)) {
-						flags[n] = true;
-						problem = solve3(map, problem, flags, problem.getPos(n + 2), n + 1);
-						if (problem == null) return;
-						flags[n + 1] = true;
-						break;
-					}
-					problem = solve3(map, problem, flags, problem.getPos(n + 1), n + 1);
-					if (problem == null) return;
-					problem = solve3(map, problem, flags, problem.getPos(n + 2), n + 9);
-					if (problem == null) return;
-					f1 = flags[n + 9];
-					flags[n + 9] = true;
-					problem = solve3(map, problem, flags, problem.getPos(n + 1), n + 1);
-					if (problem == null) return;
-					flags[n + 9]= f1;
-					f1 = flags[n + 1];
-					flags[n + 1] = true;
-					problem = solve3(map, problem, flags, problem.getPos(n + 2), n + 5);
-					if (problem == null) return;
-					flags[n + 1] = f1;
-					f1 = flags[n + 5];
-					flags[n + 5] = true;
-					problem = solve3(map, problem, flags, problem.getPos(n + 1), n);
-					if (problem == null) return;
-					flags[n + 5] = f1;
-					flags[n] = true;
-					problem = solve3(map, problem, flags, problem.getPos(n + 2), n + 1);
-					if (problem == null) return;
-					flags[n + 1] = true;
-					break;
-				}
-			}
-		}
 	}
 	
 	static boolean seekRoot(boolean[] flags, int[] rt, int s, int g) {
@@ -324,12 +194,14 @@ class Main
 			System.out.println(Puzzle.moveNumber(temp.data, problem.data));
 			problem = temp;
 			pn = pi;
+			/*
 			if (solve1(map, problem)) {
 				return null;
 			}
 			if (solve2(map, problem)) {
 				return null;
 			}
+			*/
 
 		}
 		return problem;
@@ -357,13 +229,16 @@ class Main
 			map.put(pzl.data, 0L);
 		}
 		
-		for (int i = 1; i <= 18; i++) {
+		for (int i = 1; i <= 29; i++) {
 			hs2.clear();
 			for (Puzzle pzl : hs1.keySet()) {
 				Long pd = hs1.get(pzl);
 				for (int j = 0; j < 4; j++) {
 					Puzzle temp;
 					if ((temp = pzl.move(j)) == pzl) {
+						continue;
+					}
+					if ((temp.z & 0xFF00_FF00_0000_0000L) != 0L) {
 						continue;
 					}
 					Long d = temp.data;
@@ -420,13 +295,16 @@ class Main
 		hs1.put(problem, problem.data);
 		map2.put(problem.data, 0L);
 		
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 100; i++) {
 			hs2.clear();
 			for (Puzzle pzl : hs1.keySet()) {
 				Long pd = hs1.get(pzl);
 				for (int j = 0; j < 4; j++) {
 					Puzzle temp;
 					if ((temp = pzl.move(j)) == pzl) {
+						continue;
+					}
+					if ((temp.z & 0xFF00_FF00_0000_0000L) != 0L) {
 						continue;
 					}
 					Long d = temp.data;
@@ -500,6 +378,7 @@ final class Puzzle
 	}
 	
 	public final long data, z;
+	final int  hash;
 	public Puzzle() {
 		long data = 0L;
 		for (long i = 1L; i < 16L; i++) {
@@ -507,6 +386,7 @@ final class Puzzle
 		}
 		this.data = data;
 		this.z = 0xFL;
+		hash = (int)(((data >> 32) ^ data) & 0xFFFF_FFFF);
 	}
 	public Puzzle(long[] n) {
 		long data = 0L;
@@ -520,6 +400,7 @@ final class Puzzle
 		}
 		this.data = data;
 		this.z = 0xFL << (60L - (zi << 2));
+		hash = (int)(((data >> 32) ^ data) & 0xFFFF_FFFF);
 	}
 	public Puzzle(long data) {
 		long z = 0xFL;
@@ -531,14 +412,17 @@ final class Puzzle
 		}
 		this.data = data;
 		this.z = z;
+		hash = (int)(((data >> 32) ^ data) & 0xFFFF_FFFF);
 	}
 	public Puzzle(Puzzle puzzle) {
 		this.data = puzzle.data;
 		this.z = puzzle.z;
+		hash = (int)(((data >> 32) ^ data) & 0xFFFF_FFFF);
 	}
 	private Puzzle(long data, long z) {
 		this.data = data;
 		this.z = z;
+		hash = (int)(((data >> 32) ^ data) & 0xFFFF_FFFF);
 	}
 	
 	public int getPos(long n) {
@@ -622,12 +506,12 @@ final class Puzzle
 	}
 	
 	public @Override int hashCode() {
-		return (int)(((data >> 32) ^ data) & 0xFFFF_FFFF);
+		return hash;
 	}
 	
 	public @Override boolean equals(Object o) {
-		if (o == this) return true; if (o == null) return false;
-		if (!getClass().equals(o.getClass())) return false;
+		//if (o == this) return true; if (o == null) return false;
+		//if (!getClass().equals(o.getClass())) return false;
 		return data == ((Puzzle)o).data;
 	}
 	
