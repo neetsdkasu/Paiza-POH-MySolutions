@@ -10,69 +10,57 @@ import java.util.*;
 
 class Main
 {
+	static boolean[] flags = new boolean[16];
+	static Map<Long, Long> map;
+	static Puzzle problem;
+
+	static {
+		problem = getProblem();
+		map = makeRoot();
+	}
+	
 	
 	public static void main(String[] args) throws Exception {
-		boolean[] flags = new boolean[16];
-		
-		
-		Puzzle problem = getProblem();
-		
-		Random rand = new Random(problem.data ^ 74L); // 40 67.6 , 43 67.6
-		
-		Map<Long, Long> map = makeRoot();
 		
 		int p1 = problem.getPos(1L);
 		int p2 = problem.getPos(2L);
 		if (p1 < p2) {
 			if (p2 > 5) {
 				if ((p2 & 3) == 0) {
-					problem = solve3(map, problem, flags, problem.getPos(2L), 4);
+					solve3(p2, 4);
 				} else {
-					problem = solve3(map, problem, flags, problem.getPos(2L), 5);
+					solve3(p2, 5);
 				}
 			}
 		}
 		
-		problem = solve3(map, problem, flags, problem.getPos(1L), 0);
+		solve3(problem.getPos(1L), 0);
 		flags[0] = true;
-		problem = solve3(map, problem, flags, problem.getPos(2L), 1);
+		solve3(problem.getPos(2L), 1);
 		flags[1] = true;
-		problem = solve3(map, problem, flags, problem.getPos(5L), 4);
+		solve3(problem.getPos(5L), 4);
 		flags[4] = true;
-		problem = solve3(map, problem, flags, problem.getPos(6L), 5);
+		solve3(problem.getPos(6L), 5);
 		flags[5] = true;
 		
-		
 		if (problem.getPos(3L) > 7) {
-			problem = solve3(map, problem, flags, problem.getPos(3L), 3);
-			if (problem == null) return;
+			solve3(problem.getPos(3L), 3);
 		}
 		if (problem.getPos(4L) > 7) {
-			problem = solve3(map, problem, flags, problem.getPos(4L), 3);
-			if (problem == null) return;
+			solve3(problem.getPos(4L), 3);
 		}
-		/*
-		if (problem.getPos(7L) > 7) {
-			problem = solve3(map, problem, flags, problem.getPos(7L), 7);
-			if (problem == null) return;
-		}
-		if (problem.getPos(8L) > 7) {
-			problem = solve3(map, problem, flags, problem.getPos(8L), 7);
-			if (problem == null) return;
-		}
-		*/
 		
-		if (solve1(map, problem)) {
+		if (solve1()) {
 			return;
 		}
 		
-		if (solve2(map, problem)) {
+		if (solve2()) {
 			return;
 		}
 		
 	}
 	
-	static boolean seekRoot(boolean[] flags, int[] rt, int s, int g) {
+	static boolean seekRoot(int[] rt, int s, int g) {
 		int c = 1;
 		rt[g] = c;
 		while (rt[s] == 0) {
@@ -106,15 +94,15 @@ class Main
 		return true;
 	}
 	
-	static Puzzle solve3(Map<Long, Long> map, Puzzle problem, boolean[] flags, int pn, int g) {
+	static void solve3(int pn, int g) {
 		if (flags[g] || flags[pn] || pn == g) {
-			return problem;
+			return ;
 		}
 		int p0 = problem.getPos(0L);
 		
 		int[] r1 = new int[16];
 		
-		seekRoot( flags, r1, pn, g);
+		seekRoot(r1, pn, g);
 		
 		for (int cn = r1[pn] - 1; cn > 0; cn--) {
 			int pi = -1;
@@ -143,7 +131,7 @@ class Main
 			int[] r0 = new int[16];
 			boolean f1 = flags[pn];
 			flags[pn] = true;
-			seekRoot(flags, r0, p0, pi);
+			seekRoot(r0, p0, pi);
 			flags[pn] = f1;
 			for (int c0 = r0[p0] - 1; c0 > 0; c0--) {
 				
@@ -173,7 +161,7 @@ class Main
 				
 				{
 					System.out.println("are?");
-					return problem;
+					return;
 				}
 				System.out.println(Puzzle.moveNumber(temp.data, problem.data));
 				problem = temp;
@@ -197,37 +185,34 @@ class Main
 			} else
 			{
 				System.out.println("arere?");
-				return problem;
+				return;
 			}
 			System.out.println(Puzzle.moveNumber(temp.data, problem.data));
 			problem = temp;
 			pn = pi;
-			/*
-			if (solve1(map, problem)) {
-				return null;
-			}
-			if (solve2(map, problem)) {
-				return null;
-			}
-			*/
-
 		}
-		return problem;
 	}
 	
-	static Puzzle getProblem() throws Exception {
-		Scanner in = new Scanner(System.in);
+	static Puzzle getProblem() {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		long[] data = new long[16];
-		for (int i = 0; i < 16; i++) {
-			String str = in.next();
-			if (!"*".equals(str)) {
-				data[i] = Long.parseLong(str);
+		int n = 0;
+		try {
+			for (int i = 0; i < 4; i++) {
+				String[] str = in.readLine().split(" ");
+				for (String s : str) {
+					if (!"*".equals(s)) {
+						data[n] = Long.parseLong(s);
+					}
+					n++;
+				}
 			}
+		} catch (IOException e) {
 		}
 		return new Puzzle(data);
 	}
 	
-	static Map<Long, Long> makeRoot() throws Exception {
+	static Map<Long, Long> makeRoot() {
 		Map<Puzzle, Long> hs1 = new HashMap<>(200000), hs2 = new HashMap<>(200000), hs3;
 		Map<Long, Long> map = new HashMap<>(400000);
 		
@@ -237,7 +222,7 @@ class Main
 			map.put(pzl.data, 0L);
 		}
 		
-		for (int i = 1; i <= 29; i++) {
+		for (int i = 1; i <= 22; i++) {
 			hs2.clear();
 			for (Puzzle pzl : hs1.keySet()) {
 				Long pd = hs1.get(pzl);
@@ -264,7 +249,7 @@ class Main
 		return map;
 	}
 	
-	static boolean solve1(Map<Long, Long> map, Puzzle problem) {
+	static boolean solve1() {
 		
 		Long d = problem.data;
 		Long s = Puzzle.symmetry(problem.data);
@@ -295,7 +280,7 @@ class Main
 		}
 	}
 	
-	static boolean solve2(Map<Long, Long> map, Puzzle problem) {
+	static boolean solve2() {
 		Map<Puzzle, Long> hs1 = new HashMap<>(200000), hs2 = new HashMap<>(200000), hs3;
 		Map<Long, Long> map2 = new HashMap<>(400000);
 		
@@ -335,7 +320,8 @@ class Main
 						while (!list.isEmpty()) {
 							System.out.println(list.removeLast());
 						}
-						solve1(map, temp);
+						problem = temp;
+						solve1();
 						return true;
 					}
 				}
