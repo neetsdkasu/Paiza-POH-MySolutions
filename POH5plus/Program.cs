@@ -66,7 +66,7 @@ public class compiler {
                                                                       filterHzLB, filterHzLT, filterHzRT, filterVtLB, filterVtLT, filterVtRT});
 
 
-    const int DEFAULT_DEPTH = 10;
+    const int DEFAULT_DEPTH = 12;
     const int MOVE_LEFT =  0;
     const int MOVE_RIGHT  = 1;
     const int MOVE_UP =  2;
