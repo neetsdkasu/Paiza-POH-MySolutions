@@ -12,3 +12,9 @@ https://paiza.jp/poh/enshura-special-ending/5cd170e0
 Java(score 57.6)  
 https://paiza.jp/poh/enshura-special-ending/7eb979e8  
 
+Visual Basic(Runtime Error)  
+https://paiza.jp/poh/enshura-special-ending/1111a5ad  
+
+C#(score 62.4)  [VB code port to C#]    
+https://paiza.jp/poh/enshura-special-ending/b35bb662  
+
