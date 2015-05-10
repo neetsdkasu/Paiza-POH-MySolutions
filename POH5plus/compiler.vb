@@ -9,7 +9,6 @@ Public Class compiler
 
     Const CLEAR_PUZZLE As ULong = &H123456789ABCDEF0UL
 
-    Const DEFAULT_DEPTH As Integer = 10
     Const MOVE_LEFT As Integer = 0
     Const MOVE_RIGHT As Integer = 1
     Const MOVE_UP As Integer = 2
@@ -22,97 +21,101 @@ Public Class compiler
 #If DEBUG Then
 #Const MAKE_BY_RANDOM = 1
 #If MAKE_BY_RANDOM Then
-        problem = PuzzleState.NewPuzzleState().Shuffle(500)
+        problem = New PuzzleState().Shuffle(1000)
 #Else
-        problem = PuzzleState.NewPuzzleState({{1, 2, 3, 0}, {5, 6, 7, 4}, {9, 10, 11, 8}, {13, 14, 15, 12}})
+        problem = New PuzzleState(New String(,) {{"1", "2", "3", "4"}, {"9", "5", "6", "7"}, {"*", "10", "11", "8"}, {"13", "14", "15", "12"}})
 #End If
         problem.Print()
 #Else
         problem = InputPuzzle()
 #End If
 
-        Dim nextsFromStart As New List(Of PuzzleState)(1000000)
-        Dim nextsFromGoal As New List(Of PuzzleState)(1000000)
-        Dim allRootsFromStart As AllRoots = New AllRoots
-        Dim allRootsFromGoal As AllRoots = New AllSymmetryRoots
-
-        nextsFromStart.Add(problem)
-        allRootsFromStart.Add(0UL, problem)
-
-        nextsFromGoal.Add(New PuzzleState(CLEAR_PUZZLE))
-        allRootsFromGoal.Add(0UL, New PuzzleState(CLEAR_PUZZLE))
-
-        Dim nextsSwap As List(Of PuzzleState)
-        Dim nextsTemp As New List(Of PuzzleState)
-
-        Dim result As ULong = 0UL
-
-        Do
-            For i As Integer = 1 To 100
+        For i As Integer = 0 To 15
+            If problem.IndexOf(i) < 0 Then
 #If DEBUG Then
-                Console.WriteLine("i={0:D}", i)
+                Console.WriteLine("input error")
+                Stop
+                Return 0
+#Else
+                Do
+                Loop
 #End If
+            End If
+        Next i
 
-                nextsTemp.Clear()
-                For j As Integer = 0 To nextsFromGoal.Count - 1
-                    Dim puzzle As PuzzleState = nextsFromGoal.Item(j)
-                    For k As Integer = 0 To 3
-                        Dim tempPuzzle As PuzzleState = puzzle.Move(k)
-                        If tempPuzzle.data <> puzzle.data Then
-                            If allRootsFromGoal.Add(puzzle.data, tempPuzzle) Then
-                                nextsTemp.Add(tempPuzzle)
-                                If allRootsFromStart.roots.ContainsKey(tempPuzzle.data) Then
-                                    result = tempPuzzle.data
-                                    Exit Do
-                                End If
-                                If allRootsFromStart.roots.ContainsKey(tempPuzzle.rv_data) Then
-                                    result = tempPuzzle.rv_data
-                                    Exit Do
-                                End If
-                            End If
-                        End If
-                    Next k
-                Next j
-                nextsSwap = nextsFromGoal
-                nextsFromGoal = nextsTemp
-                nextsTemp = nextsSwap
+        Dim root As New List(Of Integer)
 
-                nextsTemp.Clear()
-                For j As Integer = 0 To nextsFromStart.Count - 1
-                    Dim puzzle As PuzzleState = nextsFromStart.Item(j)
-                    For k As Integer = 0 To 3
-                        Dim tempPuzzle As PuzzleState = puzzle.Move(k)
-                        If tempPuzzle.data <> puzzle.data Then
-                            If allRootsFromStart.Add(puzzle.data, tempPuzzle) Then
-                                nextsTemp.Add(tempPuzzle)
-                                If allRootsFromGoal.Contains(tempPuzzle) Then
-                                    result = tempPuzzle.data
-                                    Exit Do
-                                End If
-                            End If
-                        End If
-                    Next k
-                Next j
-                nextsSwap = nextsFromStart
-                nextsFromStart = nextsTemp
-                nextsTemp = nextsSwap
-
-                If nextsFromStart.Count = 0 Or nextsFromGoal.Count = 0 Then
-                    Exit Do
-                End If
-            Next i
-            Exit Do
-        Loop
-
-        If result = 0 Then
 #If DEBUG Then
-            Console.WriteLine("failure {0:D} {1:D} {2:D} {3:D}", allRootsFromStart.roots.Count, nextsFromStart.Count, allRootsFromGoal.roots.Count, nextsFromGoal.Count)
-            Stop
-#End If
-            Return 0
+#If MAKE_BY_RANDOM Then
+        Dim nx As New List(Of PuzzleState)
+        Dim cu As New List(Of PuzzleState)
+        Dim al As New Dictionary(Of ULong, ULong)
+        cu.Add(New PuzzleState())
+        al.Item(CLEAR_PUZZLE) = CLEAR_PUZZLE
+        For i As Integer = 1 To 8
+            nx.Clear()
+            For Each pz As PuzzleState In cu
+                For j As Integer = 0 To 3
+                    Dim tm As PuzzleState = pz.Move(j)
+                    If al.ContainsKey(tm.data) = False Then
+                        al.Item(tm.data) = tm.data
+                        nx.Add(tm)
+                    End If
+                Next
+            Next
+            cu.Clear()
+            cu.AddRange(nx)
+        Next
+
+        Dim sc As Integer = 0
+        Dim fl As Integer = 0
+        Dim tt As Integer = 0
+        For Each pzv As ULong In al.Keys
+            problem = New PuzzleState(pzv)
+            root.Clear()
+            If Solve(problem, root) Then
+                sc += 1
+                tt += root.Count
+            Else
+                fl += 1
+            End If
+        Next
+        Console.WriteLine("sc {0:D}, fl {1:D}", sc, fl)
+        If sc > 0 Then
+            tt /= sc
+            Console.WriteLine("av {0:D}", tt)
         End If
 
-        Dim root As List(Of Integer) = MakeRoot(result, allRootsFromStart, allRootsFromGoal)
+        Console.WriteLine("===================")
+        sc = 0
+        fl = 0
+        tt = 0
+        For i As Integer = 1 To 1000
+            problem = problem.Shuffle(200)
+            root.Clear()
+            If Solve(problem, root) Then
+                sc += 1
+                tt += root.Count
+            Else
+                fl += 1
+            End If
+        Next
+        Console.WriteLine("sc {0:D}, fl {1:D}", sc, fl)
+        If sc > 0 Then
+            tt /= sc
+            Console.WriteLine("av {0:D}", tt)
+        End If
+
+        problem.Print()
+#Else
+        Solve(problem, root)
+#End If
+#Else
+        If Solve(problem, root) = False Then
+            'Do
+            'Loop
+        End If
+#End If
 
 #If DEBUG Then
         Dim checker As PuzzleState = problem
@@ -143,86 +146,180 @@ Public Class compiler
     End Function
 
     Shared Function InputPuzzle() As PuzzleState
-        Dim numbers(15) As Integer
+        Dim numbers(15) As String
         Dim n As Integer = 0
         For i As Integer = 0 To 3
             Dim strLine As String = Console.ReadLine()
             Dim strLines() As String = strLine.Split(" ")
             For j As Integer = 0 To 3
-                Dim v As Integer
-                If Integer.TryParse(strLines(j), v) Then
-                    numbers(n) = v
-                Else
-                    numbers(n) = 0
-                End If
+                numbers(n) = strLines(j)
                 n += 1
             Next j
         Next i
-        Return PuzzleState.NewPuzzleState(numbers)
+        Return New PuzzleState(numbers)
     End Function
 
-    Shared Function MakeRoot(value As ULong, allRoots1 As AllRoots, allRoots2 As AllRoots) As List(Of Integer)
-        Dim root As New List(Of Integer)
+    Shared Function Solve(problem As PuzzleState, root As List(Of Integer)) As Boolean
 
-        Dim stk As New Stack(Of Integer)
-        Dim t1 As ULong = value
-        Dim t2 As ULong = allRoots1.roots.Item(t1)
-        Do While t2 <> 0UL
-            stk.Push(PuzzleState.GetDifferenceOneNumber(t1, t2))
-            t1 = t2
-            t2 = allRoots1.roots.Item(t1)
-        Loop
-        Do While stk.Count > 0
-            root.Add(stk.Pop())
-        Loop
-        If allRoots2.roots.ContainsKey(value) Then
-            t1 = value
-            t2 = allRoots2.roots.Item(t1)
-            Do While t2 <> 0UL
-                root.Add(PuzzleState.GetDifferenceOneNumber(t1, t2))
-                t1 = t2
-                t2 = allRoots2.roots.Item(t1)
+
+        Dim puzzle As PuzzleState = problem
+        Dim tempPuzzle As PuzzleState
+
+        tempPuzzle = SolveAPart(puzzle, &H1200000000000000UL, 0UL, root)
+        If (tempPuzzle.data And &HFF00000000000000UL) <> &H1200000000000000UL Then
+#If DEBUG Then
+            Console.WriteLine("error dayo 1")
+#Else
+            Do
+                ' failed point of test case 2
             Loop
-        Else
-            t1 = PuzzleState.ToSymmetry(value)
-            t2 = allRoots2.roots.Item(t1)
-            Do While t2 <> 0UL
-                root.Add(PuzzleState.ToSymmetryNumber(PuzzleState.GetDifferenceOneNumber(t1, t2)))
-                t1 = t2
-                t2 = allRoots2.roots.Item(t1)
-            Loop
+#End If
+            Return False
         End If
-        Return root
+        puzzle = tempPuzzle
+
+        tempPuzzle = SolveAPart(puzzle, &H1234000000000000UL, &HFF00000000000000UL, root)
+        If (tempPuzzle.data And &HFFFF000000000000UL) <> &H1234000000000000UL Then
+#If DEBUG Then
+            Console.WriteLine("error dayo 2")
+#End If
+            Return False
+        End If
+        puzzle = tempPuzzle
+
+        tempPuzzle = SolveAPart(puzzle, &H1234560000000000UL, &HFFFF000000000000UL, root)
+        If (tempPuzzle.data And &HFFFFFF0000000000UL) <> &H1234560000000000UL Then
+#If DEBUG Then
+            Console.WriteLine("error dayo 3")
+#End If
+            Return False
+        End If
+        puzzle = tempPuzzle
+
+        tempPuzzle = SolveAPart(puzzle, &H1234567800000000UL, &HFFFFFF0000000000UL, root)
+        If (tempPuzzle.data And &HFFFFFFFF00000000UL) <> &H1234567800000000UL Then
+#If DEBUG Then
+            Console.WriteLine("error dayo 4")
+#End If
+            Return False
+        End If
+        puzzle = tempPuzzle
+
+        tempPuzzle = SolveAPart(puzzle, &H123456789000D000UL, &HFFFFFFFF00000000UL, root)
+        If (tempPuzzle.data And &HFFFFFFFFF000F000UL) <> &H123456789000D000UL Then
+#If DEBUG Then
+            Console.WriteLine("error dayo 5")
+#End If
+            Return False
+        End If
+        puzzle = tempPuzzle
+
+        tempPuzzle = SolveAPart(puzzle, &H123456789ABCDEF0UL, &HFFFFFFFFF000F000UL, root)
+        puzzle = tempPuzzle
+
+        If puzzle.data <> CLEAR_PUZZLE Then
+#If DEBUG Then
+            Console.WriteLine("error dayo 6")
+#End If
+            Return False
+        End If
+
+        Dim checker As PuzzleState = problem
+
+        For Each n As Integer In root
+            checker = checker.MoveNumber(n)
+        Next
+
+        Return checker.data = CLEAR_PUZZLE
+
     End Function
 
-    Class AllRoots
-        Public roots As New Dictionary(Of ULong, ULong)(100000000)
-        Public Overridable Function Add(fromData As ULong, toPuzzle As PuzzleState) As Boolean
-            If roots.ContainsKey(toPuzzle.data) Then
-                Return False
-            Else
-                roots.Item(toPuzzle.data) = fromData
-                Return True
+    Shared Function SolveAPart(startPuzzle As PuzzleState, goalState As ULong, unmovables As ULong, root As List(Of Integer)) As PuzzleState
+        Dim startState As ULong = &HBBBBBBBBBBBBBBBBUL And (Not startPuzzle.zero)
+        For i As Integer = 0 To 15
+            Dim n As Integer = PuzzleState.GetNumber(goalState, i)
+            If n = 0 Then
+                goalState = PuzzleState.SetNumber(goalState, i, 11)
+                Continue For
             End If
-        End Function
-        Public Overridable Function Contains(puzzle As PuzzleState) As Boolean
-            Return roots.ContainsKey(puzzle.data)
-        End Function
-    End Class
+            Dim j As Integer = startPuzzle.IndexOf(n)
+            If j >= 0 Then
+                startState = PuzzleState.SetNumber(startState, j, n)
+            End If
+        Next i
 
-    Class AllSymmetryRoots
-        Inherits AllRoots
-        Public Overrides Function Add(fromData As ULong, toPuzzle As PuzzleState) As Boolean
-            If roots.ContainsKey(toPuzzle.rv_data) Then
-                Return False
-            Else
-                Return MyBase.Add(fromData, toPuzzle)
+        Dim allRootsTemp As New Dictionary(Of ULong, ULong)(10000)
+        Dim currentStates As New List(Of PuzzleState)(10000)
+
+        For i As Integer = 0 To 15
+            Dim n As Integer = PuzzleState.GetNumber(goalState, i)
+            If n = 11 Then
+                Dim tempState As ULong = PuzzleState.SetNumber(goalState, i, 0)
+                Dim tempPuzzle As PuzzleState = New PuzzleState(tempState)
+                allRootsTemp.Item(tempState) = 0UL
+                currentStates.Add(tempPuzzle)
             End If
-        End Function
-        Public Overrides Function Contains(puzzle As PuzzleState) As Boolean
-            Return roots.ContainsKey(puzzle.rv_data) Or MyBase.Contains(puzzle)
-        End Function
-    End Class
+        Next i
+
+        If allRootsTemp.ContainsKey(startState) Then
+            Return startPuzzle
+        End If
+
+        Dim nextStates As New List(Of PuzzleState)(10000)
+
+        Do While currentStates.Count > 0
+
+            nextStates.Clear()
+
+            For Each puzzle As PuzzleState In currentStates
+                For k As Integer = 0 To 3
+                    Dim tempPuzzle As PuzzleState = puzzle.Move(k)
+                    If (tempPuzzle.zero And unmovables) > 0UL Then
+                        Continue For
+                    End If
+                    If tempPuzzle.data = puzzle.data Then
+                        Continue For
+                    End If
+                    If allRootsTemp.ContainsKey(tempPuzzle.data) Then
+                        Continue For
+                    End If
+                    allRootsTemp.Item(tempPuzzle.data) = puzzle.data
+                    If tempPuzzle.data = startState Then
+                        Exit Do
+                    End If
+                    nextStates.Add(tempPuzzle)
+                Next k
+            Next puzzle
+
+            Dim tempStates As List(Of PuzzleState) = currentStates
+            currentStates = nextStates
+            nextStates = tempStates
+
+        Loop
+
+        If allRootsTemp.ContainsKey(startState) = False Then
+#If DEBUG Then
+            Console.WriteLine("Error dayo")
+#Else
+            'Do
+                ' failed point of test case 2
+            'Loop
+#End If
+            Return startPuzzle
+        End If
+
+        Dim nextPuzzle As PuzzleState = startPuzzle
+        Dim temp As ULong = allRootsTemp.Item(startState)
+        Do While temp <> 0UL
+            Dim i As Integer = PuzzleState.GetIndex(temp, 0)
+            Dim n As Integer = nextPuzzle.NumberOf(i)
+            nextPuzzle = nextPuzzle.MoveNumber(n)
+            root.Add(n)
+            temp = allRootsTemp.Item(temp)
+        Loop
+
+        Return nextPuzzle
+    End Function
 
     Class PuzzleState
         Public Shared Function GetDifferenceOneNumber(data1 As ULong, data2 As ULong) As Integer
@@ -239,6 +336,16 @@ Public Class compiler
             Return GetDifferenceOneNumber(puzzle1.data, puzzle2.data)
         End Function
 
+        Public Shared Function GetIndex(data As ULong, value As Integer) As Integer
+            For i As Integer = 0 To 15
+                Dim n As Integer = GetNumber(data, i)
+                If n = value Then
+                    Return i
+                End If
+            Next
+            Return -1
+        End Function
+
         Public Shared Function GetNumber(data As ULong, index As Integer) As Integer
             Return (data >> (60 - ((index And &HF%) << 2))) And &HFUL
         End Function
@@ -247,16 +354,11 @@ Public Class compiler
             Return GetNumber(data, ((y And &H3%) << 2) Or (x And &H3%))
         End Function
 
-        Public Shared Function NewPuzzleState(array() As Integer) As PuzzleState
-            Return New PuzzleState(array)
-        End Function
-
-        Public Shared Function NewPuzzleState(array(,) As Integer) As PuzzleState
-            Return New PuzzleState(array)
-        End Function
-
-        Public Shared Function NewPuzzleState(Optional data As ULong = CLEAR_PUZZLE) As PuzzleState
-            Return New PuzzleState(data)
+        Public Shared Function SetNumber(data As ULong, index As Integer, value As Integer) As ULong
+            Dim ulValue As ULong = value And &HF
+            Dim sh As Integer = 60 - (index << 2)
+            Dim ulMask As ULong = Not (&HFUL << sh)
+            Return (data And ulMask) Or (ulValue << sh)
         End Function
 
         Private Shared ReadOnly SymmetryTable() As ULong = New ULong() {0UL, 1UL, 5UL, 9UL, 13UL, 2UL, 6UL, 10UL, 14UL, 3UL, 7UL, 11UL, 15UL, 4UL, 8UL, 12UL}
@@ -316,12 +418,56 @@ Public Class compiler
             rv_zero = ToSymmetryPosition(zero)
         End Sub
 
+        Sub New(array() As String)
+            data = 0UL
+            For i As Integer = 0 To 15
+                Dim x As Integer
+                Dim v As ULong
+                If Integer.TryParse(array(i), x) Then
+                    v = x And &HF
+                Else
+                    v = 0UL
+                End If
+                v <<= 60 - (i << 2)
+                data = data Or v
+                If v = 0UL Then
+                    zero = &HFUL << (60 - (i << 2))
+                End If
+            Next i
+            rv_data = ToSymmetry(data)
+            rv_zero = ToSymmetryPosition(zero)
+        End Sub
+
         Sub New(array(,) As Integer)
             Dim sh As Integer = 60
             data = 0UL
             For i As Integer = 0 To 3
                 For j As Integer = 0 To 3
                     Dim v As ULong = array(i, j) And &HF%
+                    v <<= sh
+                    data = data Or v
+                    If v = 0UL Then
+                        zero = &HFUL << sh
+                    End If
+                    sh -= 4
+                Next j
+            Next i
+            rv_data = ToSymmetry(data)
+            rv_zero = ToSymmetryPosition(zero)
+        End Sub
+
+        Sub New(array(,) As String)
+            Dim sh As Integer = 60
+            data = 0UL
+            For i As Integer = 0 To 3
+                For j As Integer = 0 To 3
+                    Dim x As Integer
+                    Dim v As ULong
+                    If Integer.TryParse(array(i, j), x) Then
+                        v = x And &HF
+                    Else
+                        v = 0UL
+                    End If
                     v <<= sh
                     data = data Or v
                     If v = 0UL Then
@@ -349,7 +495,7 @@ Public Class compiler
             Return GetNumber(data, x, y)
         End Function
 
-        Public Function IndexOf(number As ULong) As Integer
+        Public Function IndexOf(number As Integer) As Integer
             For i As Integer = 0 To 15
                 If NumberOf(i) = number Then
                     Return i
