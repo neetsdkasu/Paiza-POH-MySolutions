@@ -1,9 +1,9 @@
 POH!5+
 ====================
 https://paiza.jp/poh/enshura-special
-
-
-
+  
+  
+  
 My Answer  
 
 C (score 63.2)  
@@ -20,3 +20,7 @@ https://paiza.jp/poh/enshura-special-ending/6a7ae1a1
   
 F# (test case 2 failure) [port from VB to F#)  
 https://paiza.jp/poh/enshura-special-ending/42a94788  
+  
+  
+  VBとF#でDictionaryが正しく機能してないぽい？  
+  ローカルではほぼ問題なく解ける  
