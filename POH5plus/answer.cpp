@@ -1,5 +1,5 @@
 // 15 puzzle solver
-// 2015-05-3
+// 2015-05-13
 // Leonardone @ NEETSDKASU
 #include <iostream>
 #include <string>
@@ -9,7 +9,7 @@
 #include <ctime>
 #include <cctype>
 
-#if __BORLANDC__
+#ifdef __BORLANDC__
 typedef unsigned __int64 uint64;
 #else
 typedef unsigned long long uint64;
@@ -24,6 +24,7 @@ typedef unsigned long long uint64;
 BEGIN_OF_NAMESPACE
 	
 	typedef int PuzzleArray[16];
+	typedef std::vector<int> Root;
 	
 	class PuzzleState {
 	public:
@@ -65,23 +66,15 @@ BEGIN_OF_NAMESPACE
 	
 	PuzzleState InputPuzzle();
 	
-	void CheckRoot(PuzzleState problem, std::vector<int> &root);
+	void CheckRoot(PuzzleState problem, Root &root);
 	
-	PuzzleState SolveAPart(PuzzleState startPuzzle, uint64 goal, uint64 unmovable, std::vector<int> &root);
+	PuzzleState SolveAPart(PuzzleState startPuzzle, uint64 goal, uint64 unmovable, Root &root);
 	
-	void Solve(PuzzleState problem, std::vector<int> &root);
+	void Solve(PuzzleState problem, Root &root);
 	
-#define SolveFunc(num) void Solve##num(PuzzleState puzzle, std::vector<int> &root);
-	
-	SolveFunc(1);
-	SolveFunc(2);
-	SolveFunc(3);
-	SolveFunc(4);
-
 END_OF_NAMESPACE
 
 ////////////////////////////////////////////////////
-
 
 int main() {
 
@@ -92,10 +85,10 @@ int main() {
 	neetsdkasu::PuzzleState problem = neetsdkasu::InputPuzzle();
 #endif
 	
-	std::vector<int> root;
+	neetsdkasu::Root root;
 	neetsdkasu::Solve(problem, root);
 	
-	for (std::vector<int>::iterator it = root.begin(); it != root.end(); it++) {
+	for (neetsdkasu::Root::iterator it = root.begin(); it != root.end(); it++) {
 		std::cout << *it << std::endl;
 	}
 	
@@ -124,9 +117,9 @@ BEGIN_OF_NAMESPACE
 		return PuzzleState(array);
 	}
 	
-	void CheckRoot(PuzzleState problem, std::vector<int> &root) {
+	void CheckRoot(PuzzleState problem, Root &root) {
 		PuzzleState checker = problem;
-		for (std::vector<int>::iterator it = root.begin(); it != root.end(); it++) {
+		for (Root::iterator it = root.begin(); it != root.end(); it++) {
 			checker = checker.MoveNumber(*it);
 		}
 		checker.Print();
@@ -216,7 +209,7 @@ BEGIN_OF_NAMESPACE
 		}
 	}
 	
-	PuzzleState SolveAPart(PuzzleState startPuzzle, uint64 goal, uint64 unmovable, std::vector<int> &root) {
+	PuzzleState SolveAPart(PuzzleState startPuzzle, uint64 goal, uint64 unmovable, Root &root) {
 		uint64 startState = uint64(0xBBBBBBBBBBBBBBBB) & (~startPuzzle.Zero());
 		uint64 goalState = goal;
 		for (int i = 0; i < 16; i++) {
@@ -232,7 +225,7 @@ BEGIN_OF_NAMESPACE
 		}
 		
 		std::map<uint64, uint64> allRoots;
-		std::vector<PuzzleState> currentStates;
+		std::vector<PuzzleState> currentStates, nextStates;
 		
 		for (int i = 0; i < 16; i++) {
 			if (PuzzleState::GetNumber(goalState, i) == 0xb) {
@@ -245,8 +238,6 @@ BEGIN_OF_NAMESPACE
 		if (allRoots.find(startState) != allRoots.end()) {
 			return startPuzzle;
 		}
-		
-		std::vector<PuzzleState> nextStates;
 		
 		while (!currentStates.empty()) {
 			nextStates.clear();
@@ -291,65 +282,322 @@ BEGIN_OF_NAMESPACE
 		return nextPuzzle;
 	}
 	
-#define DoSolve(num) \
-	temp.clear(); \
-	Solve##num(problem, temp); \
-	if (temp.size() < root.size()) { \
-		root.clear(); \
-		root.insert(root.begin(), temp.begin(), temp.end()); \
+#define SOLVE1(_G, _U) \
+	Root tempRoot = it->second; \
+	PuzzleState tempPuzzle = SolveAPart(puzzle, uint64(_G), uint64(_U), tempRoot); \
+	if (nextStates.find(tempPuzzle.Data()) == nextStates.end()) { \
+		nextStates[tempPuzzle.Data()] = tempRoot; \
+	} else if (tempRoot.size() < nextStates[tempPuzzle.Data()].size()) { \
+		nextStates[tempPuzzle.Data()] = tempRoot; \
 	}
 	
-	void Solve(PuzzleState problem, std::vector<int> &root) {
-		std::vector<int> temp;
-
-		Solve1(problem, root);
+	void Solve(PuzzleState problem, Root &root) {
+		std::map<uint64, Root> currentStates, nextStates;
+		std::vector<Root> roots;
 		
-		DoSolve(2);
-		DoSolve(3);
-		DoSolve(4);
+		currentStates[problem.Data()] = root;
+		
+		for (int i = 0; i < 10; i++) {
+		
+			nextStates.clear();
+			for (std::map<uint64, Root>::iterator it = currentStates.begin(); it != currentStates.end(); it++) {
+				PuzzleState puzzle(it->first);
+				int flag = 0;
+				if ((puzzle.Data() & uint64(0xffffff00ff00ff00)) == uint64(0x123456009a00de00)) {
+					// 1234 >
+					// 5600 >
+					// 9a00 >
+					// de00 >
+					Root tempRoot = it->second;
+					SolveAPart(puzzle, uint64(0x123456789abcdef0), uint64(0xffffff00ff00ff00), tempRoot);
+					roots.push_back(tempRoot);
+					continue;
+				}
+				if ((puzzle.Data() & uint64(0xfffffffff000f000)) == uint64(0x123456789000d000)) {
+					// 1234 >
+					// 5678 >
+					// 9000 >
+					// d000 >
+					Root tempRoot = it->second;
+					SolveAPart(puzzle, uint64(0x123456789abcdef0), uint64(0xfffffffff000f000), tempRoot);
+					roots.push_back(tempRoot);
+					continue;
+				}
+				if ((puzzle.Data() & uint64(0xffffff00f000f000)) == uint64(0x123456009000d000)) {
+					{
+						// 1234 > 1234
+						// 5600 > 5600
+						// 9000 > 9a00
+						// d000 > de00
+						SOLVE1(0x123456009a00de00, 0xffffff00f000f000);
+					}
+					{
+						// 1234 > 1234
+						// 5600 > 5678
+						// 9000 > 9000
+						// d000 > d000
+						SOLVE1(0x123456789000d000, 0xffffff00f000f000);
+					}
+					continue;
+				}
+				if ((puzzle.Data() & uint64(0xffffffff00000000)) == uint64(0x1234567800000000)) {
+					// 1234 > 1234
+					// 5678 > 5678
+					// 0000 > 9000
+					// 0000 > d000
+					SOLVE1(0x123456789000d000, 0xffffffff00000000);
+					continue;
+				}
+				if ((puzzle.Data() & uint64(0xff00ff00ff00ff00)) == uint64(0x120056009a00de00)) {
+					// 1200 > 1234
+					// 5600 > 5600
+					// 9a00 > 9a00
+					// de00 > de00
+					SOLVE1(0x123456009a00de00, 0xffffff00f000f000);
+					continue;
+				}
+				if ((puzzle.Data() & uint64(0xf000f000ff00ff00)) == uint64(0x100050009a00de00)) {
+					// 1000 > 1200
+					// 5000 > 5600
+					// 9a00 > 9a00
+					// de00 > de00
+					SOLVE1(0x120056009a00de00, 0xf000f000ff00ff00);
+					continue;
+				}
+				if ((puzzle.Data() & uint64(0xff00ff00f000f000)) == uint64(0x120056009000d000)) {
+					{
+						// 1200 > 1200
+						// 5600 > 5600
+						// 9000 > 9a00
+						// d000 > de00
+						SOLVE1(0x120056009a00de00, 0xff00ff00f000f000);
+					}
+					{
+						// 1200 > 1234
+						// 5600 > 5600
+						// 9000 > 9000
+						// d000 > d000
+						SOLVE1(0x123456009000d000, 0xff00ff00f000f000);
+					}
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0xffffff0000000000)) == uint64(0x1234560000000000)) {
+					{
+						// 1234 > 1234
+						// 5600 > 5678
+						// 0000 > 0000
+						// 0000 > 0000
+						SOLVE1(0x1234567800000000, 0xffffff0000000000);
+					}
+					{
+						// 1234 > 1234
+						// 5600 > 5600
+						// 0000 > 9000
+						// 0000 > d000
+						SOLVE1(0x123456009000d000, 0xffffff0000000000);
+					}
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0xffff00ff00000000)) == uint64(0x1234007800000000)) {
+					// 1234 > 1234
+					// 0078 > 5678
+					// 0000 > 0000
+					// 0000 > 0000
+					SOLVE1(0x1234567800000000, 0xffff00ff00000000);
+					flag = 1;
+				}
+				if (flag == 1) {
+					continue;
+				}
+				if ((puzzle.Data() & uint64(0xffff000000000000)) == uint64(0x1234000000000000)) {
+					{
+						// 1234 > 1234
+						// 0000 > 5600
+						// 0000 > 0000
+						// 0000 > 0000
+						SOLVE1(0x1234560000000000, 0xffff000000000000);
+					}
+					{
+						// 1234 > 1234
+						// 0000 > 0078
+						// 0000 > 0000
+						// 0000 > 0000
+						SOLVE1(0x1234007800000000, 0xffff000000000000);
+					}
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0xff00ff0000000000)) == uint64(0x1200560000000000)) {
+					{
+						// 1200 > 1234
+						// 5600 > 5600
+						// 0000 > 0000
+						// 0000 > 0000
+						SOLVE1(0x1234560000000000, 0xff00ff0000000000);
+					}
+					{
+						// 1200 > 1200
+						// 5600 > 5600
+						// 0000 > 9000
+						// 0000 > d000
+						SOLVE1(0x120056009000d000, 0xff00ff0000000000);
+					}
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0xf000f000f000f000)) == uint64(0x100050009000d000)) {
+					{
+						// 1000 > 1200
+						// 5000 > 5600
+						// 9000 > 9000
+						// d000 > d000
+						SOLVE1(0x120056009000d000, 0xf000f000f000f000);
+					}
+					{
+						// 1000 > 1000
+						// 5000 > 5000
+						// 9000 > 9a00
+						// d000 > de00
+						SOLVE1(0x100050009a00de00, 0xf000f000f000f000);
+					}
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0x00ff00ff00000000)) == uint64(0x0034007800000000)) {
+					// 0034 > 1234
+					// 0078 > 0078
+					// 0000 > 0000
+					// 0000 > 0000
+					SOLVE1(0x1234007800000000, 0x00ff00ff00000000);
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0x00000000ff00ff00)) == uint64(0x000000009a00de00)) {
+					// 0000 > 1000
+					// 0000 > 5000
+					// 9a00 > 9a00
+					// de00 > de00
+					SOLVE1(0x100050009a00de00, 0x00000000ff00ff00);
+					flag = 1;
+				}
+				if (flag == 1) {
+					continue;
+				}
+				if ((puzzle.Data() & uint64(0xff00000000000000)) == uint64(0x1200000000000000)) {
+					{
+						// 1200 > 1234
+						// 0000 > 0000
+						// 0000 > 0000
+						// 0000 > 0000
+						SOLVE1(0x1234000000000000, 0xff00000000000000);
+					}
+					{
+						// 1200 > 1200
+						// 0000 > 5600
+						// 0000 > 0000
+						// 0000 > 0000
+						SOLVE1(0x1200560000000000, 0xff00000000000000);
+					}
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0xf000f00000000000)) == uint64(0x1000500000000000)) {
+					{
+						// 1000 > 1200
+						// 5000 > 5600
+						// 0000 > 0000
+						// 0000 > 0000
+						SOLVE1(0x1200560000000000, 0xf000f00000000000);
+					}
+					{
+						// 1000 > 1000
+						// 5000 > 5000
+						// 0000 > 9000
+						// 0000 > a000
+						SOLVE1(0x100050009000d000, 0xf000f00000000000);
+					}
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0x00ff000000000000)) == uint64(0x0034000000000000)) {
+					{
+						// 0034 > 1234
+						// 0000 > 0000
+						// 0000 > 0000
+						// 0000 > 0000
+						SOLVE1(0x1234000000000000, 0x00ff000000000000);
+					}
+					{
+						// 0034 > 0034
+						// 0000 > 0078
+						// 0000 > 0000
+						// 0000 > 0000
+						SOLVE1(0x0034007800000000, 0x00ff000000000000);
+					}
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0x00000000f000f000)) == uint64(0x000000009000d000)) {
+					{
+						// 0000 > 1000
+						// 0000 > 5000
+						// 9000 > 9000
+						// d000 > d000
+						SOLVE1(0x100050009000d000, 0x00000000f000f000);
+					}
+					{
+						// 0000 > 0000
+						// 0000 > 0000
+						// 9000 > 9a00
+						// d000 > de00
+						SOLVE1(0x000000009a00de00, 0x00000000f000f000);
+					}
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0x000f000f00000000)) == uint64(0x0004000800000000)) {
+					// 0004 > 0034
+					// 0008 > 0078
+					// 0000 > 0000
+					// 0000 > 0000
+					SOLVE1(0x0034007800000000, 0x000f000f00000000);
+					flag = 1;
+				}
+				if ((puzzle.Data() & uint64(0x000000000000ff00)) == uint64(0x000000000000de00)) {
+					// 0000 > 0000
+					// 0000 > 0000
+					// 0000 > 9a00
+					// de00 > de00
+					SOLVE1(0x000000009a00de00, 0x000000000000ff00);
+					flag = 1;
+				}
+				if (flag == 1) {
+					continue;
+				}
+				{
+					SOLVE1(0x1200000000000000, 0);
+				}
+				{
+					SOLVE1(0x0034000000000000, 0);
+				}
+				{
+					SOLVE1(0x1000500000000000, 0);
+				}
+				{
+					SOLVE1(0x000000009000d000, 0);
+				}
+				{
+					SOLVE1(0x0004000800000000, 0);
+				}
+				{
+					SOLVE1(0x000000000000de00, 0);
+				}
+			}
+			currentStates.clear();
+			currentStates.insert(nextStates.begin(), nextStates.end());
+		}
+		
+		std::vector<Root>::iterator it = roots.begin();
+		root = *it;
+		it++;
+		for (; it != roots.end(); it++) {
+			if (it->size() < root.size()) {
+				root = *it;
+			}
+		}
 	}
-	
-#define DefineSolveFunc(num, g1, u1, g2, u2, g3, u3, g4, u4, g5, u5, u6) \
-	void Solve##num(PuzzleState puzzle, std::vector<int> &root) { \
-		puzzle = SolveAPart(puzzle, uint64(g1), uint64(u1), root); \
-		puzzle = SolveAPart(puzzle, uint64(g2), uint64(u2), root); \
-		puzzle = SolveAPart(puzzle, uint64(g3), uint64(u3), root); \
-		puzzle = SolveAPart(puzzle, uint64(g4), uint64(u4), root); \
-		puzzle = SolveAPart(puzzle, uint64(g5), uint64(u5), root); \
-		         SolveAPart(puzzle, uint64(0x123456789abcdef0), uint64(u6), root); \
-	}
-	
-	DefineSolveFunc( 1, 
-		0x1200000000000000, 0,
-		0x1234000000000000, 0xff00000000000000, // 1122
-		0x1234560000000000, 0xffff000000000000, // 3344
-		0x1234567800000000, 0xffffff0000000000, // 5
-		0x123456789000d000, 0xffffffff00000000, // 5
-		                    0xfffffffff000f000)
-
-	DefineSolveFunc( 2, 
-		0x1200000000000000, 0,
-		0x1200560000000000, 0xff00000000000000, // 1133
-		0x1234560000000000, 0xff00ff0000000000, // 2244
-		0x1234567800000000, 0xffffff0000000000, // 5
-		0x123456789000d000, 0xffffffff00000000, // 5
-		                    0xfffffffff000f000)
-	
-	DefineSolveFunc( 3, 
-		0x1200000000000000, 0,
-		0x1200560000000000, 0xff00000000000000, // 1155
-		0x120056009000d000, 0xff00ff0000000000, // 22
-		0x120056009a00de00, 0xff00ff00f000f000, // 34
-		0x123456009a00de00, 0xff00ff00ff00ff00, // 34
-		                    0xffffff00ff00ff00)
-	
-	DefineSolveFunc( 4, 
-		0x1200000000000000, 0,
-		0x1200560000000000, 0xff00000000000000, // 1144
-		0x120056009000d000, 0xff00ff0000000000, // 22
-		0x123456009000d000, 0xff00ff00f000f000, // 35
-		0x123456009a00de00, 0xffffff00f000f000, // 35
-		                    0xffffff00ff00ff00)
 	
 END_OF_NAMESPACE
 
