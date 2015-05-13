@@ -21,6 +21,10 @@ https://paiza.jp/poh/enshura-special-ending/6a7ae1a1
 F# (test case 2 failure) [port from VB to F#)  
 https://paiza.jp/poh/enshura-special-ending/42a94788  
   
+C++ (score 56.0) [prot from VB to C++]  
+https://paiza.jp/poh/enshura-special-ending/4eea553e  
+  
   
   VBとF#でDictionaryが正しく機能してないぽい？  
   ローカルではほぼ問題なく解ける  
+  C++に移植したら通ったし  
