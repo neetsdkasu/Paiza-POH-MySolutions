@@ -29,6 +29,8 @@ Clojure (test case 4  Time Over)
 https://paiza.jp/poh/enshura-special-ending/82e44900  
   
   
-  VBとF#でDictionaryが正しく機能してないぽい？  
+  VBとF#でSystem.Collections.Generic.Dictionaryが正しく機能してないぽい？  
   ローカルではほぼ問題なく解ける  
   C++に移植したら通ったし  
+  追記：
+    F#はMicrosoft.FSharp.Collections.Mapなら使えるようだ
