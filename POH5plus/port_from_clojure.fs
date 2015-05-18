@@ -150,7 +150,7 @@ let rec SolveMove(op, cl, nx, pz : Puzzle, dt, cnt1) =
                     let t_op = Map.add mpz.Data mst op
                     (true, t_op, cl, nx) // it's a goal
                 else
-                    if Map.containsKey pz.Data op then
+                    if Map.containsKey mpz.Data op then
                         let st : State = Map.find mpz.Data op
                         if mst.Value < st.Value then
                             let t_op = Map.add mpz.Data mst op
@@ -162,7 +162,9 @@ let rec SolveMove(op, cl, nx, pz : Puzzle, dt, cnt1) =
                                         Map.empty
                                 let inmp = Map.add mpz.Data mst inm
                                 Map.add mst.Value inmp nx
-                            f(t_op, cl, t_nx, k + 1)
+                            let t_nx2 =
+                                Map.add st.Value (Map.remove mpz.Data (Map.find st.Value t_nx)) t_nx
+                            f(t_op, cl, t_nx2, k + 1)
                         else
                             f(op, cl, nx, k + 1)
                     else
@@ -251,11 +253,13 @@ let Solve(pb : Puzzle) =
 [<EntryPoint>]
 let main args =
     let problem = InputPuzzle()
-    //let problem = (Puzzle()).Shuffle(5)
+    //let problem = (Puzzle()).Shuffle(100)
     //problem.Print()
     let r = Solve(problem)
     for n in r do
         printfn "%d" n
     0
+
+;;
 
 //main()
