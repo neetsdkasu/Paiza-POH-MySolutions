@@ -25,8 +25,8 @@ C++ (score 51.6) [prot from VB to C++]
 https://paiza.jp/poh/enshura-special-ending/b089dd4a  
 
   
-Clojure (test case 3  Time Over)  
-https://paiza.jp/poh/enshura-special-ending/5b7731a0  
+Clojure (test case 4  Time Over)  
+https://paiza.jp/poh/enshura-special-ending/82e44900  
   
   
   VBとF#でDictionaryが正しく機能してないぽい？  
