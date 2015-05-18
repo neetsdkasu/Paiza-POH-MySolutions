@@ -1,5 +1,5 @@
 ;; 15 puzzle solver
-;; 2015-05-17
+;; 2015-05-18
 ;; Leonardone @ NEETSDKASU
 ;;
 ;; ググったら15パズルにはA*アルゴリズムを使えと書いてあった
@@ -121,7 +121,9 @@
 						(list true (assoc o mdt mst) c n)
 						(if (contains? o mdt)
 							(if (< mval (Puzzle-GetValue (o mdt)))
-								(recur (assoc o mdt mst) c (assoc n mval (assoc (n mval) mdt mst)) (inc k))
+								(let [st2 (o mdt) dt2 (Puzzle-GetPuzzle st2) v2 (Puzzle-GetValue st2)
+										n2 (assoc n v2 (dissoc (n v2) dt2))]
+									(recur (assoc o mdt mst) c (assoc n2 mval (assoc (n2 mval) mdt mst)) (inc k)))
 								(recur o c n (inc k)))
 							(if (contains? c mdt)
 								(if (< mval (Puzzle-GetValue (c mdt)))
@@ -153,6 +155,7 @@
 
 
 (defn Puzzle-Solve [pb]
+	;;(Puzzle-Print pb)
 	(let [pbst (Puzzle-MakeState pb 0 0) pbdt (Puzzle-Data pb) pbval (Puzzle-Cost pb)]
 	(if (== pbdt (Puzzle-Data Puzzle-Default))
 		()
@@ -189,6 +192,7 @@
 							
 					
 (defn main []
+	;;(loop [r (Puzzle-Solve (Puzzle-Shuffle Puzzle-Default 200))]
 	(loop [r (Puzzle-Solve (Puzzle-Input))]
 		(if (empty? r) nil
 			(let [n (peek r)]
