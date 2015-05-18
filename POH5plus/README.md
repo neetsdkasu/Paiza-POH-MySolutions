@@ -18,16 +18,24 @@ https://paiza.jp/poh/enshura-special-ending/ffc17de6
 C# (score 62.0)      
 https://paiza.jp/poh/enshura-special-ending/6a7ae1a1  
   
-F# (test case 2 failure) [port from VB to F#)  
+F# (test case 2 failure) [port from VB to F#]  
 https://paiza.jp/poh/enshura-special-ending/42a94788  
   
-C++ (score 51.6) [prot from VB to C++]  
+C++ (score 51.6) [port from VB to C++]  
 https://paiza.jp/poh/enshura-special-ending/b089dd4a  
+
+----
+use A* search
 
   
 Clojure (test case 4  Time Over)  
 https://paiza.jp/poh/enshura-special-ending/82e44900  
+
+F# (test case 3 Time OVer) [port from Clojure to F#]  
+https://paiza.jp/poh/enshura-special-ending/78892b01   
   
+
+---- 
   
   VBとF#でSystem.Collections.Generic.Dictionaryが正しく機能してないぽい？  
   ローカルではほぼ問題なく解ける  
