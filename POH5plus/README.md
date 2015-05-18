@@ -4,7 +4,7 @@ https://paiza.jp/poh/enshura-special
   
   
   
-My Answer  
+Results of My Answer  
 
 C (score 63.2)  
 https://paiza.jp/poh/enshura-special-ending/5cd170e0  
