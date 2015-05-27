@@ -38,7 +38,7 @@ https://paiza.jp/poh/enshura-special-ending/78892b01
 after event  
   
 Scala (score 56.4) [port from VB to Scala]  
-https://paiza.jp/poh/enshura-special-ending/416d8e9e  
+https://paiza.jp/poh/enshura-special-ending/38f11767  
   
 ---- 
   
