@@ -1,9 +1,9 @@
 
 object PuzzleUtil {
 	def shift(index: Int): Int = 60 - (index << 2)
-	def getNumber(data: Long, index: Int): Int = ((data >> shift(index)) & 0xFL).asInstanceOf[Int]
+	def getNumber(data: Long, index: Int): Int = ((data >> shift(index)) & 0xFL).toInt
 	def getIndex(data: Long, value: Int): Int = {
-		val lValue = (data & 0xFL) ^ (0xF & value).asInstanceOf[Long]
+		val lValue = (data & 0xFL) ^ (0xF & value).toLong
 		if (lValue == 0L)
 			15
 		else
@@ -14,7 +14,7 @@ object PuzzleUtil {
 	}
 	def setNumber(data: Long, index: Int, value: Int): Long = {
 		val sh = shift(index)
-		val lValue = (0xF & value).asInstanceOf[Long]
+		val lValue = (0xF & value).toLong
 		(data & (~(0xFL << sh))) | (lValue << sh)
 	}
 	val costMap = {
@@ -37,7 +37,7 @@ object PuzzleUtil {
 			if (i == 16)
 				cost
 			else {
-				val k = getNumber(data, i).asInstanceOf[Long] << shift(i)
+				val k = getNumber(data, i).toLong << shift(i)
 				val c = cost + costMap(k)
 				calcCostLoop(c, (i + 1))
 			}
