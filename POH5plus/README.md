@@ -34,7 +34,12 @@ https://paiza.jp/poh/enshura-special-ending/82e44900
 F# (test case 3 Time OVer) [port from Clojure to F#]  
 https://paiza.jp/poh/enshura-special-ending/78892b01   
   
-
+----
+after event  
+  
+Scala (score 56.4)  
+https://paiza.jp/poh/enshura-special-ending/416d8e9e  
+  
 ---- 
   
   VBとF#でSystem.Collections.Generic.Dictionaryが正しく機能してないぽい？  
