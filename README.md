@@ -14,3 +14,6 @@ POH! Lite (vol.3) https://paiza.jp/poh/kirishima
 POH! vol.4 Lite https://paiza.jp/poh/enkoi  
 POH! vol.5 https://paiza.jp/poh/enshura  
 POH! vol.5+ https://paiza.jp/poh/enshura-special  
+POH! vol.6 https://paiza.jp/poh/joshibato  
+POH! vol.6+ https://paiza.jp/poh/joshibato/matsue-ruby  
+  
