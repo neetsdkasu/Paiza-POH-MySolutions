@@ -8,9 +8,10 @@ https://paiza.jp/poh/joshibato/matsue-ruby
   
   
 
-ruby  
+ruby (731)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/f6c213a5  
   
-  
+ruby (341)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/fc34aebd  
   
   
