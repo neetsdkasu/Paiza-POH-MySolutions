@@ -1,6 +1,5 @@
 f,c,s,w=Hash.new(0),[],"",readlines[1..-1].map{|x|x.chop}
-w.map{|x|f[x]+=1}
-w.sort.map{|x|next if f[x]<1
+w.each{|x|f[x]+=1}.sort.map{|x|next if f[x]<1
 y=x.reverse
 if x==y&&f[x]<2
 c+=[x]
