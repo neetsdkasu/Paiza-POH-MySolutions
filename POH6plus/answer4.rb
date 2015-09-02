@@ -1,7 +1,7 @@
-c,s,w=[],"",readlines[1..-1].map{|x|x.chop}.sort
+c,s,w=[],"",readlines[1..-1].map{|x|x.chop}.sort.reverse
 while w.size>0
-x=w[0]
-w,y=w[1..-1],x.reverse
+x=w.pop
+y=x.reverse
 n=w.find_index y
 if n.nil?
 c+=[x]if x==y
