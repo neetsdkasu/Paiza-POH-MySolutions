@@ -1,12 +1,12 @@
 f,c,s=Hash.new(0),[],""
 w=readlines[1..-1].map{|x|x.chop}
-w.each{|x|f[x]+=1}
-w.sort.each{|x|next if f[x]<1
+w.map{|x|f[x]+=1}
+w.sort.map{|x|next if f[x]<1
 y=x.reverse
 if x==y and f[x]<2
 c+=[x]
 f[x]-=1
-elsif f.key? y and f[y]>0
+elsif f.key?y and f[y]>0
 s+=x
 f[x]-=1
 f[y]-=1
