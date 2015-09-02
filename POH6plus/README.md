@@ -20,3 +20,10 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/6126f0d5
 ruby (217)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/b5c6061a  
   
+  
+  
+  
+-------
+  
+VB (1233)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/f239344a  
