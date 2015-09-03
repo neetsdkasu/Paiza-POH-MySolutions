@@ -41,9 +41,22 @@ let rec search w k =
             (r, h :: a)
     | [] -> (false, [])
 
+let rec hoge s c w =
+    match w with
+    | h::t ->
+        let rv = reverse h
+        let (r, a) = search t rv
+        if r then
+            hoge (s + h) c a
+        elif (compare h rv = 0) && (compare h c < 0 || c.Length = 0) then
+            hoge s h t
+        else
+            hoge s c t
+    | [] -> (s, c)
+        
+
 [<EntryPoint>]
 let main args =
-    let w = getnum |> getwords |> qsort
-    for x in w do
-        printfn "%s" <| reverse x
+    let (s, c) = getnum |> getwords |> qsort |> hoge "" ""
+    printfn "%s" (s + c + reverse s)
     0
