@@ -1,5 +1,4 @@
-f=Hash.new(0)
-s=c=""
+f,s=Hash.new(0),c=""
 gets.to_i.times{f[gets.chop]+=1}
 f.keys.sort.each{|x|y=x.reverse
 m=[f[x],f[y]].min
