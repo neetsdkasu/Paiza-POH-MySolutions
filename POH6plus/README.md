@@ -34,3 +34,7 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/42176ace
 C (411)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/fab7e845    
 https://paiza.jp/poh/joshibato/matsue-ruby/result/1425cbf6    
+  
+Clojure (963)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/03a45d4b  
+  
