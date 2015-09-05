@@ -4,6 +4,6 @@ gets.to_i.times{
     x==y&&c=x
 }
 f.sort.map{|k,v|
-s+=k*(v/2)
+s+=k.*v/2
 }
 $><<s+c+s.reverse
