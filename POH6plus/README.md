@@ -49,4 +49,7 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/03a45d4b
 PHP (523)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/5ea4a9b4  
   
+Java (1051)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/d2a1759d  
+  
    
