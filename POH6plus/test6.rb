@@ -8,9 +8,9 @@ ARGF.read.split[1..-1].map{|x|
     g[x] = y
     x==y&&c=y
 }
-f.sort.map{|k,v|
-a += [k].*v>>1
-b += ([g[k]].*v>>1)
+f.keys.sort.each{|k|v=f[k]>>1
+a += [k].*v
+b = ([g[k]].*v) + b
 }
 
-$><<a.join+c+b.reverse.join
+$><<(a+[c]+b).join
