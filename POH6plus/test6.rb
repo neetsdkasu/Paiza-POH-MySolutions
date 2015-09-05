@@ -10,7 +10,7 @@ ARGF.read.split[1..-1].map{|x|
 }
 f.sort.map{|k,v|
 a += [k].*v>>1
-b = ([g[k]].*v>>1) + b
+b += ([g[k]].*v>>1)
 }
 
-$><<a.join+c+b.join
+$><<a.join+c+b.reverse.join
