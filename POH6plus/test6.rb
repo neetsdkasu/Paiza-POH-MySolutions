@@ -1,16 +1,19 @@
+
 f = Hash.new 0
 g = {}
 c = ""
-a = []
-b = []
-ARGF.read.split[1..-1].map{|x|
+a = Array.new(1001)
+i = 0
+j = 1001
+ARGF.read.split[1..-1].each{|x|
     f[[x,y=x.reverse].min] += 1;
     g[x] = y
     x==y&&c=y
 }
 f.keys.sort.each{|k|v=f[k]>>1
-a += [k].*v
-b = ([g[k]].*v) + b
+a.fill(k, i, v)
+a.fill(g[k], j -= v, v)
+i+=v
 }
-
-$><<(a+[c]+b).join
+a[500] = c
+$><<a.join
