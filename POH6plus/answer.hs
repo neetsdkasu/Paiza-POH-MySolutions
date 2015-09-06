@@ -1,34 +1,46 @@
 import Data.List
 
 main = do n <- readLn
-          z <- unko n
-          sequence_ (map putStr (geri (map reverse (sort z)) [] [] []))
+          w <- getWords n
+          sequence_ (map putStr (resolve (sort w) [] [] []))
 
-unko :: Int -> IO [String]
-unko 0 = return []
-unko n = do x <- getLine
-            y <- unko (n - 1)
-            return (x:y)
+getWords :: Int -> IO [String]
+getWords 0 = return []
+getWords n = do x <- getLine
+                y <- getWords (n - 1)
+                return (x:y)
+
+strReverse :: String -> String
+strReverse "" = ""
+strReverse (h:t) = (strReverse t) ++ [h]
+
+strListReverse :: [String] -> [String]
+strListReverse [] = []
+strListReverse (h:t) = (strListReverse t) ++ [h]
+
+strCompare :: String -> String -> Int
+strCompare "" "" = 0
+strCompare a "" = 1
+strCompare "" b = -1
+strCompare (ha:ta) (hb:tb) = if ha < hb
+                                then -1
+                                else if ha == hb
+                                        then strCompare ta tb
+                                        else 1
 
 
-hage :: String -> String -> Bool
-hage "" "" = True
-hage a "" = False
-hage "" b = False
-hage (a:u) (b:v) = if a == b then hage u v else False
+findWord :: String -> [String] -> Bool
+findWord w [] = False
+findWord w (h:t) = if strCompare w h == 0 then True else findWord w t
 
-debu :: String -> [String] -> Bool
-debu k [] = False
-debu k (w:z) = if hage k w then True else debu k z
+deleteWord :: String -> [String] -> [String]
+deleteWord w [] = []
+deleteWord w (h:t) = if strCompare w h == 0 then t else h : deleteWord w t
 
-gari :: String -> [String] -> [String]
-gari k [] = []
-gari k (w:z) = if hage k w then z else w : gari k z
-
-geri :: [String] -> [String] -> [String] -> [String] -> [String]
-geri [] b c d = (reverse d) ++ c ++ b
-geri (k:a) b c d = if debu (reverse k) a 
-                      then geri (gari (reverse k) a) (k : b) c ((reverse k) : d)
-                      else if hage k (reverse k)
-                              then geri a b [k] d
-                              else geri a b c d                        
+resolve :: [String] -> [String] -> [String] -> [String] -> [String]
+resolve [] b c d = (strListReverse b) ++ c ++ d
+resolve (k:a) b c d = if findWord (strReverse k) a 
+                         then resolve (deleteWord (strReverse k) a) (k : b) c ((strReverse k) : d)
+                         else if strCompare k (strReverse k) == 0
+                                 then resolve a b [k] d
+                                 else resolve a b c d                        
