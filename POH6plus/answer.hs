@@ -1,3 +1,7 @@
+-- --------------------------------
+-- POH6+
+-- author: Leonardone @ NEETSDKASU
+-- --------------------------------
 module Main where
 
 main :: IO ()
@@ -32,7 +36,7 @@ strReverse (str_head:str_tail) = listConcat (strReverse str_tail) [str_head]
 
 strListReverse :: [String] -> [String]
 strListReverse [] = []
-strListReverse (h:t) = listConcat (strListReverse t) [h]
+strListReverse (strlist_head:strlist_tail) = listConcat (strListReverse strlist_tail) [strlist_head]
 
 strCompare :: String -> String -> Int
 strCompare "" "" = 0
@@ -64,11 +68,11 @@ upperPartition keyword (words_head:words_tail) = if strCompare keyword words_hea
 
 strListHead :: [String] -> String
 strListHead [] = ""
-strListHead (str_head:str_tail) = str_head
+strListHead (strlist_head:strlist_tail) = strlist_head
 
 strListSort :: [String] -> [String]
 strListSort [] = []
-strListSort (h:t) = listConcat (listConcat (listConcat (strListSort (underPartition h t)) [h]) (strListSort (centerPartition h t))) (strListSort (upperPartition h t))
+strListSort (strlist_head:strlist_tail) = listConcat (listConcat (listConcat (strListSort (underPartition strlist_head strlist_tail)) [strlist_head]) (strListSort (centerPartition strlist_head strlist_tail))) (strListSort (upperPartition strlist_head strlist_tail))
 
 findWord :: String -> [String] -> Bool
 findWord keyword [] = False
@@ -80,8 +84,8 @@ deleteWord keyword (words_head:words_tail) = if strCompare keyword words_head ==
 
 resolve :: [String] -> [String] -> String -> [String] -> [String]
 resolve [] front center end = listConcat (listConcat (strListReverse front) [center]) end
-resolve (h:t) front center end = if findWord (strReverse h) t 
-                         then resolve (deleteWord (strReverse h) t) (h : front) center ((strReverse h) : end)
-                         else if strCompare h (strReverse h) == 0 && (strCompare "" center == 0 || strCompare h center < 0)
-                                 then resolve t front h end
-                                 else resolve t front center end
+resolve (words_head:words_tail) front center end = if findWord (strReverse words_head) words_tail
+                                                      then resolve (deleteWord (strReverse words_head) words_tail) (words_head : front) center ((strReverse words_head) : end)
+                                                      else if strCompare words_head (strReverse words_head) == 0 && (strCompare "" center == 0 || strCompare words_head center < 0)
+                                                           then resolve words_tail front words_head end
+                                                           else resolve words_tail front center end
