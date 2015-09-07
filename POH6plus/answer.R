@@ -45,11 +45,10 @@ for (i in 1:n) {
     }
 }
 
-cc = sort(cc[1:(ci - 1)])
-
-if (identical("", cc[1])) {
+if (ci == 1) {
     c <- ""
 } else {
+    cc = sort(cc[1:(ci - 1)])
     c <- cc[1]
 }
 
