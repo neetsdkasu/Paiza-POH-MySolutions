@@ -58,6 +58,6 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/a9dcaeeb
 D (897)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/64c0fe87  
   
-R (970)  
-https://paiza.jp/poh/joshibato/matsue-ruby/result/347a5d79  
+R (937)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/7fe0d707  
   
