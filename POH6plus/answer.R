@@ -1,24 +1,16 @@
 strConcat <- function(x, sep="") {
     return(paste(x, collapse=sep))
 }
-
 strReverse <- function(x) {
     return(paste(rev(strsplit(x, NULL)[[1]]), collapse=""))
 }
-
 ww <- readLines("stdin")
-
 n <- as.integer(ww[1])
-
 ww <- sort(ww[2:(n+1)])
-
 f <- ""
 e <- ""
-
-cc <- array("", dim=c(n))
-ci <- 1
-
-
+mm <- array("", dim=c(n))
+mi <- 1
 for (i in 1:n) {
     if (identical("", ww[i])) {
         next
@@ -40,16 +32,14 @@ for (i in 1:n) {
         next
     }
     if (identical(rv, ww[i])) {
-        cc[ci] <- rv
-        ci <- ci + 1
+        mm[mi] <- rv
+        mi <- mi + 1
     }
 }
-
-if (ci == 1) {
-    c <- ""
+if (mi == 1) {
+    m <- ""
 } else {
-    cc = sort(cc[1:(ci - 1)])
-    c <- cc[1]
+    mm = sort(mm[1:(mi - 1)])
+    m <- mm[1]
 }
-
-cat(strConcat(c(f, c, e)))
+cat(strConcat(c(f, m, e)))
