@@ -1,9 +1,9 @@
 strConcat <- function(x, sep="") {
-    paste(x, collapse=sep)
+    return(paste(x, collapse=sep))
 }
 
 strReverse <- function(x) {
-    paste(rev(strsplit(x, NULL)[[1]]), collapse='')
+    return(paste(rev(strsplit(x, NULL)[[1]]), collapse=""))
 }
 
 zz <- file("stdin")
