@@ -1,5 +1,5 @@
-strConcat <- function(x,y) {
-    paste(c(x,y), collapse="")
+strConcat <- function(x, sep="") {
+    paste(x, collapse=sep)
 }
 
 strReverse <- function(x) {
@@ -30,8 +30,8 @@ for (i in 1:n) {
     if (i < n) {
         for (j in (i+1):n) {
             if (identical(rv, ww[j])) {
-                f <- strConcat(f, ww[i])
-                e <- strConcat(rv, e)
+                f <- strConcat(c(f, ww[i]))
+                e <- strConcat(c(rv, e))
                 ww[j] <- ""
                 u <- 1
                 break
@@ -53,5 +53,4 @@ if (identical("", cc[1])) {
     c <- cc[1]
 }
 
-cat(strConcat(strConcat(f,c), e))
-
+cat(strConcat(c(f, c, e)))
