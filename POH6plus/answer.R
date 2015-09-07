@@ -6,9 +6,7 @@ strReverse <- function(x) {
     return(paste(rev(strsplit(x, NULL)[[1]]), collapse=""))
 }
 
-zz <- file("stdin")
-
-ww <- readLines(zz)
+ww <- readLines("stdin")
 
 n <- as.integer(ww[1])
 
@@ -46,6 +44,8 @@ for (i in 1:n) {
         ci <- ci + 1
     }
 }
+
+cc = sort(cc[1:(ci - 1)])
 
 if (identical("", cc[1])) {
     c <- ""
