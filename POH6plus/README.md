@@ -29,8 +29,8 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/0cfc3440
 ruby (125)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/bb7d778f  
   
-ruby (123) but time is over 0.09   
-https://paiza.jp/poh/joshibato/matsue-ruby/result/7adb9c1f  
+ruby (121) but time is over 0.09   
+https://paiza.jp/poh/joshibato/matsue-ruby/result/ceb7c8d1  
   
   
   
