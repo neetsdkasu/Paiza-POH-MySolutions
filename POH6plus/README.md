@@ -29,8 +29,11 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/0cfc3440
 ruby (125)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/bb7d778f  
   
-    
-    
+ruby (124) but time is 0.10   
+https://paiza.jp/poh/joshibato/matsue-ruby/result/8d1aeb03  
+  
+  
+  
 -------
   
 VB (595)  
