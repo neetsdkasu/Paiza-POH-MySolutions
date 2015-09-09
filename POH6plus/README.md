@@ -26,8 +26,8 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/382a54d0
 ruby (177)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/0cfc3440  
   
-ruby (127)  
-https://paiza.jp/poh/joshibato/matsue-ruby/result/ad0a6a9b  
+ruby (125)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/bb7d778f  
   
     
     
