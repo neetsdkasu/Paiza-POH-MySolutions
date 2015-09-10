@@ -67,3 +67,7 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/7fe0d707
   
 C# (404)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/37894941  
+  
+COBOL (6821)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/eabe3df5  
+  
