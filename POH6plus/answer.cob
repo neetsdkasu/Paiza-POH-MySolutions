@@ -109,7 +109,7 @@
         Init-Compare.
                 MOVE 1 TO IndexC1.
         Main-Loop.
-                IF IndexC1 = Word-Length THEN
+                IF IndexC1 > Word-Length THEN
                     MOVE EQUALITY TO Result OF Compare-Values
                 ELSE
                     MOVE ORD(String1(IndexC1:1)) TO Ord1
