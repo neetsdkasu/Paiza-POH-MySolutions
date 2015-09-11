@@ -71,3 +71,6 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/37894941
 COBOL (1179)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/9db4c21c  
   
+Scala (394)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/0c181ae0  
+  
