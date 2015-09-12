@@ -1,10 +1,11 @@
+#! python2
 # coding: utf-8
 n = int(raw_input())
-w = [ raw_input() for i in xrange(n) ]
+w = [ raw_input() for i in range(n) ]
 w.sort()
 s = ""
 c = ""
-for i in xrange(n):
+for i in range(n):
     if w[i] == "":
         continue
     r = w[i][::-1]
@@ -14,4 +15,4 @@ for i in xrange(n):
         s += w[i]
     elif w[i] == r and (len(c) == 0 or c > r):
         c = r
-print s + c + s[::-1]
+print(s + c + s[::-1])
