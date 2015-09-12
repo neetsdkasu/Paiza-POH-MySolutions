@@ -74,6 +74,8 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/9db4c21c
 Scala (394)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/0c181ae0  
   
-Python2 (356)  
-https://paiza.jp/poh/joshibato/matsue-ruby/result/4bd63bcd  
+Python2 (367)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/0a9953b7    
   
+Python3 (359)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/7d6e8f17  
