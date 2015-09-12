@@ -79,3 +79,7 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/0a9953b7
   
 Python3 (359)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/7d6e8f17  
+  
+JavaScript(Node.js) (973)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/f1ce0ae6  
+  
