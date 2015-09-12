@@ -1,31 +1,112 @@
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
+
+function strrev(s) {
+    return s.split("").reverse().join("");
+}
+
 process.stdin.on('data', function (chunk) {
-    function strrev(s) { return s.split("").reverse().join(""); }
-    var w = chunk.toString().trim().split('\n');
-    var n = parseInt(w[0]);
-    var c = "";
-    for (var i = 1; i <= n; i++) {
-        if (w[i] === "") {
-            continue;
+    var j0 = 0;
+    var j1 = chunk.indexOf("\n");
+    var n = parseInt(chunk.substring(j0, j1));
+    j0 = j1 + 1;
+    j1 = chunk.indexOf("\n", j0);
+    var l = j1 - j0;
+    j1 = chunk.indexOf("\n", j1 + 1);
+    var q = j1 - j0 - l;
+    var i, s0, s1, r, c = "", smin, smax, st;
+    var u = 0;
+    smin = chunk.substring(j0, j0 + q);
+    smax = smin;
+    for (i = 0; i < n; i++) {
+        j1 = j0 + i * q;
+        s1 = chunk.substring(j1, j1 + l);
+        if (s1 < smin) {
+            smin = s1;
         }
-        var r = strrev(w[i]);
-        var j = w.indexOf(r, i + 1);
-        if (j > 0 && j != i) {
-            process.stdout.write(w[i]);
-            w[j] = "";
-        } else {
-            if (w[i] === r && (c === "" || c > r)) {
-                c = r;
+        if (s1 > smax) {
+            smax = s1;
+        }
+    }
+    s0 = smin;
+    for (;;) {
+        r = strrev(s0);
+        if (s0 <= r) {
+            u = 0;
+            for (i = 0; i < n; i++) {
+                j1 = j0 + i * q;
+                s1 = chunk.substring(j1, j1 + l);
+                if (s1 === r) {
+                    u++;
+                }
             }
-            w[i] = "";
+            if (u > 0) {
+                if (s0 === r) {
+                    if (u % 2 == 1) {
+                        if (c === "" || c > r) {
+                            c = r;
+                        }
+                        u--;
+                    }
+                    u /= 2;
+                }
+                for (i = 0; i < u; i++) {
+                    process.stdout.write(s0);
+                    //console.log("*" + s0);
+                }
+            }
+        }
+        if (s0 === smax) {
+            break;
+        }
+        st = s0;
+        s0 = smax;
+        for (i = 0; i < n; i++) {
+            j1 = j0 + i * q;
+            s1 = chunk.substring(j1, j1 + l);
+            if (s1 > st && s1 < s0) {
+                s0 = s1;
+            }
         }
     }
     process.stdout.write(c);
-    for (var k = n; k > 0; k--) {
-        if (w[k] === "") {
-            continue;
+    //console.log("@"+c);
+    s0 = smax;
+    for (;;) {
+        r = strrev(s0);
+        if (s0 <= r) {
+            u = 0;
+            for (i = 0; i < n; i++) {
+                j1 = j0 + i * q;
+                s1 = chunk.substring(j1, j1 + l);
+                if (s1 === r) {
+                    u++;
+                }
+            }
+            if (u > 0) {
+                if (s0 === r) {
+                    if (u % 2 == 1) {
+                        u--;
+                    }
+                    u /= 2;
+                }
+                for (i = 0; i < u; i++) {
+                    process.stdout.write(r);
+                    //console.log("+" + r);
+                }
+            }
         }
-        process.stdout.write(strrev(w[k]));
+        if (s0 === smin) {
+            break;
+        }
+        st = s0;
+        s0 = smin;
+        for (i = 0; i < n; i++) {
+            j1 = j0 + i * q;
+            s1 = chunk.substring(j1, j1 + l);
+            if (s1 < st && s1 > s0) {
+                s0 = s1;
+            }
+        }
     }
 });
