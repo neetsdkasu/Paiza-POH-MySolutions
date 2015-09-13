@@ -86,8 +86,8 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/0a9953b7
 Python3 (359)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/7d6e8f17  
   
-JavaScript(Node.js) (735)  
-https://paiza.jp/poh/joshibato/matsue-ruby/result/700eb9ef  
+JavaScript(Node.js) (670)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/1588f7a0  
   
 C++ (1704)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/b913fb6c  
