@@ -1,16 +1,1 @@
-import java.util.*;
-class Main {
-    public static void main(String[]a)throws Exception {
-        byte[]b=new byte[20000];System.in.read(b);
-        String[]w=new String(b).split("\\s");
-        int n=Integer.parseInt(w[0]),i,j;
-        String r,x="",y=x,c=x;
-        Arrays.sort(w,1,n+1);
-        for(i=1;i<=n;i++){
-            r=new StringBuffer(w[i]).reverse().toString();
-            for(j=i+1;j<=n&&!r.equals(w[j]);j++);
-            if(j<=n){x+=w[i];y=r+y;w[j]="";}else if(r.equals(w[i]))c+=r;
-        }
-        System.out.print(x+c+y);       
-    }
-}
+import java.util.*;class Main{public static void main(String[]a){Scanner q=new Scanner(System.in);int m,n=q.nextInt();String r,c="";Map<String,Integer>w=new HashMap();for(;n>0;n--){r=q.next();if(w.containsKey(r))w.put(r,1+(int)w.get(r));else w.put(r,1);}StringBuffer s=new StringBuffer();for(String k:new TreeSet<>(w.keySet())){r=new StringBuffer(k).reverse()+"";if(!w.containsKey(r))continue;m=Math.min(w.get(k), w.get(r));w.put(k,0);if(k.equals(r)){if(m%2==1&&(c.isEmpty()||k.compareTo(c)<0))c=k;m/=2;}for(;m>0;m--)s.append(k);}System.out.println(s+c+s.reverse());}}
