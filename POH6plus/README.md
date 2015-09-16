@@ -80,6 +80,9 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/9db4c21c
 Scala (394)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/0c181ae0  
   
+Perl (466)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/66ccec30  
+  
 Python2 (367)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/0a9953b7    
   
