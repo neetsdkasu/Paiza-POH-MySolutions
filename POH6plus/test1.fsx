@@ -1,17 +1,8 @@
 open System
-
-let w = List.sort [for i in 1 .. Int32.Parse(Console.ReadLine()) -> Console.ReadLine()]
-
-let rec f (x:List<string>, y:string, z:string, c:string):Unit =
-    if x.Length = 0 then
-        printf "%s%s%s" y c z 
-    else
-        let r = new string(Array.rev (x.Head.ToCharArray()))
-        if List.exists (fun e -> e = r) x.Tail && x.Head < r then
-            f(x.Tail, y+x.Head, r + z, c)
-        elif r = x.Head then
-            f(x.Tail, y, z, c + x.Head)
-        else
-            f(x.Tail, y, z, c)
-
+let w=List.sort [for i in 1..Int32.Parse(Console.ReadLine())->Console.ReadLine()]
+let rec f(x:List<string>,y:string,z:string,c:string):Unit=
+    match x with
+    |[]->printf "%s%s%s" y c z 
+    |h::t->let r=new string(Array.rev (h.ToCharArray()))
+           if List.exists (fun e->e=r) t&&h<r then f(t,y+h,r+z,c);elif r=h then f(t,y,z,c+h);else f(t,y,z,c)
 f(w,"","","")
