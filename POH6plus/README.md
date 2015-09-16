@@ -35,8 +35,8 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/f5128eca
 ruby (115) but avg time is over 0.09  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/9a6a958a  
   
-ruby (111)  but avg time is over 0.09  
-https://paiza.jp/poh/joshibato/matsue-ruby/result/650eb5b8  
+ruby (109)    
+https://paiza.jp/poh/joshibato/matsue-ruby/result/d1cb4c09  
   
 ruby (106) but avg time is over 0.09  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/2f3c1302  
