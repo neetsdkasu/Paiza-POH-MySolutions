@@ -1,0 +1,1 @@
+char w[1000][11],s[10001],t[10001];n,k,x,i,c=-1;r(char*u,m){t[m--]=0;for(k=0;k<=m;k++)t[k]=u[m-k];}e(){for(;x<n;x++)if(!strcmp(w+x,t))return 0;x=0;}main(){scanf("%d",&n);for(i=0;i<n;i++)scanf("%s",w+i);qsort(w,n,11,strcmp);for(i=0;i<n;i++){r(w+i,strlen(w));x=i+1;e();if(x){strcat(s,w+i);*w[x]=0;}else if(!strcmp(w+i,t))c=i;}r(s,strlen(s));c>=0&&strcat(s,w+c);puts(strcat(s,t));}
