@@ -59,8 +59,8 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/03a45d4b
 PHP (289)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/a862d4de  
   
-Java (570)  
-https://paiza.jp/poh/joshibato/matsue-ruby/result/980e55ae  
+Java (467)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/f603cd7b  
   
 Haskell (4606)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/a9dcaeeb  
