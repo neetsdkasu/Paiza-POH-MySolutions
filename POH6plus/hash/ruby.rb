@@ -4,13 +4,7 @@ n = gets.to_i
 
 word_count = Hash.new 0
 
-while gets do
-
-    $_.chomp!
-    
-    word_count[$_] += 1
-
-end
+word_count[$_.chomp] += 1 while gets
 
 left_side_palindrome = ""
 center_of_palindrome = ""
@@ -20,12 +14,8 @@ word_count.keys.sort.each do |word|
    
     rev = word.reverse 
 
-    if word > rev then
+    next if word > rev
         
-        next
-        
-    end
-
     count = [ word_count[word], word_count[rev] ].min
     
     if word == rev then
