@@ -12,9 +12,7 @@ word_list.each_index do |i|
     
     word = word_list[i]
     
-    if word == "" then
-        next
-    end
+    next if word == ""
     
     word_list[i] = ""
     
