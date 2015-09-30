@@ -95,3 +95,8 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/6ae9f234
 C++ (1704)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/b913fb6c  
   
+------------
+  
+Coffee Script (556)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/9b692658  
+  
