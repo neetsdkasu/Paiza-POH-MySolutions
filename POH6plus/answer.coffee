@@ -6,7 +6,7 @@ process.stdin.setEncoding "utf8"
 process.stdin.on 'data', (chunk) ->
     w = chunk.toString().trim().split("\n")
     n = parseInt w[0]
-    w.sort
+    w.sort()
     s = ""
     c = ""
     for idx1 in [1..n]
