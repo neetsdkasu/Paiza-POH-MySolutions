@@ -3,17 +3,18 @@
 
 main([_]) ->
     N = io:get_line(""),
-    [{W}|T] = getlines(),
+    W = getlines(),
     io:format("~s",[W]),
     init:stop().
 
+chomp([X|[]]) -> [];
+chomp([H|T]) -> [H|chomp(T)].
 
 getlines() -> getlines([]).
-    
 getlines(Result) ->
     case io:get_line("") of
         eof -> Result;
-        {error, X} -> [{X}];
-        W -> getlines([{W}|Result])
+        {error, X} -> {error, X};
+        W -> getlines([{chomp(W)}|Result])
     end.
         
