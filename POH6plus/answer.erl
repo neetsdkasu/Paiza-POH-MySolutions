@@ -3,9 +3,14 @@
 
 main([_]) ->
     N = io:get_line(""),
-    W = getlines(),
-    io:format("~s",[W]),
+    [{W}|T] = getlines(),
+    io:format("~s",[reverse(W)]),
     init:stop().
+
+reverse(S) -> reverse(S,[]).
+reverse([],R) -> R;
+reverse([H|T],R) -> reverse(T,[H|R]).
+    
 
 chomp([X|[]]) -> [];
 chomp([H|T]) -> [H|chomp(T)].
