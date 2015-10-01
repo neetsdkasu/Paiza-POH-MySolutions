@@ -100,3 +100,6 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/b913fb6c
 Coffee Script (556)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/9b692658  
   
+Erlang (878)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/07512314  
+  
