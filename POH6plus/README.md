@@ -103,6 +103,6 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/9b692658
 Erlang (878)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/07512314  
   
-Go (1354)  
-https://paiza.jp/poh/joshibato/matsue-ruby/result/b0e6ad8e  
+Go (460)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/4d01fd98  
   
