@@ -3,15 +3,34 @@
 
 main(_) ->
     [N|W] = getlines(),
-    M = mapping(W),
-    io:format("~w",[M]),
+    io:format("~s",[solve(W)]),
     init:stop().
+
+solve(W) ->
+    M = mapping(W),
+    palindrome(map_data(M)).
+
+palindrome(W) -> palindrome(W,"","","").
+palindrome([{W,{N,symmetry}}|T], L, C, R) ->
+    NC = if (N rem 2 == 1) and ((C == "") or (W < C)) -> W; true -> C end,
+    P = string:copies(W, N div 2),
+    palindrome(T, string:concat(L, P), NC, string:concat(P, R));
+palindrome([{W,{N,WR}}|T], L, C, R) ->
+    P = string:copies(W, N div 2),
+    PR = string:copies(WR, N div 2),
+    palindrome(T, string:concat(L, P), C, string:concat(PR, R));
+palindrome([], L, C, R) -> string:concat(L, string:concat(C, R)).
     
+
 mapping(W) -> mapping(W, map_new()).
 mapping([], M) -> M;
 mapping([H|T], M) ->
     R = lists:reverse(H),
-    {K, KR} = if H < R -> {H, R}; true -> {R, H} end,
+    {K, KR} = case comp(H, R) of
+            eq -> {H, symmetry};
+            lt -> {H, R};
+            gt -> {R, H}
+        end,
     X = case map_get(K,M) of
             {ok, {V, _}} -> V + 1;
             nothing -> 1
@@ -60,8 +79,8 @@ map_rotate({map, KV, L, R, _}) ->
 map_depth({map, _, _, _, D}) -> D;
 map_depth(emptymap) -> 0.
 
-map_keys(emptymap) -> [];
-map_keys({map, {K, _}, L, R, _}) -> map_keys(L) ++ [K] ++ map_keys(R).
+map_data(emptymap) -> [];
+map_data({map, KV, L, R, _}) -> map_data(L) ++ [KV] ++ map_data(R).
 
 %% 複数行取得、文字列連結にならんようにタプルで囲む
 getlines() -> getlines([]).
