@@ -11,6 +11,8 @@ palindrome([{W,{N,symmetry}}|T], L, C, R) ->
     NC = if (N rem 2 == 1) and ((C == "") or (W < C)) -> W; true -> C end,
     P = copies(W, N div 2),
     palindrome(T, concat(L, P), NC, concat(P, R));
+palindrome([{_,{N,_}}|T], L, C, R) when N < 2 ->
+    palindrome(T, L, C,R);
 palindrome([{W,{N,WR}}|T], L, C, R) ->
     P = copies(W, N div 2),
     PR = copies(WR, N div 2),
