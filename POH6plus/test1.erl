@@ -1,25 +1,21 @@
 -module(main).
 -export([main/1]).
+-import(string,[concat/2,copies/2]).
 
 main(_) ->
-    W = getlines(),
-    io:format("~s",[solve(W)]),
+    io:format("~s",[palindrome(getwords())]),
     halt().
 
-solve(W) ->
-    M = mapping(W),
-    palindrome(map_data(M)).
-
-palindrome(W) -> palindrome(W,"","","").
+palindrome(W) -> palindrome(map_data(mapping(W)),"","","").
 palindrome([{W,{N,symmetry}}|T], L, C, R) ->
     NC = if (N rem 2 == 1) and ((C == "") or (W < C)) -> W; true -> C end,
-    P = string:copies(W, N div 2),
-    palindrome(T, string:concat(L, P), NC, string:concat(P, R));
+    P = copies(W, N div 2),
+    palindrome(T, concat(L, P), NC, concat(P, R));
 palindrome([{W,{N,WR}}|T], L, C, R) ->
-    P = string:copies(W, N div 2),
-    PR = string:copies(WR, N div 2),
-    palindrome(T, string:concat(L, P), C, string:concat(PR, R));
-palindrome([], L, C, R) -> string:concat(L, string:concat(C, R)).
+    P = copies(W, N div 2),
+    PR = copies(WR, N div 2),
+    palindrome(T, concat(L, P), C, concat(PR, R));
+palindrome([], L, C, R) -> concat(L, concat(C, R)).
     
 
 mapping(W) -> mapping(W, map_new()).
@@ -44,7 +40,7 @@ comp([A|B],[C|D]) -> if A < C -> lt; A > C -> gt; true -> comp(B,D) end.
 
 map_new() -> emptymap.
 
-map_get(FK, {map, {K,V}, L, R, D}) ->
+map_get(FK, {map, {K,V}, L, R, _}) ->
     case comp(FK, K) of
         eq -> {ok, V};
         lt -> map_get(FK, L);
@@ -92,8 +88,8 @@ split([H|T],W,L) -> split(T,[H|W],L).
 delfirst([$\n|T]) -> T;
 delfirst([_|T]) -> delfirst(T).
 
-%% 複数行取得、文字列連結にならんようにタプルで囲む
-getlines() ->
+%% 単語リスト取得
+getwords() ->
     case io:get_chars("",20000) of
         eof -> eof;
         {error, E} -> {error, E};
