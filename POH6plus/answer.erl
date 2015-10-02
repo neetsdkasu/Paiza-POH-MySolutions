@@ -1,7 +1,7 @@
 -module(main).
 -export([main/1]).
 
-main([_]) ->
+main(_) ->
     [{N}|W] = lists:sort(getlines()),
     io:format("~s",[solve(W)]),
     init:stop().
@@ -23,12 +23,20 @@ solve([{H}|T],L,C) ->
             end
     end.
 
+split(S) -> split(S,"",[]).
+split([],"",L) -> L;
+split([],W,L) -> [{W}|L];
+split([$\n|T],"",L) -> split(T,"",L);
+split([$\n|T],W,L) -> split(T,"",[{W}|L]);
+split([H|T],W,L) -> split(T,[H|W],L).
+    
+
 %% 複数行取得、文字列連結にならんようにタプルで囲む
-getlines() -> getlines([]).
-getlines(Result) ->
-    case io:get_line("") of
-        eof -> Result;
-        {error, X} -> {error, X};
-        W -> getlines([{lists:delete($\n,W)}|Result])
+getlines() ->
+    case io:get_chars("",20000) of
+        eof -> eof;
+        {error, E} -> {error, E};
+        S -> split(S)
     end.
+
         
