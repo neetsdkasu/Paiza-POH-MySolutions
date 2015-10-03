@@ -9,19 +9,20 @@ int main(void){
 
         NSData *indata = [stdin readDataToEndOfFile];
         NSMutableString *str = [NSMutableString alloc];
-        [str initWithBytes:[indata bytes] length:[indata length] encoding:NSUTF8StringEncoding];
+        [str initWithBytes:indata.bytes length:indata.length encoding:enc];
 
         NSScanner *scan = [NSScanner alloc];
         [scan initWithString:str];
         
-        NSString *n = [NSString alloc];
-        [scan scanUpToString:@"\n" intoString:&n];
+        NSString *nstr = [NSString alloc];
+        [scan scanUpToString:@"\n" intoString:&nstr];
+        NSInteger n = nstr.integerValue;
         
-        while ([scan isAtEnd] == NO) {
+        for (NSInteger i = 0; i < n; i++) {
             NSString *tstr = [NSString alloc];
             [scan scanUpToString:@"\n" intoString:&tstr];
-            [stdout writeData:[tstr dataUsingEncoding:NSUTF8StringEncoding]];
-            [stdout writeData:[@"----\n" dataUsingEncoding:NSUTF8StringEncoding]];
+            [stdout writeData:[tstr dataUsingEncoding:enc]];
+            [stdout writeData:[@"----\n" dataUsingEncoding:enc]];
         }
         
 
