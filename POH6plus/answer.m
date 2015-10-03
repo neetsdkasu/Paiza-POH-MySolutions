@@ -15,24 +15,9 @@ int main(void){
         NSMutableString *str = [NSMutableString alloc];
         [str initWithBytes:indata.bytes length:indata.length encoding:enc];
 
-        NSScanner *scan = [NSScanner alloc];
-        [scan initWithString:str];
-        
-        NSString *nstr = [NSString alloc];
-        [scan scanUpToString:@"\n" intoString:&nstr];
-        NSInteger n = nstr.integerValue;
-        
-        NSMutableArray *w = [NSMutableArray new];
-        
-        for (NSInteger i = 0; i < n; i++) {
-            NSString *tstr = [NSString alloc];
-            [scan scanUpToString:@"\n" intoString:&tstr];
-            [w addObject:tstr];
-        }
-        
-        [w sortUsingFunction:&comp context:NULL];
-        
-        for (NSUInteger j = 0; j < w.count; j++) {
+        NSArray *w = [[str componentsSeparatedByString:@"\n"] sortedArrayUsingFunction:comp context:NULL];
+
+        for (NSUInteger j = 2; j < w.count; j++) {
             NSString *wd = (NSString*)[w objectAtIndex:j];
             [stdout writeData:[wd dataUsingEncoding:enc]];
             [stdout writeData:[@"----\n" dataUsingEncoding:enc]];
