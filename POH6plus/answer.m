@@ -18,13 +18,18 @@ int main(void){
         [scan scanUpToString:@"\n" intoString:&nstr];
         NSInteger n = nstr.integerValue;
         
+        NSMutableArray *w = [NSMutableArray new];
+        
         for (NSInteger i = 0; i < n; i++) {
             NSString *tstr = [NSString alloc];
             [scan scanUpToString:@"\n" intoString:&tstr];
-            [stdout writeData:[tstr dataUsingEncoding:enc]];
-            [stdout writeData:[@"----\n" dataUsingEncoding:enc]];
+            [w addObject:tstr];
         }
         
+        for (NSString *wd in w) {
+            [stdout writeData:[wd dataUsingEncoding:enc]];
+            [stdout writeData:[@"----\n" dataUsingEncoding:enc]];
+        }
 
         
     }
