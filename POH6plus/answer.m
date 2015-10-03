@@ -1,5 +1,9 @@
 #import <Foundation/Foundation.h>
 
+NSComparisonResult comp(id o1, id o2, void* x) {
+    return [(NSString*)o1 localizedCompare:(NSString*)o2];
+}
+
 int main(void){
 
     @autoreleasepool {
@@ -25,6 +29,8 @@ int main(void){
             [scan scanUpToString:@"\n" intoString:&tstr];
             [w addObject:tstr];
         }
+        
+        [w sortUsingFunction:&comp context:NULL];
         
         for (NSString *wd in w) {
             [stdout writeData:[wd dataUsingEncoding:enc]];
