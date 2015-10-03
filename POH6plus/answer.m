@@ -32,7 +32,8 @@ int main(void){
         
         [w sortUsingFunction:&comp context:NULL];
         
-        for (NSString *wd in w) {
+        for (NSUInteger j = 0; j < w.count; j++) {
+            NSString *wd = (NSString*)[w objectAtIndex:j];
             [stdout writeData:[wd dataUsingEncoding:enc]];
             [stdout writeData:[@"----\n" dataUsingEncoding:enc]];
         }
