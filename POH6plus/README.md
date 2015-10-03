@@ -106,3 +106,6 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/07512314
 Go (460)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/4d01fd98  
   
+Objective-C (2342)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/2a06ba53  
+  
