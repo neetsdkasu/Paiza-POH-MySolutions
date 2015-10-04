@@ -62,8 +62,8 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/a862d4de
 Java (467)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/f603cd7b  
   
-Haskell (4606)  
-https://paiza.jp/poh/joshibato/matsue-ruby/result/a9dcaeeb  
+Haskell (399)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/9ede54f7  
   
 D (315)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/337d37ed  
