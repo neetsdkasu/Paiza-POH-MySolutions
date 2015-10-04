@@ -1,7 +1,8 @@
+declare -a w
+declare -i i
 
+mapfile w
 
-for x in `sort`; do
-    if [[ "$x" == +([a-z]) ]]; then
-        echo $x;
-    fi;
+for ((i=${w[0]}; i; i--)) do
+    echo "${w[$i]}";
 done
