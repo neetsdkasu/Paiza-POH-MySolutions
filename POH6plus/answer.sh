@@ -1,8 +1,8 @@
 #!/bin/bash
 
 declare -a w
-declare -i i j k
-declare x rw
+declare -i i j k n
+declare x rw s c t
 declare -f rev
 
 function rev() {
@@ -10,13 +10,15 @@ function rev() {
     local -i ii
     rw=""
     for (( ii=len; ii; ii--)); do
-        rw+=${1:ii-1:1}
+        rw+=${1:ii-1:1};
     done
 }
 
 mapfile -t w
 
-for (( i=${w[0]}; i; i--)); do
+n=${w[0]}
+
+for (( i=n; i; i--)); do
     k=i
     for (( j=i-1; j; j--)); do
         if [[ ${w[j]} < ${w[k]} ]]; then
@@ -28,11 +30,36 @@ for (( i=${w[0]}; i; i--)); do
     w[k]=$x;
 done
 
-for (( i=${w[0]}; i; i--)); do
+s=""
+c=""
+
+for (( i=n; i; i--)); do
     x=${w[i]}
-    rev x
-    echo -n $x
-    echo -n " - "
-    rev ${w[i]}
-    echo $rw
+    if [[ $x == "" ]]; then
+        continue;
+    fi
+    rev $x
+    j=i-1
+    for (( ; j; j--)); do
+        if [[ $rw == ${w[j]} ]]; then
+            s+=$x
+            w[j]=""
+            break;
+        fi;
+    done
+    if [[ j -eq 0 ]]; then
+        if [[ $x == $rw ]]; then
+            if [[ $c == "" ]]; then
+                c=$x;
+            elif [[ $x < $c ]]; then
+                c=$x;
+            fi;
+        fi;
+    fi;
 done
+
+rev $s
+
+echo -n $s
+echo -n $c
+echo $rw
