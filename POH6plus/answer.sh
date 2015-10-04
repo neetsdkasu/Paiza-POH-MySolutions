@@ -2,7 +2,17 @@
 
 declare -a w
 declare -i i j k
-declare x
+declare x rw
+declare -f rev
+
+function rev() {
+    local -i len=${#1}
+    local -i ii
+    rw=""
+    for (( ii=len; ii; ii--)); do
+        rw+=${1:ii-1:1}
+    done
+}
 
 mapfile -t w
 
@@ -19,5 +29,10 @@ for (( i=${w[0]}; i; i--)); do
 done
 
 for (( i=${w[0]}; i; i--)); do
-    echo "${w[i]}";
+    x=${w[i]}
+    rev x
+    echo -n $x
+    echo -n " - "
+    rev ${w[i]}
+    echo $rw
 done
