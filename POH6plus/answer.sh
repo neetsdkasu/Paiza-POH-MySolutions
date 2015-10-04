@@ -1,46 +1,46 @@
 #!/bin/bash
 
 function rev() {
-    len=${#1};
-    rw="";
+    len=${#1}
+    rw=""
     for (( ii=len; ii; ii--)); do
         rw+=${1:ii-1:1};
-    done;
-};
+    done
+}
 
-mapfile -t w;
+mapfile -t w
 
-n=${w[0]};
+n=${w[0]}
 
 for (( i=n; i; i--)); do
-    k=$i;
+    k=$i
     for (( j=i-1; j; j--)); do
         if [[ ${w[j]} < ${w[k]} ]]; then
             k=$j;
         fi;
-    done;
-    x=${w[i]};
-    w[i]=${w[k]};
+    done
+    x=${w[i]}
+    w[i]=${w[k]}
     w[k]=$x;
-done;
+done
 
-s="";
-c="";
+s=""
+c=""
 
 for (( i=n; i; i--)); do
-    x=${w[i]};
+    x=${w[i]}
     if [[ $x == "" ]]; then
         continue;
-    fi;
-    rev $x;
-    j=i-1;
+    fi
+    rev $x
+    j=i-1
     for (( ; j; j--)); do
         if [[ $rw == ${w[j]} ]]; then
-            s+=$x;
-            w[j]="";
+            s+=$x
+            w[j]=""
             break;
         fi;
-    done;
+    done
     if [[ j -eq 0 ]]; then
         if [[ $x == $rw ]]; then
             if [[ $c == "" ]]; then
@@ -50,10 +50,10 @@ for (( i=n; i; i--)); do
             fi;
         fi;
     fi;
-done;
+done
 
-rev $s;
+rev $s
 
-echo -n $s;
-echo -n $c;
-echo $rw;
+echo -n $s
+echo -n $c
+echo $rw
