@@ -53,7 +53,6 @@ let rec hoge s c w =
         else
             hoge s c t
     | [] -> (s, c)
-        
 
 [<EntryPoint>]
 let main args =
