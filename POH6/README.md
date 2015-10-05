@@ -94,6 +94,9 @@ https://paiza.jp/poh/joshibato/rio/result/da72c10b
 PHP  
 https://paiza.jp/poh/joshibato/rio/result/9eb646e4  
   
+Ruby  
+https://paiza.jp/poh/joshibato/rio/result/05a630ce  
+  
 ----------
 霧島京子 Kirishima  
   
