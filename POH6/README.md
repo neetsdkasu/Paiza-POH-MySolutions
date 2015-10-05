@@ -51,7 +51,7 @@ https://paiza.jp/poh/joshibato/tsubame/result/4d3f5f16
 Go  
 https://paiza.jp/poh/joshibato/tsubame/result/96173864  
   
-Haskell 
+Haskell  
 https://paiza.jp/poh/joshibato/tsubame/result/387f89f9  
   
 ----------
