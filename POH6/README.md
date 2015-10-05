@@ -60,6 +60,9 @@ https://paiza.jp/poh/joshibato/tsubame/result/82316079
 Bash  
 https://paiza.jp/poh/joshibato/tsubame/result/a47761cf  
   
+Erlang  
+https://paiza.jp/poh/joshibato/tsubame/result/d309040b  
+  
 ----------
 六村リオ Rio 
 
