@@ -27,6 +27,9 @@ https://paiza.jp/poh/joshibato/tsubame/result/c5bc86af
 Ruby  
 https://paiza.jp/poh/joshibato/tsubame/result/137c4ad4  
   
+Python2  
+https://paiza.jp/poh/joshibato/tsubame/result/aa26ed7d  
+  
 ----------
 六村リオ Rio 
 
