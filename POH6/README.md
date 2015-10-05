@@ -36,6 +36,9 @@ https://paiza.jp/poh/joshibato/tsubame/result/1235b394
 C++  
 https://paiza.jp/poh/joshibato/tsubame/result/3beb9438  
   
+C#  
+https://paiza.jp/poh/joshibato/tsubame/result/e5732672  
+  
 ----------
 六村リオ Rio 
 
