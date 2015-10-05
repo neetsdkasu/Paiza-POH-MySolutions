@@ -78,6 +78,9 @@ https://paiza.jp/poh/joshibato/tsubame/result/a8d64745
 Clojure  
 https://paiza.jp/poh/joshibato/tsubame/result/24209bda  
   
+D  
+https://paiza.jp/poh/joshibato/tsubame/result/62a1085b  
+  
 ----------
 六村リオ Rio 
 
