@@ -1,3 +1,6 @@
+/* 
+ * 結果 https://paiza.jp/poh/joshibato/tsubame/result/af939731
+ */
 #include <stdio.h>
 int main(void){
     int N;
