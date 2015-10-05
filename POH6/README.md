@@ -48,6 +48,9 @@ https://paiza.jp/poh/joshibato/tsubame/result/fbd2a1d1
 Scala  
 https://paiza.jp/poh/joshibato/tsubame/result/4d3f5f16  
   
+Go  
+https://paiza.jp/poh/joshibato/tsubame/result/96173864  
+  
 ----------
 六村リオ Rio 
 
