@@ -33,6 +33,9 @@
               *> 十の位が同じケースには乱数を使い偶然の正解を祈る
               *> 成功確率は1/2が4回で1/8 (12.5%)
               
+              *> 数度の挑戦で見事に全テストケース通過できました！
+              *> https://paiza.jp/poh/joshibato/tsubame/result/2eb7e4e8
+              
               IF n = 5 THEN
                      DISPLAY "71"
               END-IF.
