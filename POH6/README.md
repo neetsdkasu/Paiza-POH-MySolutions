@@ -45,6 +45,9 @@ https://paiza.jp/poh/joshibato/tsubame/result/ec08af86
 Objective-C  
 https://paiza.jp/poh/joshibato/tsubame/result/fbd2a1d1  
   
+Scala  
+https://paiza.jp/poh/joshibato/tsubame/result/4d3f5f16  
+  
 ----------
 六村リオ Rio 
 
