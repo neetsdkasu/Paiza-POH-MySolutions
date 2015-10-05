@@ -18,6 +18,9 @@ https://paiza.jp/poh/joshibato/kirishima
 C  
 https://paiza.jp/poh/joshibato/tsubame/result/af939731  
   
+Java  
+https://paiza.jp/poh/joshibato/tsubame/result/ee79f099  
+  
 ----------
 六村リオ Rio 
 
