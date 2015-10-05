@@ -1,3 +1,6 @@
+/*
+ * 結果 https://paiza.jp/poh/joshibato/kirishima/result/9185872e
+ */
 #include <stdio.h>
 int main(void){
    
