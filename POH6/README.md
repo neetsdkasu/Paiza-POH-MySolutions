@@ -72,6 +72,9 @@ OpenCOBOL
 VisualBasic.NET  
 https://paiza.jp/poh/joshibato/tsubame/result/7247a5fd  
   
+F#  
+https://paiza.jp/poh/joshibato/tsubame/result/a8d64745  
+  
 ----------
 六村リオ Rio 
 
