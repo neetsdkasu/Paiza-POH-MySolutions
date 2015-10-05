@@ -63,6 +63,9 @@ https://paiza.jp/poh/joshibato/tsubame/result/a47761cf
 Erlang  
 https://paiza.jp/poh/joshibato/tsubame/result/d309040b  
   
+R  
+https://paiza.jp/poh/joshibato/tsubame/result/e37303c2  
+  
 ----------
 六村リオ Rio 
 
