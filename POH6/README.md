@@ -54,6 +54,9 @@ https://paiza.jp/poh/joshibato/tsubame/result/96173864
 Haskell  
 https://paiza.jp/poh/joshibato/tsubame/result/387f89f9  
   
+CoffeeScript  
+https://paiza.jp/poh/joshibato/tsubame/result/82316079  
+  
 ----------
 六村リオ Rio 
 
