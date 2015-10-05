@@ -66,6 +66,12 @@ https://paiza.jp/poh/joshibato/tsubame/result/d309040b
 R  
 https://paiza.jp/poh/joshibato/tsubame/result/e37303c2  
   
+OpenCOBOL  
+ ACCEPTの挙動の変え方が分からなくて断念  
+  
+VisualBasic.NET  
+https://paiza.jp/poh/joshibato/tsubame/result/7247a5fd  
+  
 ----------
 六村リオ Rio 
 
