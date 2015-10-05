@@ -97,6 +97,15 @@ https://paiza.jp/poh/joshibato/rio/result/9eb646e4
 Ruby  
 https://paiza.jp/poh/joshibato/rio/result/05a630ce  
   
+Python2  
+https://paiza.jp/poh/joshibato/rio/result/62050e0a  
+  
+Perl  
+https://paiza.jp/poh/joshibato/rio/result/1b22d471  
+  
+C++  
+https://paiza.jp/poh/joshibato/rio/result/88bb4895  
+  
 ----------
 霧島京子 Kirishima  
   
