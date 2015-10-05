@@ -1,4 +1,6 @@
-
+/*
+ * 結果 https://paiza.jp/poh/joshibato/rio/result/52c1ba56
+ */
 #include <stdio.h>
 
 typedef struct _dd {
