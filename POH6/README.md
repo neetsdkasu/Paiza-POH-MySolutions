@@ -88,6 +88,8 @@ https://paiza.jp/poh/joshibato/tsubame/result/62a1085b
 C  
 https://paiza.jp/poh/joshibato/rio/result/52c1ba56  
   
+Java  
+https://paiza.jp/poh/joshibato/rio/result/da72c10b  
   
 ----------
 霧島京子 Kirishima  
