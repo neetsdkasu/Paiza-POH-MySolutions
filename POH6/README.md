@@ -117,6 +117,9 @@ https://paiza.jp/poh/joshibato/rio/result/2f8cced3
   
 Scala  
 https://paiza.jp/poh/joshibato/rio/result/c24a94c3  
+
+Haskell  
+https://paiza.jp/poh/joshibato/rio/result/ec262d70  
   
 ----------
 霧島京子 Kirishima  
