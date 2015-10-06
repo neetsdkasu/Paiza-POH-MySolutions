@@ -145,3 +145,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/497729b3
 C#  
 https://paiza.jp/poh/joshibato/kirishima/result/32185cf0  
   
+JavaScript(Node.js)  
+https://paiza.jp/poh/joshibato/kirishima/result/dbb4f923  
+  
