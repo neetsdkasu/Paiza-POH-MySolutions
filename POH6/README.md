@@ -106,6 +106,9 @@ https://paiza.jp/poh/joshibato/rio/result/1b22d471
 C++  
 https://paiza.jp/poh/joshibato/rio/result/88bb4895  
   
+C#  
+https://paiza.jp/poh/joshibato/rio/result/09dbc2d7  
+  
 ----------
 霧島京子 Kirishima  
   
