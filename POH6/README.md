@@ -127,5 +127,7 @@ https://paiza.jp/poh/joshibato/kirishima/result/9185872e
 Java  
 https://paiza.jp/poh/joshibato/kirishima/result/1d775f73  
   
+PHP  
+https://paiza.jp/poh/joshibato/kirishima/result/8b5b3816  
   
   
