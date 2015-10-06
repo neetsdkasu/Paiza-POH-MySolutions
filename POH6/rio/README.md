@@ -37,7 +37,10 @@ https://paiza.jp/poh/joshibato/rio/result/2f8cced3
   
 Scala  
 https://paiza.jp/poh/joshibato/rio/result/c24a94c3  
-
+  
+Go  
+https://paiza.jp/poh/joshibato/rio/result/0edbfb23  
+  
 ------- 
 以下、イベント期間外提出
 
