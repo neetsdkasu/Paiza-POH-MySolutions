@@ -1,13 +1,13 @@
 --
--- https://paiza.jp/poh/joshibato/kirishima/result/e45f9f5a
+-- https://paiza.jp/poh/joshibato/kirishima/result/e853aecb
 --
 
-main = getContents >>= solve . map (\z -> read z :: Int) . words
+main = getContents >>= putStrLn . unlines . solve . map (\z -> read z :: Int) . words
 
 solve (n:ns) = let (t, (_:d)) = splitAt n ns in follow t d
 
-follow t [] = return ()
-follow t (d:ds) = putStrLn (simulate d [] t) >> follow t ds
+follow t [] = []
+follow t (d:ds) = (simulate d [] t) : follow t ds
 
 simulate d [] _ | d < 1 = "No"
 simulate d _ [0]
