@@ -32,3 +32,9 @@ https://paiza.jp/poh/joshibato/kirishima/result/32185cf0
 JavaScript(Node.js)  
 https://paiza.jp/poh/joshibato/kirishima/result/dbb4f923  
   
+----------
+以下は、イベント期間外提出分  
+  
+Haskell  
+https://paiza.jp/poh/joshibato/kirishima/result/e853aecb  
+  
