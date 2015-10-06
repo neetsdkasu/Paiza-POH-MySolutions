@@ -50,3 +50,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/5a30f12a
 Scala  
 https://paiza.jp/poh/joshibato/kirishima/result/e43bf36e  
   
+Python3  
+https://paiza.jp/poh/joshibato/kirishima/result/fe240a30  
+   
