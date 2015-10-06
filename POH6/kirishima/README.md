@@ -53,3 +53,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/e43bf36e
 Python3  
 https://paiza.jp/poh/joshibato/kirishima/result/fe240a30  
    
+VisualBasic.NET  
+https://paiza.jp/poh/joshibato/kirishima/result/b41b8d05  
+  
