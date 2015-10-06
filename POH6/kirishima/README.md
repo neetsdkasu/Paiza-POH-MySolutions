@@ -56,3 +56,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/fe240a30
 VisualBasic.NET  
 https://paiza.jp/poh/joshibato/kirishima/result/19ccb74f  
   
+F#  
+https://paiza.jp/poh/joshibato/kirishima/result/544ef524  
+  
