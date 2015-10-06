@@ -136,3 +136,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/6d551afb
 Python2  
 https://paiza.jp/poh/joshibato/kirishima/result/8ca4f0ec  
   
+Perl  
+https://paiza.jp/poh/joshibato/kirishima/result/780c7219  
+  
