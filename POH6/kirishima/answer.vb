@@ -1,9 +1,10 @@
 '
-' 結果 https://paiza.jp/poh/joshibato/kirishima/result/b41b8d05
+' 結果 https://paiza.jp/poh/joshibato/kirishima/result/19ccb74f
 '
 Imports System
+
 Public Class answer
-    Shared Function Main%
+    Shared Function Main%()
         
         Dim n% = Int32.Parse(Console.ReadLine())
         Dim t_str$() = Console.ReadLine().Split(" ")
