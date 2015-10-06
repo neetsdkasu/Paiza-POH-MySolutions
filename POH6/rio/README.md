@@ -50,3 +50,6 @@ https://paiza.jp/poh/joshibato/rio/result/ec262d70
 CoffeeScript  
 https://paiza.jp/poh/joshibato/rio/result/7698348f  
   
+Python3  
+https://paiza.jp/poh/joshibato/rio/result/d852b6ab  
+  
