@@ -41,3 +41,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/5cc75430
 Haskell  
 https://paiza.jp/poh/joshibato/kirishima/result/e853aecb  
   
+CoffeeScript  
+https://paiza.jp/poh/joshibato/kirishima/result/6d4a87b3  
+  
