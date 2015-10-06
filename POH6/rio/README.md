@@ -53,3 +53,6 @@ https://paiza.jp/poh/joshibato/rio/result/7698348f
 Python3  
 https://paiza.jp/poh/joshibato/rio/result/d852b6ab  
   
+VisualBasic.NET  
+https://paiza.jp/poh/joshibato/rio/result/9e4a73b2  
+  
