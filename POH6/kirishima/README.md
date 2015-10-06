@@ -54,5 +54,5 @@ Python3
 https://paiza.jp/poh/joshibato/kirishima/result/fe240a30  
    
 VisualBasic.NET  
-https://paiza.jp/poh/joshibato/kirishima/result/b41b8d05  
+https://paiza.jp/poh/joshibato/kirishima/result/19ccb74f  
   
