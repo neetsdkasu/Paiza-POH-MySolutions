@@ -56,3 +56,6 @@ https://paiza.jp/poh/joshibato/rio/result/d852b6ab
 VisualBasic.NET  
 https://paiza.jp/poh/joshibato/rio/result/9e4a73b2  
   
+F#  
+https://paiza.jp/poh/joshibato/rio/result/7696af43  
+  
