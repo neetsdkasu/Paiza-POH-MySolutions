@@ -124,6 +124,8 @@ https://paiza.jp/poh/joshibato/rio/result/c24a94c3
 C  
 https://paiza.jp/poh/joshibato/kirishima/result/9185872e  
   
+Java  
+https://paiza.jp/poh/joshibato/kirishima/result/1d775f73  
   
   
   
