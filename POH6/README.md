@@ -112,6 +112,9 @@ https://paiza.jp/poh/joshibato/rio/result/09dbc2d7
 JavaScript(Node.js)  
 https://paiza.jp/poh/joshibato/rio/result/f92458a2  
   
+Objective-C  
+https://paiza.jp/poh/joshibato/rio/result/2f8cced3  
+  
 ----------
 霧島京子 Kirishima  
   
