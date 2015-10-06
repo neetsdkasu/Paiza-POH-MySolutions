@@ -115,6 +115,9 @@ https://paiza.jp/poh/joshibato/rio/result/f92458a2
 Objective-C  
 https://paiza.jp/poh/joshibato/rio/result/2f8cced3  
   
+Scala  
+https://paiza.jp/poh/joshibato/rio/result/c24a94c3  
+  
 ----------
 霧島京子 Kirishima  
   
