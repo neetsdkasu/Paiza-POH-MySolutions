@@ -109,6 +109,9 @@ https://paiza.jp/poh/joshibato/rio/result/88bb4895
 C#  
 https://paiza.jp/poh/joshibato/rio/result/09dbc2d7  
   
+JavaScript(Node.js)  
+https://paiza.jp/poh/joshibato/rio/result/f92458a2  
+  
 ----------
 霧島京子 Kirishima  
   
