@@ -12,34 +12,36 @@ main(_) ->
 
 solve(W) ->
     M = mapping(W),
-    palindrome(map_data(M)).
+    palindrome(M, map_data(M)).
 
-palindrome(W) -> palindrome(W,"","","").
-palindrome([{W,{N,symmetry}}|T], L, C, R) ->
-    NC = if (N rem 2 == 1) and ((C == "") or (W < C)) -> W; true -> C end,
-    P = copies(W, N div 2),
-    palindrome(T, concat(L, P), NC, concat(P, R));
-palindrome([{W,{N,WR}}|T], L, C, R) ->
-    P = copies(W, N div 2),
-    PR = copies(WR, N div 2),
-    palindrome(T, concat(L, P), C, concat(PR, R));
-palindrome([], L, C, R) -> concat(L, concat(C, R)).
-    
+palindrome(M, W) -> palindrome(M, W, "", "", "").
+
+palindrome(_, [], L, C, R) -> concat(L, concat(C, R));
+palindrome(M, [{H, V}|T], L, C, R) ->
+    HR = reverse(H),
+    case comp(H, HR) of
+        gt -> palindrome(M, T, L, C, R);
+        eq -> NC = if (V rem 2 == 1) andalso (C == "") -> H; true -> C end,
+              P = copies(H, V div 2),
+              palindrome(M, T, concat(L, P), NC, concat(P, R));
+        lt -> case map_get(HR, M) of
+                  nothing -> palindrome(M, T, L, C, R);
+                  {ok, U} -> X = if V < U -> V; true -> U end,
+                             P = copies(H, X),
+                             PR = copies(HR, X),
+                             palindrome(M, T, concat(L, P), C, concat(PR, R))
+              end
+    end.
+                    
 
 mapping(W) -> mapping(W, map_new()).
 mapping([], M) -> M;
 mapping([H|T], M) ->
-    R = reverse(H),
-    {K, KR} = case comp(H, R) of
-            eq -> {H, symmetry};
-            lt -> {H, R};
-            gt -> {R, H}
-        end,
-    X = case map_get(K,M) of
-            {ok, {V, _}} -> V + 1;
+    X = case map_get(H,M) of
+            {ok, V} -> V + 1;
             nothing -> 1
         end,
-    mapping(T, map_put(K,{X, KR},M)).
+    mapping(T, map_put(H, X, M)).
 
 %===========================================
 % 以下はマップ実装部(AVL木による実装)
@@ -83,10 +85,18 @@ map_rotate({map, KV, L, R, _}) ->
     case LD - RD of
         X when X > 1 ->
             {_, KVL, LL, RL, _} = L,
-            map_rotate({map, KVL, LL, map_rotate({map, KV, RL, R, 0}), 0}); % map_rotateでDepthは使われないので0
+            NR = map_rotate({map, KV, RL, R, 0}),  % map_rotateでDepthは使われないので0
+            NRD = map_depth(NR),
+            LLD = map_depth(LL),
+            D = if LLD > NRD -> LLD; true -> NRD end,
+            {map, KVL, LL, NR, D + 1};
         Y when Y < -1 ->
             {_, KVR, LR, RR, _} = R,
-            map_rotate({map, KVR, map_rotate({map, KV, L, LR, 0}), RR, 0});
+            NL = map_rotate({map, KV, L, LR, 0}),
+            NLD = map_depth(NL),
+            RRD = map_depth(RR),
+            D = if RRD > NLD -> RRD; true -> NLD end,
+            {map, KVR, NL, RR, D + 1};
         _Else ->
             D = if LD > RD -> LD; true -> RD end,
             {map, KV, L, R, D + 1}
