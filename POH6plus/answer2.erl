@@ -2,7 +2,7 @@
 -export([main/1]).
 -import(string,[copies/2,concat/2,tokens/2]).
 -import(io,[get_chars/2,format/2]).
--import(lists,[reverse/1,delete/2]).
+-import(lists,[reverse/1]).
 -import(init,[stop/0]).
 
 main(_) ->
@@ -32,7 +32,6 @@ palindrome(M, [{H, V}|T], L, C, R) ->
                              palindrome(M, T, concat(L, P), C, concat(PR, R))
               end
     end.
-                    
 
 mapping(W) -> mapping(W, map_new()).
 mapping([], M) -> M;
