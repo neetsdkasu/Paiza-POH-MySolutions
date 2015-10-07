@@ -1,5 +1,5 @@
 /*
- * 結果 https://paiza.jp/poh/joshibato/rio/result/88bb4895
+ * 結果 https://paiza.jp/poh/joshibato/rio/result/8cb552c4
  */
 #include <iostream>
 
@@ -11,24 +11,24 @@ int main() {
     
     cin >> n;
     
-    long double w(0), c(0);
+    double w(0), c(0);
     
     for (int i = 0; i < n; i++) {
         int t;
-        long double s;
+        double s;
         cin >> t >> s;
         switch (t) {
         case 1: w += s; break;
         case 2: c += s; break;
         case 3:
-            long double wc = w + c;
+            double wc = w + c;
             w = (w * wc - s * w) / wc;
             c = (c * wc - s * c) / wc;
             break;
         }
     }
     
-    long double ans(100);
+    double ans(100);
     
     ans *= c;
     ans /= w + c;
