@@ -1,11 +1,11 @@
 #
-# 結果 https://paiza.jp/poh/joshibato/kirishima/result/b1a8c3b9
+# 結果 https://paiza.jp/poh/joshibato/kirishima/result/fb2125a3
 #
 
 lines <- readLines("stdin")
 
 n <- as.integer(lines[1])
-t <- as.integer(unlist(strsplit(lines[2], "[ ]"))) # ナニコレ便利すぎ
+t <- as.integer(unlist(strsplit(lines[2], " "))) # 分割文字は正規表現で指定らし
 m <- as.integer(lines[3])
 
 for (i in 1:m) {
