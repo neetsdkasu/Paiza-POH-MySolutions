@@ -68,6 +68,9 @@ https://paiza.jp/poh/joshibato/rio/result/ee921024
 R  
 https://paiza.jp/poh/joshibato/rio/result/02440472  
   
-Ruby (期間中に出したのは糞コードだったので直して再提出)  
+Ruby (期間中に出したのは糞コードだったので書き直して再提出)  
 https://paiza.jp/poh/joshibato/rio/result/d16074da  
+  
+C (期間中に出したのは糞コードだったので書き直して再提出)  
+https://paiza.jp/poh/joshibato/rio/result/338ee274  
   
