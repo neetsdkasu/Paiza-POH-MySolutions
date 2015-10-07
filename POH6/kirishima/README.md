@@ -62,3 +62,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/544ef524
 Bash  
 https://paiza.jp/poh/joshibato/kirishima/result/27145a0f  
   
+Erlang  
+https://paiza.jp/poh/joshibato/kirishima/result/936a46c4  
+  
