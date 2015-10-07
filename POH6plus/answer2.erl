@@ -2,7 +2,7 @@
 -export([main/1]).
 -import(string,[copies/2,concat/2,tokens/2]).
 -import(io,[get_chars/2,format/2]).
--import(lists,[reverse/1]).
+-import(lists,[reverse/1,max/1]).
 -import(init,[stop/0]).
 
 main(_) ->
@@ -78,24 +78,39 @@ map_put(NK,NV, {map, {K,V}, L, R, D}) ->
 map_put(NK,NV, emptymap) -> {map, {NK, NV}, emptymap, emptymap, 1}.
 
 
+
 map_rotate({map, KV, L, R, _}) ->
     LD = map_depth(L),
     RD = map_depth(R),
     case LD - RD of
-        X when X > 1 ->
-            {_, KVL, LL, RL, _} = L,
-            NR = map_rotate({map, KV, RL, R, 0}),  % map_rotateでDepthは使われないので0
-            NRD = map_depth(NR),
+        X when X > 1 -> % 左の木が深過ぎ
+            {_, KVL, LL, LR, _} = L,
             LLD = map_depth(LL),
-            D = if LLD > NRD -> LLD; true -> NRD end,
-            {map, KVL, LL, NR, D + 1};
-        Y when Y < -1 ->
-            {_, KVR, LR, RR, _} = R,
-            NL = map_rotate({map, KV, L, LR, 0}),
-            NLD = map_depth(NL),
+            LRD = map_depth(LR),
+            if
+                LLD > LRD -> % 左の木の左が深いなら左の木を上げる
+                    NR = map_rotate({map, KV, LR, R, 0}),
+                    {map, KVL, LL, NR, max([LLD|[map_depth(NR)]]) + 1};
+                true -> % 左の木の右が深いなら左の木の右を上げる
+                    {_, KVLR, LRL, LRR, _} = LR,
+                    NR = map_rotate({map, KV, LRR, R, 0}),
+                    NL = map_rotate({map, KVL, LL, LRL, 0}),
+                    {map, KVLR, NL, NR, max([map_depth(NL)|[map_depth(NR)]]) + 1}
+            end;
+        X when X < -1 -> % 右の木が深過ぎ
+            {_, KVR, RL, RR, _} = R,
+            RLD = map_depth(RL),
             RRD = map_depth(RR),
-            D = if RRD > NLD -> RRD; true -> NLD end,
-            {map, KVR, NL, RR, D + 1};
+            if
+                RLD > RRD -> % 右の木の左が深いなら右の木の左を上げる
+                    {_, KVRL, RLL, RLR, _} = RL,
+                    NR = map_rotate({map, KVR, RLR, RR, 0}),
+                    NL = map_rotate({map, KV, L, RLL, 0}),
+                    {map, KVRL, NL, NR, max([map_depth(NL)|[map_depth(NR)]]) + 1};
+                true -> % 右の木の右が深いなら右の木を上げる
+                    NL = map_rotate({map, KV, L, RL, 0}),
+                    {map, KVR, NL, RR, max([RRD|[map_depth(NL)]]) + 1}
+            end;
         _Else ->
             D = if LD > RD -> LD; true -> RD end,
             {map, KV, L, R, D + 1}
