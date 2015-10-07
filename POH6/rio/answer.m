@@ -1,5 +1,5 @@
 /*
- *
+ * 結果 https://paiza.jp/poh/joshibato/rio/result/2f8cced3
  */
 #import <Foundation/Foundation.h>
 
