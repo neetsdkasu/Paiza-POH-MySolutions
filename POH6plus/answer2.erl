@@ -1,12 +1,12 @@
 -module(main).
 -export([main/1]).
--import(string,[copies/2,concat/2]).
--import(io,[get_line/1,format/2]).
+-import(string,[copies/2,concat/2,tokens/2]).
+-import(io,[get_chars/2,format/2]).
 -import(lists,[reverse/1,delete/2]).
 -import(init,[stop/0]).
 
 main(_) ->
-    [N|W] = getlines(),
+    [N|W] = tokens(get_chars("",20000)," \n"),
     format("~s",[solve(W)]),
     stop().
 
@@ -86,11 +86,3 @@ map_depth(emptymap) -> 0.
 map_data(emptymap) -> [];
 map_data({map, KV, L, R, _}) -> map_data(L) ++ [KV] ++ map_data(R).
 
-%% 複数行取得、文字列連結にならんようにタプルで囲む
-getlines() -> getlines([]).
-getlines(Result) ->
-    case get_line("") of
-        eof -> Result;
-        {error, X} -> {error, X};
-        W -> getlines(Result ++ [delete($\n,W)])
-    end.
