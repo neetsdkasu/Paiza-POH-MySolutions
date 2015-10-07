@@ -71,10 +71,14 @@ map_rotate({map, KV, L, R, _}) ->
     case LD - RD of
         X when X > 1 ->
             {_, KVL, LL, RL, _} = L,
-            {map, KVL, LL, {map, KV, RL, R, RD + 1}, LD};
+            RLD = map_depth(RL),
+            D = if RD > RLD -> RD; true -> RLD end,
+            map_rotate({map, KVL, LL, {map, KV, RL, R, D + 1}, LD});
         Y when Y < -1 ->
             {_, KVR, LR, RR, _} = R,
-            {map, KVR, {map, KV, L, LR, LD + 1}, RR, RD};
+            LRD = map_depth(LR),
+            D = if LD > LRD -> LD; true -> LRD end,
+            map_rotate({map, KVR, {map, KV, L, LR, D + 1}, RR, RD});
         _Else ->
             D = if LD > RD -> LD; true -> RD end,
             {map, KV, L, R, D + 1}
