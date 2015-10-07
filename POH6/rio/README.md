@@ -65,3 +65,6 @@ https://paiza.jp/poh/joshibato/rio/result/8d35e319
 Erlang  
 https://paiza.jp/poh/joshibato/rio/result/ee921024  
   
+R  
+https://paiza.jp/poh/joshibato/rio/result/02440472  
+  
