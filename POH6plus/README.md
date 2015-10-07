@@ -96,6 +96,7 @@ C++ (1704)
 https://paiza.jp/poh/joshibato/matsue-ruby/result/b913fb6c  
   
 ------------
+以下、Ruby会議以降、イベント期間内
   
 Coffee Script (556)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/9b692658  
@@ -112,3 +113,8 @@ https://paiza.jp/poh/joshibato/matsue-ruby/result/2a06ba53
 Bash (1041)  
 https://paiza.jp/poh/joshibato/matsue-ruby/result/a51edaf1  
   
+------------
+以下、イベント期間終了後
+  
+Erlang (602)  
+https://paiza.jp/poh/joshibato/matsue-ruby/result/141e04b8  
