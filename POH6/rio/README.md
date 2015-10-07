@@ -62,3 +62,6 @@ https://paiza.jp/poh/joshibato/rio/result/7696af43
 Bash  
 https://paiza.jp/poh/joshibato/rio/result/8d35e319  
   
+Erlang  
+https://paiza.jp/poh/joshibato/rio/result/ee921024  
+  
