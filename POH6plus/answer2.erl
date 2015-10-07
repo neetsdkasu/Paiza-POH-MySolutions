@@ -1,10 +1,14 @@
 -module(main).
 -export([main/1]).
+-import(string,[copies/2,concat/2]).
+-import(io,[get_line/1,format/2]).
+-import(lists,[reverse/1,delete/2]).
+-import(init,[stop/0]).
 
 main(_) ->
     [N|W] = getlines(),
-    io:format("~s",[solve(W)]),
-    init:stop().
+    format("~s",[solve(W)]),
+    stop().
 
 solve(W) ->
     M = mapping(W),
@@ -13,19 +17,19 @@ solve(W) ->
 palindrome(W) -> palindrome(W,"","","").
 palindrome([{W,{N,symmetry}}|T], L, C, R) ->
     NC = if (N rem 2 == 1) and ((C == "") or (W < C)) -> W; true -> C end,
-    P = string:copies(W, N div 2),
-    palindrome(T, string:concat(L, P), NC, string:concat(P, R));
+    P = copies(W, N div 2),
+    palindrome(T, concat(L, P), NC, concat(P, R));
 palindrome([{W,{N,WR}}|T], L, C, R) ->
-    P = string:copies(W, N div 2),
-    PR = string:copies(WR, N div 2),
-    palindrome(T, string:concat(L, P), C, string:concat(PR, R));
-palindrome([], L, C, R) -> string:concat(L, string:concat(C, R)).
+    P = copies(W, N div 2),
+    PR = copies(WR, N div 2),
+    palindrome(T, concat(L, P), C, concat(PR, R));
+palindrome([], L, C, R) -> concat(L, concat(C, R)).
     
 
 mapping(W) -> mapping(W, map_new()).
 mapping([], M) -> M;
 mapping([H|T], M) ->
-    R = lists:reverse(H),
+    R = reverse(H),
     {K, KR} = case comp(H, R) of
             eq -> {H, symmetry};
             lt -> {H, R};
@@ -85,8 +89,8 @@ map_data({map, KV, L, R, _}) -> map_data(L) ++ [KV] ++ map_data(R).
 %% 複数行取得、文字列連結にならんようにタプルで囲む
 getlines() -> getlines([]).
 getlines(Result) ->
-    case io:get_line("") of
+    case get_line("") of
         eof -> Result;
         {error, X} -> {error, X};
-        W -> getlines(Result ++ [lists:delete($\n,W)])
+        W -> getlines(Result ++ [delete($\n,W)])
     end.
