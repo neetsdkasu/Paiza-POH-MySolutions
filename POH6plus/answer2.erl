@@ -73,12 +73,12 @@ map_rotate({map, KV, L, R, _}) ->
             {_, KVL, LL, RL, _} = L,
             RLD = map_depth(RL),
             D = if RD > RLD -> RD; true -> RLD end,
-            map_rotate({map, KVL, LL, {map, KV, RL, R, D + 1}, LD});
+            map_rotate({map, KVL, LL, map_rotate({map, KV, RL, R, D + 1}), LD});
         Y when Y < -1 ->
             {_, KVR, LR, RR, _} = R,
             LRD = map_depth(LR),
             D = if LD > LRD -> LD; true -> LRD end,
-            map_rotate({map, KVR, {map, KV, L, LR, D + 1}, RR, RD});
+            map_rotate({map, KVR, map_rotate({map, KV, L, LR, D + 1}), RR, RD});
         _Else ->
             D = if LD > RD -> LD; true -> RD end,
             {map, KV, L, R, D + 1}
