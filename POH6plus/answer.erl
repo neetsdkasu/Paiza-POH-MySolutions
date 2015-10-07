@@ -2,41 +2,23 @@
 -export([main/1]).
 
 main(_) ->
-    [{N}|W] = lists:sort(getlines()),
+    [N|W] = lists:sort(string:tokens(io:get_chars("",20000),"\n")),
     io:format("~s",[solve(W)]),
     init:stop().
 
 solve(S) -> solve(S,"","").
 solve([],L,C) ->
     L ++ C ++ lists:reverse(L);
-solve([{H}|T],L,C) ->
+solve([H|T],L,C) ->
     R = lists:reverse(H),
-    case lists:keyfind(R,1,T) of
-        {X} ->
-            solve(lists:keydelete(X,1,T),L++H,C);
+    case lists:member(R,T) of
         false ->
             if
                 (H == R) and ((C == "") or (H < C)) ->
                     solve(T,L,H);
                 true ->
                     solve(T,L,C)
-            end
+            end;
+        X ->
+            solve(lists:delete(R,T),L++H,C)
     end.
-
-split(S) -> split(S,"",[]).
-split([],"",L) -> L;
-split([],W,L) -> [{W}|L];
-split([$\n|T],"",L) -> split(T,"",L);
-split([$\n|T],W,L) -> split(T,"",[{W}|L]);
-split([H|T],W,L) -> split(T,[H|W],L).
-    
-
-%% 複数行取得、文字列連結にならんようにタプルで囲む
-getlines() ->
-    case io:get_chars("",20000) of
-        eof -> eof;
-        {error, E} -> {error, E};
-        S -> split(S)
-    end.
-
-        
