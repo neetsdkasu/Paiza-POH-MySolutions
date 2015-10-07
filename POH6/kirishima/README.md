@@ -65,3 +65,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/27145a0f
 Erlang  
 https://paiza.jp/poh/joshibato/kirishima/result/936a46c4  
   
+R  
+https://paiza.jp/poh/joshibato/kirishima/result/fb2125a3  
+  
