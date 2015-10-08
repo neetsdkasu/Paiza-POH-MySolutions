@@ -1,5 +1,5 @@
        *>
-       *> 結果 https://paiza.jp/poh/joshibato/rio/result/c515c89e
+       *> 結果 https://paiza.jp/poh/joshibato/rio/result/6957daab
        *>
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Answer.
@@ -20,8 +20,8 @@
                      05 x2         PIC 9(4)V9(20).
                      05 dsp        PIC Z(4).        *> Zは表示用,9での上位桁の0をスペースに置き換える
                      05 tas.
-                            10 T   PIC 9(2). *> tが1桁と分かっているので文字数決め打ち分割
-                            10 S   PIC 9(3). *> sは3桁までなので
+                            10 t   PIC 9(2). *> tが1桁と分かっているので文字数決め打ち分割
+                            10 s   PIC 9(3). *> sは3桁までなので
        PROCEDURE DIVISION.
        MainRoutine SECTION.
        000-Main.
