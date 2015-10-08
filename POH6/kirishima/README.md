@@ -68,3 +68,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/936a46c4
 R  
 https://paiza.jp/poh/joshibato/kirishima/result/fb2125a3  
   
+Clojure  
+https://paiza.jp/poh/joshibato/kirishima/result/ef4cc2c8  
+  
