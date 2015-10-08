@@ -17,9 +17,9 @@
                      05 j      BINARY-SHORT.
                      05 t_str  PIC X(1000).
                      05 t_cnt  BINARY-SHORT.
-                     05 t_idx  BINARY-SHORT.
-                     05 t_table OCCURS 100 TIMES.
+                     05 tbl    OCCURS 100 TIMES.
                             10 t       BINARY-SHORT.
+                            10 f       BINARY-CHAR.
        PROCEDURE DIVISION.
        AnswerMain SECTION.
        000-Start.
@@ -30,10 +30,18 @@
               *> 文字列の分割でけた
               PERFORM WITH TEST AFTER VARYING i FROM 1 BY 1 UNTIL i = n
                      UNSTRING t_str DELIMITED BY ALL SPACES INTO t(i) COUNT IN t_cnt
-                     DISPLAY t(i)
                      ADD 2 TO t_cnt
                      MOVE t_str(t_cnt:100) TO t_str
               END-PERFORM.
               
+              ACCEPT m.
+              
+              PERFORM WITH TEST AFTER VARYING i FROM 1 BY 1 UNTIL i = m
+                     ACCEPT d
+                     DISPLAY d
+                     PERFORM WITH TEST AFTER VARYING j FROM 1 BY 1 UNTIL j = n
+                            MOVE 0 TO f(j)
+                     END-PERFORM
+              END-PERFORM.
               
        END PROGRAM Answer.
