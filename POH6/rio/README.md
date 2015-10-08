@@ -80,3 +80,6 @@ https://paiza.jp/poh/joshibato/rio/result/8cb552c4
 Clojure  
 https://paiza.jp/poh/joshibato/rio/result/48e53fba  
   
+D  
+https://paiza.jp/poh/joshibato/rio/result/59e98a2e  
+  
