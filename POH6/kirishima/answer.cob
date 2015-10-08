@@ -10,16 +10,16 @@
        DATA DIVISION.
        WORKING-STORAGE SECTION.
               01 Answer-Values.
-                     05 n      BINARY-CHAR.  *> PIC 9(4) とかより便利そうなのあるじゃん
-                     05 m      BINARY-CHAR.
+                     05 n      BINARY-CHAR UNSIGNED.  *> PIC 9(4) とかより便利そうなのあるじゃん
+                     05 m      BINARY-CHAR UNSIGNED.
                      05 d      BINARY-SHORT.
-                     05 i      BINARY-SHORT.
-                     05 j      BINARY-SHORT.
+                     05 i      BINARY-SHORT UNSIGNED.
+                     05 j      BINARY-SHORT UNSIGNED.
                      05 t_str  PIC X(1000).
-                     05 t_cnt  BINARY-SHORT.
+                     05 t_cnt  BINARY-SHORT UNSIGNED.
                      05 tbl    OCCURS 100 TIMES.
                             10 t       BINARY-SHORT.
-                            10 f       BINARY-CHAR.
+                            10 f       BINARY-CHAR UNSIGNED.
        PROCEDURE DIVISION.
        AnswerMain SECTION.
        000-Start.
