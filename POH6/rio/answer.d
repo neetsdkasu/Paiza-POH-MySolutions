@@ -1,8 +1,11 @@
 /*
- * 結果 https://paiza.jp/poh/joshibato/rio/result/59e98a2e
+ * 結果 https://paiza.jp/poh/joshibato/rio/result/4ad1ffeb
  */
-import io = std.stdio : readln, puts = writeln; // モジュール名をエイリアス、コロン以降のはモジュール名なしで呼び出せる、それ以外はモジュール名必須
-import std.format, std.string; // importすればそのモジュール内の関数を呼び出せる(モジュール名なしのchomp()でもモジュール名ありのstd.string.chomp()でもどっちでもおｋ)
+import io = std.stdio : readln, puts = writeln; // モジュール名をエイリアス、コロン以降のはモジュール名なしで呼び出せる、それ以外はモジュール名のエイリアス必須
+import std.format, std.string; // importすればそのモジュール内の関数を呼び出せる
+                               // コロンで関数名を指定してないので
+                               // モジュール名なしのchomp()でも
+                               // モジュール名ありのstd.string.chomp()でもどちらでも呼び出せる？
 
 void main()
 {
