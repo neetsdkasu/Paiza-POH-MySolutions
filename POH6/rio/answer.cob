@@ -1,5 +1,5 @@
        *>
-       *> 結果 https://paiza.jp/poh/joshibato/rio/result/5a90b9a4
+       *> 結果 https://paiza.jp/poh/joshibato/rio/result/3fa70112
        *>
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Answer.
@@ -12,16 +12,14 @@
               01 Answer-Values.
                      05 n          PIC 9(2).  *> 05 である必要はなく 02 n PIC 9(2). でもよいらしい
                      05 i          PIC 9(2).
-                     05 w          PIC 9(9)V9(20) VALUE 0.0. *> 9(4)V9(20)は計算用 9(4).9(20)だと文字出力用？
-                     05 c          PIC 9(9)V9(20) VALUE 0.0.
-                     05 wc         PIC 9(9)V9(20).
-                     05 ans        PIC 9(9)V9(20).
-                     05 x1         PIC 9(9)V9(20).
-                     05 x2         PIC 9(9)V9(20).
-                     05 dsp        PIC Z(8)9.        *> Zは表示用,9での上位桁の0をスペースに置き換える
+                     05 w          PIC 9(11)V9(24) VALUE 0.0. *> 9(4)V9(20)は計算用 9(4).9(20)だと文字出力用？
+                     05 c          PIC 9(11)V9(24) VALUE 0.0. *> 最大36文字までらしい
+                     05 wc         PIC 9(11)V9(24).
+                     05 ans        PIC 9(11)V9(24).
+                     05 dsp        PIC Z(10)9.        *> Zは表示用,9での上位桁の0をスペースに置き換える
                      05 tas.
-                            10 t   PIC 9(2). *> tが1桁と分かっているので文字数決め打ち分割
-                            10 s   PIC 9(3). *> sは3桁までなので
+                            10 T   PIC 9(2). *> tが1桁と分かっているので文字数決め打ち分割
+                            10 S   PIC 9(3). *> sは3桁までなので
        PROCEDURE DIVISION.
        MainRoutine SECTION.
        000-Main.
@@ -35,35 +33,13 @@
                             ADD NUMVAL(s) TO c
                      END-IF
                      IF NUMVAL(t) = 3 THEN
-                        MOVE w TO wc
-                        ADD c TO wc
-                        
-                        MOVE w TO x1
-                        MULTIPLY wc BY x1
-                        MOVE NUMVAL(s) TO x2
-                        MULTIPLY w BY x2
-                        ADD x2 TO x1
-                        DIVIDE wc INTO x1
-                        MOVE x1 TO w
-
-                        MOVE c TO x1
-                        MULTIPLY wc BY x1
-                        MOVE NUMVAL(s) TO x2
-                        MULTIPLY c BY x2
-                        ADD x2 TO x1
-                        DIVIDE wc INTO x1
-                        MOVE x1 TO c
-                        
+                            COMPUTE wc = w + c  *> 面倒なのでCOMPUTEで処理ｗ
+                            COMPUTE w = (w * wc - NUMVAL(s) * w) / wc
+                            COMPUTE c = (c * wc - NUMVAL(s) * c) / wc
                      END-IF
               END-PERFORM.
-              
-              MOVE w TO wc.
-              ADD c TO wc.
-              
-              MOVE 100 TO ans.
-              MULTIPLY c BY ans.
-              DIVIDE wc INTO ans.
-              
+              COMPUTE wc = w + c.
+              COMPUTE ans = 100 * c / wc.
               MOVE ans TO dsp.
               DISPLAY TRIM(dsp).
        END PROGRAM Answer.
