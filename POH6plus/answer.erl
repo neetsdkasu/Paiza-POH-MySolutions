@@ -19,6 +19,6 @@ solve([H|T],L,C) ->
                 true ->
                     solve(T,L,C)
             end;
-        X ->
+        _ ->
             solve(lists:delete(R,T),L++H,C)
     end.
