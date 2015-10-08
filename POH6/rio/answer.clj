@@ -1,5 +1,5 @@
 ;
-; 結果 https://paiza.jp/poh/joshibato/rio/result/48e53fba
+; 結果 https://paiza.jp/poh/joshibato/rio/result/3ae0ce79
 ;
 
 (loop [n (Integer/parseInt (read-line)) w 0.0 c 0.0]
@@ -8,11 +8,10 @@
                 t (Integer/parseInt (tas 0))
                 s (Double/parseDouble (tas 1))
                 ]
-            (cond
-                (= t 1) (recur (dec n) (+ w s) c)
-                (= t 2) (recur (dec n) w (+ c s))
-                :else 
-                    (let [wc (+ w c)] 
+            (condp = t
+                1   (recur (dec n) (+ w s) c)
+                2   (recur (dec n) w (+ c s))
+                3   (let [wc (+ w c)] 
                         (recur (dec n)
                             (/ (- (* w wc) (* s w)) wc)
                             (/ (- (* c wc) (* s c)) wc)
