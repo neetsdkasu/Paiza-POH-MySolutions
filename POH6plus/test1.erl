@@ -5,18 +5,20 @@
 -import(lists,[reverse/1,max/1]).
 
 main(_) ->
-    [N|W] = tokens(get_chars("",20000)," \n"),
+    [_|W] = tokens(get_chars("",20000)," \n"),
     format("~s",[solve(W)]),
     halt().
 
 solve(W) ->
     M = mapping(W),
-    palindrome(M, map_data(M)).
+    palindrome(M, map_enumerator(M)).
 
 palindrome(M, W) -> palindrome(M, W, "", "", "").
 
-palindrome(_, [], L, C, R) -> concat(L, concat(C, R));
-palindrome(M, [{H, V}|T], L, C, R) ->
+palindrome(_, noitem, L, C, R) -> concat(L, concat(C, R));
+palindrome(M, E, L, C, R) ->
+    {H, V} = enumerator_get(E),
+    T = enumerator_next(E),
     HR = reverse(H),
     case comp(H, HR) of
         gt -> palindrome(M, T, L, C, R);
@@ -47,11 +49,13 @@ mapping([H|T], M) ->
 % キーはリスト(文字列)限定
 % 値は何でもOK
 % 機能は空マップ生成、キーによる値の配置と参照、
-% および全データの取得のみ
-%  空マップ生成 map_new()
-%  配置         map_put( key, value, map )
-%  参照         map_get( key, map )
-%  全データ取得 map_data( map )
+% および全データの列挙のみ
+%  空マップ生成 map_new() -> map
+%  配置         map_put( key, value, map ) -> map
+%  参照         map_get( key, map ) -> {ok, value } or nothing
+%  全データ列挙 map_enumerator( map ) -> enumerator or noitem
+%   キーと値を取得 enumerator_get( enumerator ) -> { key, value } or nothing
+%   次のデータ     enumerator_next( enumerator ) -> enumerator or noitem
 
 comp([],[]) -> eq;
 comp(_,[]) -> gt;
@@ -60,7 +64,7 @@ comp([A|B],[C|D]) -> if A < C -> lt; A > C -> gt; true -> comp(B,D) end.
 
 map_new() -> emptymap.
 
-map_get(FK, {map, {K,V}, L, R, D}) ->
+map_get(FK, {map, {K,V}, L, R, _}) ->
     case comp(FK, K) of
         eq -> {ok, V};
         lt -> map_get(FK, L);
@@ -76,8 +80,6 @@ map_put(NK,NV, {map, {K,V}, L, R, D}) ->
     end;
 map_put(NK,NV, emptymap) -> {map, {NK, NV}, emptymap, emptymap, 1}.
 
-
-
 map_rotate({map, KV, L, R, _}) ->
     LD = map_depth(L),
     RD = map_depth(R),
@@ -89,12 +91,12 @@ map_rotate({map, KV, L, R, _}) ->
             if
                 LLD > LRD -> % 左の木の左が深いなら左の木を上げる
                     NR = map_rotate({map, KV, LR, R, 0}),
-                    {map, KVL, LL, NR, max([LLD|[map_depth(NR)]]) + 1};
+                    map_rotate({map, KVL, LL, NR, 0});
                 true -> % 左の木の右が深いなら左の木の右を上げる
                     {_, KVLR, LRL, LRR, _} = LR,
                     NR = map_rotate({map, KV, LRR, R, 0}),
                     NL = map_rotate({map, KVL, LL, LRL, 0}),
-                    {map, KVLR, NL, NR, max([map_depth(NL)|[map_depth(NR)]]) + 1}
+                    map_rotate({map, KVLR, NL, NR, 0})
             end;
         X when X < -1 -> % 右の木が深過ぎ
             {_, KVR, RL, RR, _} = R,
@@ -105,19 +107,31 @@ map_rotate({map, KV, L, R, _}) ->
                     {_, KVRL, RLL, RLR, _} = RL,
                     NR = map_rotate({map, KVR, RLR, RR, 0}),
                     NL = map_rotate({map, KV, L, RLL, 0}),
-                    {map, KVRL, NL, NR, max([map_depth(NL)|[map_depth(NR)]]) + 1};
+                    map_rotate({map, KVRL, NL, NR, 0});
                 true -> % 右の木の右が深いなら右の木を上げる
                     NL = map_rotate({map, KV, L, RL, 0}),
-                    {map, KVR, NL, RR, max([RRD|[map_depth(NL)]]) + 1}
+                    map_rotate({map, KVR, NL, RR, 0})
             end;
         _Else ->
-            D = if LD > RD -> LD; true -> RD end,
-            {map, KV, L, R, D + 1}
+            {map, KV, L, R, max([LD|[RD]]) + 1}
     end.
 
 map_depth({map, _, _, _, D}) -> D;
 map_depth(emptymap) -> 0.
 
-map_data(emptymap) -> [];
-map_data({map, KV, L, R, _}) -> map_data(L) ++ [KV] ++ map_data(R).
+map_enumerator(emptymap) -> noitem;
+map_enumerator(M) -> make_enumerator(M, noitem).
 
+make_enumerator({map, KV, emptymap, R, _}, P) ->
+    {enumerator, center, KV, R, P};
+make_enumerator({map, KV, L, R, _}, P) ->
+    make_enumerator(L, {enumerator, left, KV, R, P}).
+    
+enumerator_next(noitem) -> noitem;
+enumerator_next({enumerator, center, _, emptymap, P}) -> enumerator_next(P);
+enumerator_next({enumerator, center, KV, R, P}) -> make_enumerator(R, {enumerator, right, KV, R, P});
+enumerator_next({enumerator, right, _, _, P}) -> enumerator_next(P);
+enumerator_next({enumerator, left, KV, R, P}) -> {enumerator, center, KV, R, P}.
+
+enumerator_get(noitem) -> nothing;
+enumerator_get({enumerator, _, KV, _, _}) -> KV.
