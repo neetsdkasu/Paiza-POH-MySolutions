@@ -83,3 +83,6 @@ https://paiza.jp/poh/joshibato/rio/result/48e53fba
 D  
 https://paiza.jp/poh/joshibato/rio/result/59e98a2e  
   
+OpenCOBOL  
+https://paiza.jp/poh/joshibato/rio/result/2506c7df  
+  
