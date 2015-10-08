@@ -1,5 +1,5 @@
        *>
-       *> 結果 https://paiza.jp/poh/joshibato/rio/result/b28273f3
+       *> 結果 https://paiza.jp/poh/joshibato/rio/result/c515c89e
        *>
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Answer.
@@ -16,6 +16,8 @@
                      05 c          PIC 9(4)V9(20) VALUE 0.0.
                      05 wc         PIC 9(4)V9(20).
                      05 ans        PIC 9(4)V9(20).
+                     05 x1         PIC 9(4)V9(20).
+                     05 x2         PIC 9(4)V9(20).
                      05 dsp        PIC Z(4).        *> Zは表示用,9での上位桁の0をスペースに置き換える
                      05 tas.
                             10 T   PIC 9(2). *> tが1桁と分かっているので文字数決め打ち分割
@@ -33,13 +35,35 @@
                             ADD NUMVAL(s) TO c
                      END-IF
                      IF NUMVAL(t) = 3 THEN
-                            COMPUTE wc = w + c  *> 面倒なのでCOMPUTEで処理ｗ
-                            COMPUTE w = (w * wc - NUMVAL(s) * w) / wc
-                            COMPUTE c = (c * wc - NUMVAL(s) * c) / wc
+                        MOVE w TO wc
+                        ADD c TO wc
+                        
+                        MOVE w TO x1
+                        MULTIPLY wc BY x1
+                        MOVE NUMVAL(s) TO x2
+                        MULTIPLY w BY x2
+                        ADD x2 TO x1
+                        DIVIDE wc INTO x1
+                        MOVE x1 TO w
+
+                        MOVE c TO x1
+                        MULTIPLY wc BY x1
+                        MOVE NUMVAL(s) TO x2
+                        MULTIPLY c BY x2
+                        ADD x2 TO x1
+                        DIVIDE wc INTO x1
+                        MOVE x1 TO c
+                        
                      END-IF
               END-PERFORM.
-              COMPUTE wc = w + c.
-              COMPUTE ans = 100 * c / wc.
+              
+              MOVE w TO wc.
+              ADD c TO wc.
+              
+              MOVE 100 TO ans.
+              MULTIPLY c BY ans.
+              DIVIDE wc INTO ans.
+              
               MOVE ans TO dsp.
               DISPLAY TRIM(dsp).
        END PROGRAM Answer.
