@@ -1,5 +1,5 @@
        *>
-       *> 結果 https://paiza.jp/poh/joshibato/rio/result/6957daab
+       *> 結果 https://paiza.jp/poh/joshibato/rio/result/b713a3ba
        *>
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Answer.
@@ -12,13 +12,13 @@
               01 Answer-Values.
                      05 n          PIC 9(2).  *> 05 である必要はなく 02 n PIC 9(2). でもよいらしい
                      05 i          PIC 9(2).
-                     05 w          PIC 9(4)V9(20) VALUE 0.0. *> 9(4)V9(20)は計算用 9(4).9(20)だと文字出力用？
-                     05 c          PIC 9(4)V9(20) VALUE 0.0.
-                     05 wc         PIC 9(4)V9(20).
-                     05 ans        PIC 9(4)V9(20).
-                     05 x1         PIC 9(4)V9(20).
-                     05 x2         PIC 9(4)V9(20).
-                     05 dsp        PIC Z(4).        *> Zは表示用,9での上位桁の0をスペースに置き換える
+                     05 w          PIC 9(9)V9(20) VALUE 0.0. *> 9(4)V9(20)は計算用 9(4).9(20)だと文字出力用？
+                     05 c          PIC 9(9)V9(20) VALUE 0.0.
+                     05 wc         PIC 9(9)V9(20).
+                     05 ans        PIC 9(9)V9(20).
+                     05 x1         PIC 9(9)V9(20).
+                     05 x2         PIC 9(9)V9(20).
+                     05 dsp        PIC Z(9).        *> Zは表示用,9での上位桁の0をスペースに置き換える
                      05 tas.
                             10 t   PIC 9(2). *> tが1桁と分かっているので文字数決め打ち分割
                             10 s   PIC 9(3). *> sは3桁までなので
