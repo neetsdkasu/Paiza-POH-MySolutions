@@ -12,12 +12,14 @@ main(_) ->
 
 solve(W) ->
     M = mapping(W),
-    palindrome(M, map_data(M)).
+    palindrome(M, map_enumerator(M)).
 
 palindrome(M, W) -> palindrome(M, W, "", "", "").
 
-palindrome(_, [], L, C, R) -> concat(L, concat(C, R));
-palindrome(M, [{H, V}|T], L, C, R) ->
+palindrome(_, noitem, L, C, R) -> concat(L, concat(C, R));
+palindrome(M, E, L, C, R) ->
+    {H, V} = enumerator_get(E),
+    T = enumerator_next(E),
     HR = reverse(H),
     case comp(H, HR) of
         gt -> palindrome(M, T, L, C, R);
@@ -48,11 +50,13 @@ mapping([H|T], M) ->
 % キーはリスト(文字列)限定
 % 値は何でもOK
 % 機能は空マップ生成、キーによる値の配置と参照、
-% および全データの取得のみ
-%  空マップ生成 map_new()
-%  配置         map_put( key, value, map )
-%  参照         map_get( key, map )
-%  全データ取得 map_data( map )
+% および全データの列挙のみ
+%  空マップ生成 map_new() -> map
+%  配置         map_put( key, value, map ) -> map
+%  参照         map_get( key, map ) -> {ok, value } or nothing
+%  全データ列挙 map_enumerator( map ) -> enumerator or noitem
+%   キーと値を取得 enumerator_get( enumerator ) -> { key, value } or nothing
+%   次のデータ     enumerator_next( enumerator ) -> enumerator or noitem
 
 comp([],[]) -> eq;
 comp(_,[]) -> gt;
@@ -116,5 +120,19 @@ map_rotate({map, KV, L, R, _}) ->
 map_depth({map, _, _, _, D}) -> D;
 map_depth(emptymap) -> 0.
 
-map_data(emptymap) -> [];
-map_data({map, KV, L, R, _}) -> map_data(L) ++ [KV] ++ map_data(R).
+map_enumerator(emptymap) -> noitem;
+map_enumerator(M) -> make_enumerator(M, noitem).
+
+make_enumerator({map, KV, emptymap, R, _}, P) ->
+    {enumerator, center, KV, R, P};
+make_enumerator({map, KV, L, R, _}, P) ->
+    make_enumerator(L, {enumerator, left, KV, R, P}).
+    
+enumerator_next(noitem) -> noitem;
+enumerator_next({enumerator, center, _, emptymap, P}) -> enumerator_next(P);
+enumerator_next({enumerator, center, KV, R, P}) -> make_enumerator(R, {enumerator, right, KV, R, P});
+enumerator_next({enumerator, right, _, _, P}) -> enumerator_next(P);
+enumerator_next({enumerator, left, KV, R, P}) -> {enumerator, center, KV, R, P}.
+
+enumerator_get(noitem) -> nothing;
+enumerator_get({enumerator, _, KV, _, _}) -> KV.
