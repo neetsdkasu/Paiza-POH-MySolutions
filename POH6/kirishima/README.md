@@ -74,3 +74,6 @@ https://paiza.jp/poh/joshibato/kirishima/result/ef4cc2c8
 D  
 https://paiza.jp/poh/joshibato/kirishima/result/c6168137  
   
+OpenCOBOL  
+https://paiza.jp/poh/joshibato/kirishima/result/9a0ae8c7  
+  
