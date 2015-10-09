@@ -1,5 +1,5 @@
        *>
-       *> 結果 https://paiza.jp/poh/joshibato/kirishima/result/533911b5
+       *> 結果 https://paiza.jp/poh/joshibato/kirishima/result/9a0ae8c7
        *>
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Answer.
@@ -31,7 +31,6 @@
               ACCEPT t_str.
               
               MOVE 1 TO t_cnt.
-              MOVE 1 TO t_len.
               *> 文字列の分割でけた
               PERFORM WITH TEST AFTER VARYING i FROM 1 BY 1 UNTIL i = n
                      PERFORM WITH TEST AFTER VARYING j FROM t_cnt BY 1 UNTIL j = 1000
