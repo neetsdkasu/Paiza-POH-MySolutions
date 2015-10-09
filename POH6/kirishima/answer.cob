@@ -1,5 +1,5 @@
        *>
-       *> 結果 https://paiza.jp/poh/joshibato/kirishima/result/818ce3e5
+       *> 結果 https://paiza.jp/poh/joshibato/kirishima/result/533911b5
        *>
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Answer.
@@ -19,6 +19,7 @@
                      05 t_str  PIC X(1000).
                      05 t_cnt  BINARY-SHORT.
                      05 t_len  BINARY-SHORT.
+                     05 t_c    PIC X.
                      05 tbl    OCCURS 100 TIMES.
                             10 t       BINARY-SHORT.
                             10 f       BINARY-CHAR UNSIGNED.
@@ -29,12 +30,19 @@
               ACCEPT n.
               ACCEPT t_str.
               
+              MOVE 1 TO t_cnt.
+              MOVE 1 TO t_len.
               *> 文字列の分割でけた
               PERFORM WITH TEST AFTER VARYING i FROM 1 BY 1 UNTIL i = n
-                     UNSTRING t_str DELIMITED BY ALL SPACES INTO t(i) COUNT IN t_cnt
-                     ADD 2 TO t_cnt
-                     COMPUTE t_len = 1000 - t_cnt
-                     MOVE t_str(t_cnt:t_len) TO t_str
+                     PERFORM WITH TEST AFTER VARYING j FROM t_cnt BY 1 UNTIL j = 1000
+                            MOVE t_str(j:1) TO t_c
+                            IF t_c = SPACE THEN
+                                   EXIT PERFORM
+                            END-IF
+                     END-PERFORM
+                     COMPUTE t_len = j - t_cnt
+                     MOVE NUMVAL(t_str(t_cnt:t_len)) TO t(i)
+                     COMPUTE t_cnt = j + 1
               END-PERFORM.
               
               ACCEPT m.
