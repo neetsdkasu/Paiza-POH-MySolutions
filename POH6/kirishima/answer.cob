@@ -1,5 +1,5 @@
        *>
-       *>
+       *> 結果 https://paiza.jp/poh/joshibato/kirishima/result/bb55c60c
        *>
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Answer.
@@ -13,6 +13,7 @@
                      05 n      BINARY-CHAR UNSIGNED.  *> PIC 9(4) とかより便利そうなのあるじゃん
                      05 m      BINARY-CHAR UNSIGNED.
                      05 d      BINARY-SHORT.
+                     05 x      BINARY-SHORT.
                      05 i      BINARY-SHORT UNSIGNED.
                      05 j      BINARY-SHORT UNSIGNED.
                      05 t_str  PIC X(1000).
@@ -38,9 +39,29 @@
               
               PERFORM WITH TEST AFTER VARYING i FROM 1 BY 1 UNTIL i = m
                      ACCEPT d
-                     DISPLAY d
                      PERFORM WITH TEST AFTER VARYING j FROM 1 BY 1 UNTIL j = n
                             MOVE 0 TO f(j)
+                     END-PERFORM
+                     PERFORM WITH TEST AFTER VARYING j FROM 1 BY 1 UNTIL j > n
+                            IF d < 1 OR d >= n THEN
+                                   DISPLAY "No"
+                                   ExIT PERFORM
+                            END-IF
+                            IF d = n - 1 THEN
+                                   DISPLAY "Yes"
+                                   EXIT PERFORM
+                            END-IF
+                            COMPUTE x = d + 1
+                            IF t(x) = 0 THEN
+                                   DISPLAY "No"
+                                   EXIT PERFORM
+                            END-IF
+                            IF f(x) = 1 THEN
+                                   DISPLAY "No"
+                                   EXIT PERFORM
+                            END-IF
+                            MOVE 1 TO f(x)
+                            ADD t(x) TO d
                      END-PERFORM
               END-PERFORM.
               
