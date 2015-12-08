@@ -16,4 +16,4 @@ POH! vol.5 https://paiza.jp/poh/enshura
 POH! vol.5+ https://paiza.jp/poh/enshura-special  
 POH! vol.6 https://paiza.jp/poh/joshibato  
 POH! vol.6+ https://paiza.jp/poh/joshibato/matsue-ruby  
-  
+POH! vol.7 https://paiza.jp/poh/ando    
