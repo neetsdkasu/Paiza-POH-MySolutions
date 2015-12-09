@@ -10,6 +10,6 @@ https://paiza.jp/poh/ando/share/114a63f9
 
 ### CodeGolf  
 
-Swift(266 bytes)  
-https://paiza.jp/poh/ando/share/7ab4af1f  
+Swift(262 bytes)  
+https://paiza.jp/poh/ando/share/e9365d7b   
 
