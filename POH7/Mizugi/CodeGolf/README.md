@@ -4,7 +4,7 @@
 ### CodeGolf  
   
   
-C (159 bytes)  
-https://paiza.jp/poh/ando/share/953a6a23  
+C (152 bytes)  
+https://paiza.jp/poh/ando/share/810fbaa5  
   
   
