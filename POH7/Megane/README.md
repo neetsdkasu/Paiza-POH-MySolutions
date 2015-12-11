@@ -2,14 +2,9 @@
 ======
   
   
-Swift  
+Swift (919 bytes)  
 https://paiza.jp/poh/ando/share/114a63f9  
   
-
-------  
-
-### CodeGolf  
-
-Swift(235 bytes)  
-https://paiza.jp/poh/ando/share/ef843ce0   
-
+C (552 bytes)  
+https://paiza.jp/poh/ando/share/7988fcd2  
+  
