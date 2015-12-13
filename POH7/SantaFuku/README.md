@@ -2,8 +2,8 @@
 ========
   
   
-Swift (743 bytes)  
-https://paiza.jp/poh/ando/share/b8a65e7d  
+Swift (466 bytes)  
+https://paiza.jp/poh/ando/share/73644907  
   
   
 -----
