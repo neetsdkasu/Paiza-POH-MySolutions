@@ -1,1 +1,1 @@
-char q[100][201],p[10][21],*s="%d %d\n";i,j,k,n,m,t;main(){scanf(s+3,&n);for(;i<n;)gets(q+i++);scanf(s+3,&m);for(;j<m;)gets(p+j++);for(i=n-m+1;i--;)for(j=n-m+1;j--;){t=0;for(k=m;k--;)t+=!!memcmp(q[i+k]+j+j,p+k,m+m-1);t||printf(s,i,j);}}
+char q[100][201],p[10][21],*s="%d %d\n";i,j,k,n,m;main(t){scanf(s+3,&n);for(;i<n;)gets(q+i++);scanf(s+3,&m);for(;j<m;)gets(p+j++);for(i=n-m+1;i--;)for(j=n-m+1;j--;){t=0;for(k=m;k--;)t+=!!memcmp(q[i+k]+j+j,p+k,m+m-1);t||printf(s,i,j);}}
