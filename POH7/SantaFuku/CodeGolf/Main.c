@@ -1,0 +1,1 @@
+x,y,z,n,d,a,i,k[2][101],u[2];m(v,w){return v>w?w:v;};main(){scanf("%d%d%d%d",&x,&y,&z,&n);*u=x;u[1]=y;while(n--){scanf("%d%d",&d,&a);k[d][0]++;u[d]=m(u[d],m(k[d][*k[d]]=a,(d?y:x)-a));for(i=*k[d];--i;)u[d]=m(abs(k[d][i]-a),u[d]);}printf("%d",z**u*u[1]);}
