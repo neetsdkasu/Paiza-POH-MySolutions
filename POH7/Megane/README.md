@@ -21,3 +21,9 @@ code size 906 bytes, average time 0.102 sec, max time 0.11 sec
 JavaScript (2)  
 https://paiza.jp/poh/ando/share/307ae0b3  
 code size 700 bytes, average time 0.102 sec, max time 0.11 sec  
+  
+Ruby  
+https://paiza.jp/poh/ando/share/bc1a28ec  
+code size 411 bytes, average time 0.11 sec max times 0.13 sec  
+  
+  
