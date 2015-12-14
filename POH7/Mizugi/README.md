@@ -13,3 +13,7 @@ code size 343 bytes, average time 0.01 sec, max time 0.01 sec
 Java  
 https://paiza.jp/poh/ando/share/ed48674e  
 code size 799 bytes, average time 0.134 sec, max time 0.18 sec
+  
+JavaScript  
+https://paiza.jp/poh/ando/share/50e4df0b  
+code size 609 bytes, average time 0.118 sec, max time 0.14 sec  
