@@ -25,4 +25,4 @@ code size 377 bytes, average time 0.232 sec, max time 0.45 sec
 Bash  
 https://paiza.jp/poh/ando/share/4472e9ad  
 40点 ただ掛け算するだけのループでも300000ループでタイムアウト  
-画期的な解き方を見つけるか、答え決め打ちでするかしないと無理かも？  
+画期的な解き方を見つけるか、Bashコマンド以外の外部コマンドに頼るか、答え決め打ちでするかしないと無理かも？  
