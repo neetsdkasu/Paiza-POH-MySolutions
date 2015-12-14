@@ -22,7 +22,15 @@ Ruby
 https://paiza.jp/poh/ando/share/cd3cff8c  
 code size 377 bytes, average time 0.232 sec, max time 0.45 sec
    
+PHP  
+https://paiza.jp/poh/ando/share/8cbae20d  
+code size 416 bytes, average time 0.106 sec, max time 0.22 sec  
+
+----  
+### failed
+
 Bash  
 https://paiza.jp/poh/ando/share/4472e9ad  
 40点 ただ掛け算するだけのループでも300000ループでタイムアウト  
 画期的な解き方を見つけるか、Bashコマンド以外の外部コマンドに頼るか、答え決め打ちでするかしないと無理かも？  
+  
