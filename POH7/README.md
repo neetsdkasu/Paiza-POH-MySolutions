@@ -16,5 +16,5 @@ https://paiza.jp/poh/ando/share/a2dcb803
 https://paiza.jp/poh/ando/share/1ef40ca2  
   
 100%  
-sailor fuku: https://paiza.jp/poh/ando/share/187ab1d2    
-swim wear: https://paiza.jp/poh/ando/share/5c871905  
+sailor fuku: https://paiza.jp/poh/ando/share/7ef997ec    
+swim wear: https://paiza.jp/poh/ando/share/f688f152  
