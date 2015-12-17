@@ -17,3 +17,6 @@ https://paiza.jp/poh/ando/share/f349344c
 Ruby (450 bytes)    
 https://paiza.jp/poh/ando/share/fa503b9a  
   
+PHP (1041 bytes)  
+https://paiza.jp/poh/ando/share/51f87580  
+  
