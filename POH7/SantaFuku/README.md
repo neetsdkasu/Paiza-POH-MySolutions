@@ -19,4 +19,6 @@ https://paiza.jp/poh/ando/share/fa503b9a
   
 PHP (1041 bytes)  
 https://paiza.jp/poh/ando/share/51f87580  
-  
+    
+Python3 (879 bytes)  
+https://paiza.jp/poh/ando/share/a8edf2ce  
