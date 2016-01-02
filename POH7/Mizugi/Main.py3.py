@@ -26,7 +26,9 @@ def solve():
             c += 1
             x >>= 1
         r = (r * x) % md
-    for _ in range(c):
+    for _ in range(c // 30):
+        r = (r << 30) % md
+    for _ in range(c % 30):
         r = (r << 1) % md
     print(r)
 
