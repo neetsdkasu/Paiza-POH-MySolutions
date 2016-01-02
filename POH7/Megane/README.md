@@ -30,3 +30,7 @@ PHP
 https://paiza.jp/poh/ando/share/d63e7f94  
 code size 966 bytes, average time 0.036 sec, max time 0.05 sec
   
+Python3  
+https://paiza.jp/poh/ando/share/4c9e4957  
+code size 788 bytes, average time 0.024 sec, max time 0.05 sec  
+  
