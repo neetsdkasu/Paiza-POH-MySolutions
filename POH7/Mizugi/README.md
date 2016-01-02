@@ -28,7 +28,7 @@ code size 416 bytes, average time 0.106 sec, max time 0.22 sec
   
 Python3  
 https://paiza.jp/poh/ando/share/40ca09bb  
-code size 825 bytes, average time 0.240 sec, max time 0.59 sec    
+code size 888 bytes, average time 0.240 sec, max time 0.59 sec    
   
 
 ----  
