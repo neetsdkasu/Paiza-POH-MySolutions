@@ -13,23 +13,37 @@ def ngss(n): return nmapf(n,gss)
 def ngis(n): return nmapf(n,gis)
 ##############################################
 
-def solve():
+def solve(n):
     md = 10 ** 9
-    n = gi()
     r = 1
+    q = 1
+    j = 0
     c = 0
     for x in range(1, n + 1):
-        while x % 5 == 0:
+        q *= x
+        j += 1
+        if j < 5:
+            continue
+        while q % 5 == 0:
             c -= 1
-            x //= 5
-        while x % 2 == 0:
+            q //= 5
+        while q % 2 == 0:
             c += 1
-            x >>= 1
-        r = (r * x) % md
+            q >>= 1
+        r = (r * q) % md
+        q = 1
+        j = 0
+    while q % 5 == 0:
+        c -= 1
+        q //= 5
+    while q % 2 == 0:
+        c += 1
+        q >>= 1
+    r = (r * q) % md
     for _ in range(c // 30):
         r = (r << 30) % md
     for _ in range(c % 30):
         r = (r << 1) % md
-    print(r)
+    return r
 
-solve()
+print(solve(gi()))
