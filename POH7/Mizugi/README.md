@@ -25,6 +25,11 @@ code size 377 bytes, average time 0.232 sec, max time 0.45 sec
 PHP  
 https://paiza.jp/poh/ando/share/8cbae20d  
 code size 416 bytes, average time 0.106 sec, max time 0.22 sec  
+  
+Python3  
+https://paiza.jp/poh/ando/share/33d95dc3  
+  
+  
 
 ----  
 ### failed
@@ -37,3 +42,4 @@ https://paiza.jp/poh/ando/share/4472e9ad
 外部コマンドだとぶっちゃけperlでもpythonでもいいってことになるしBashスクリプトである意味が無い気がする    
 がBashのループ性能では無理くさいし・・・  
 決め打ちはテストケース全部通っても問題を解いたことにはならないのが残念ではある  
+一般的にはLinux(unix?)の基本的なシンプルな外部コマンドを繋げるシェル芸（？）というのをやるらしい
