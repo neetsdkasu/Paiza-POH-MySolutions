@@ -18,19 +18,16 @@ def solve():
     n = gi()
     r = 1
     c = 0
-    for i in range(1, n + 1):
-        x = i
+    for x in range(1, n + 1):
         while x % 5 == 0:
             c -= 1
-            x /= 5
+            x //= 5
         while x % 2 == 0:
             c += 1
-            x /= 2
-        r *= x
-        r %= md
-    for i in range(c):
-        r *= 2
-        r %= md
-    print(int(r))
+            x >>= 1
+        r = (r * x) % md
+    for _ in range(c):
+        r = (r << 1) % md
+    print(r)
 
 solve()
