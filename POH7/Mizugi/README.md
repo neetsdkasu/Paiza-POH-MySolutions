@@ -27,8 +27,8 @@ https://paiza.jp/poh/ando/share/8cbae20d
 code size 416 bytes, average time 0.106 sec, max time 0.22 sec  
   
 Python3  
-https://paiza.jp/poh/ando/share/5e781284  
-code size 825 bytes, average time 0.262 sec, max time 0.66 sec    
+https://paiza.jp/poh/ando/share/40ca09bb  
+code size 825 bytes, average time 0.240 sec, max time 0.59 sec    
   
 
 ----  
