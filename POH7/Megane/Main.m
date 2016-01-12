@@ -3,8 +3,10 @@
  */
 #import <Foundation/Foundation.h>
 
-NSComparisonResult comp(NSNumber *a, NSNumber *b, void* c) {
-    return [a compare:b];
+NSInteger getInteger(NSScanner *scan) {
+    NSString *temp = [NSString alloc];
+    [scan scanUpToString:(@" ") intoString:&temp];
+    return temp.integerValue;
 }
 
 int main(void){
@@ -26,57 +28,34 @@ int main(void){
         NSInteger n, m;
         NSMutableArray *q = [NSMutableArray new], *p = [NSMutableArray new];
         
-        {
-            NSScanner *scan = [NSScanner scannerWithString:[lines objectAtIndex:0]];
-            
-            NSString *temp = [NSString alloc];
-            [scan scanUpToString:(@" ") intoString:&temp];
-            n = temp.integerValue;
-        }
+        n = getInteger([NSScanner scannerWithString:[lines objectAtIndex:0]]);
         
         for (NSInteger i = 0; i < n; i++) {
             NSMutableArray *t = [NSMutableArray new];
-            NSScanner *scan = [NSScanner scannerWithString:[lines objectAtIndex:(i + 1)]];
-            for (NSInteger j = 0; j < n; j++) {
-                NSString *temp = [NSString alloc];
-                [scan scanUpToString:(@" ") intoString:&temp];
-                [t addObject:temp];
-            }
+            [t addObjectsFromArray:[[lines objectAtIndex:(i + 1)] componentsSeparatedByString:@" "]];
             [q addObject:t];
         }
         
-        {
-            NSScanner *scan = [NSScanner scannerWithString:[lines objectAtIndex:(n + 1)]];
-            
-            NSString *temp = [NSString alloc];
-            [scan scanUpToString:(@" ") intoString:&temp];
-            m = temp.integerValue;
-        }
-        
+        m = getInteger([NSScanner scannerWithString:[lines objectAtIndex:(n + 1)]]);
+
         for (NSInteger i = 0; i < m; i++) {
             NSMutableArray *t = [NSMutableArray new];
-            NSScanner *scan = [NSScanner scannerWithString:[lines objectAtIndex:(i + n + 2)]];
-            for (NSInteger j = 0; j < m; j++) {
-                NSString *temp = [NSString alloc];
-                [scan scanUpToString:(@" ") intoString:&temp];
-                [t addObject:temp];
-            }
+            [t addObjectsFromArray:[[lines objectAtIndex:(n + 2 + i)] componentsSeparatedByString:@" "]];
             [p addObject:t];
         }
         
         for (NSInteger i = 0; i <= n - m; i++) {
             for (NSInteger j = 0; j <= n - m; j++) {
-                BOOL flag = true;
+                BOOL flag = YES;
                 for (NSInteger y = 0; y < m; y++) {
                     for (NSInteger x = 0; x < m; x++) {
                         flag &= [[[q objectAtIndex:(i + y)] objectAtIndex:(j + x)] localizedCompare:[[p objectAtIndex:y] objectAtIndex:x]] == NSOrderedSame;
                     }
                 }
-                if (flag) {
-                    [stdout writeData:[[NSNumber numberWithInteger:i].stringValue dataUsingEncoding:enc]];
-                    [stdout writeData:[@" " dataUsingEncoding:enc]];
-                    [stdout writeData:[[NSNumber numberWithInteger:j].stringValue dataUsingEncoding:enc]];
-                    [stdout writeData:[@"\n" dataUsingEncoding:enc]];
+                if (flag != NO) {
+                    NSMutableString *res = [NSMutableString stringWithCapacity:0];
+                    [res appendFormat:@"%d %d\n", i, j];
+                    [stdout writeData:[res dataUsingEncoding:enc]];
                 }
             }
         }
