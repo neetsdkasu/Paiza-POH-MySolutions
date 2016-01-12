@@ -31,17 +31,13 @@ int main(void){
         n = getInteger([NSScanner scannerWithString:[lines objectAtIndex:0]]);
         
         for (NSInteger i = 0; i < n; i++) {
-            NSMutableArray *t = [NSMutableArray new];
-            [t addObjectsFromArray:[[lines objectAtIndex:(i + 1)] componentsSeparatedByString:@" "]];
-            [q addObject:t];
+            [q addObject:[[lines objectAtIndex:(i + 1)] componentsSeparatedByString:@" "]];
         }
         
         m = getInteger([NSScanner scannerWithString:[lines objectAtIndex:(n + 1)]]);
 
         for (NSInteger i = 0; i < m; i++) {
-            NSMutableArray *t = [NSMutableArray new];
-            [t addObjectsFromArray:[[lines objectAtIndex:(n + 2 + i)] componentsSeparatedByString:@" "]];
-            [p addObject:t];
+            [p addObject:[[lines objectAtIndex:(n + 2 + i)] componentsSeparatedByString:@" "]];
         }
         
         for (NSInteger i = 0; i <= n - m; i++) {
@@ -49,7 +45,9 @@ int main(void){
                 BOOL flag = YES;
                 for (NSInteger y = 0; y < m; y++) {
                     for (NSInteger x = 0; x < m; x++) {
-                        flag &= [[[q objectAtIndex:(i + y)] objectAtIndex:(j + x)] localizedCompare:[[p objectAtIndex:y] objectAtIndex:x]] == NSOrderedSame;
+                        id a = [[q objectAtIndex:(i + y)] objectAtIndex:(j + x)];
+                        id b = [[p objectAtIndex:y] objectAtIndex:x];
+                        flag &= [a localizedCompare:b] == NSOrderedSame;
                     }
                 }
                 if (flag != NO) {
@@ -59,7 +57,6 @@ int main(void){
                 }
             }
         }
-        
     }
     return 0;
 }
