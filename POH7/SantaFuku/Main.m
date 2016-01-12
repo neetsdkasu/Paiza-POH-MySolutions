@@ -3,8 +3,22 @@
  */
 #import <Foundation/Foundation.h>
 
+NSInteger getInteger(NSScanner *scan) {
+    NSString *temp = [NSString alloc]; /* ここでのallocは許されるのだろうか？ autoreleasepoolの仕組みをまだ理解してないから恐い */
+    [scan scanUpToString:(@" ") intoString:&temp];
+    return temp.integerValue;
+}
+
 NSComparisonResult comp(NSNumber *a, NSNumber *b, void* c) {
     return [a compare:b];
+}
+
+void addValue(NSMutableArray *a, NSInteger v) { /* ここら辺の関数追い出しは微妙かと */
+    [a addObject:[NSNumber numberWithInteger:v]];
+}
+
+NSInteger getValue(NSArray *a, NSInteger idx) {
+    return [[a objectAtIndex:idx] integerValue];
 }
 
 int main(void){
@@ -25,53 +39,31 @@ int main(void){
         
         NSInteger x, y, z, n;
         
-        {
-            /* xyznを読スキャナの準備 */
-            NSScanner *scan = [NSScanner alloc];
-            [scan initWithString:[lines objectAtIndex:0]];
-            
-            NSString *x_str = [NSString alloc];
-            [scan scanUpToString:(@" ") intoString:&x_str];
-            x = x_str.integerValue; /* マクロ使ってもいいんだけどさ、それよりももっとマシなやり方とかないなの？ */
-            
-            NSString *y_str = [NSString alloc];
-            [scan scanUpToString:(@" ") intoString:&y_str];
-            y = y_str.integerValue;
-            
-            NSString *z_str = [NSString alloc];
-            [scan scanUpToString:(@" ") intoString:&z_str];
-            z = z_str.integerValue;
-            
-            NSString *n_str = [NSString alloc];
-            [scan scanUpToString:(@" ") intoString:&n_str];
-            n = n_str.integerValue;
-        }
-        
+        NSScanner *scan = [NSScanner scannerWithString:[lines objectAtIndex:0]];
+        x = getInteger(scan);
+        y = getInteger(scan);
+        z = getInteger(scan);
+        n = getInteger(scan);
+
         NSMutableArray *xs = [NSMutableArray new];
         NSMutableArray *ys = [NSMutableArray new];
         
-        [xs addObject:[NSNumber numberWithInteger:0]];
-        [xs addObject:[NSNumber numberWithInteger:x]];
-        [ys addObject:[NSNumber numberWithInteger:0]];
-        [ys addObject:[NSNumber numberWithInteger:y]];
+        addValue(xs, 0);
+        addValue(xs, x);
+        addValue(ys, 0);
+        addValue(ys, y);
         
         while (n--) {
             /* daを読スキャナの準備 */
-            NSScanner *scan = [NSScanner alloc];
-            [scan initWithString:[lines objectAtIndex:(n + 1)]];
+            scan = [NSScanner scannerWithString:[lines objectAtIndex:(n + 1)]];
+            
+            NSInteger d = getInteger(scan);
+            NSInteger a = getInteger(scan);
 
-            NSString *d_str = [NSString alloc];
-            [scan scanUpToString:(@" ") intoString:&d_str];
-            NSInteger d = d_str.integerValue;
-            
-            NSString *a_str = [NSString alloc];
-            [scan scanUpToString:(@" ") intoString:&a_str];
-            NSInteger a = a_str.integerValue;
-            
             if (d == 0) {
-                [xs addObject:[NSNumber numberWithInteger:a]];
+                addValue(xs, a);
             } else {
-                [ys addObject:[NSNumber numberWithInteger:a]];
+                addValue(ys, a);
             }
         }
         
@@ -79,19 +71,19 @@ int main(void){
         [ys sortUsingFunction:comp context:NULL];
         
         for (NSInteger i = 1; i < xs.count; i++) {
-            NSInteger diff = [[xs objectAtIndex:i] integerValue] - [[xs objectAtIndex:(i-1)] integerValue];
+            NSInteger diff = getValue(xs, i) - getValue(xs, i - 1);
             if (diff < x) x = diff;
         }
 
         for (NSInteger i = 1; i < ys.count; i++) {
-            NSInteger diff = [[ys objectAtIndex:i] integerValue] - [[ys objectAtIndex:(i-1)] integerValue];
+            NSInteger diff = getValue(ys, i) - getValue(ys, i - 1);
             if (diff < y) y = diff;
         }
         
-        NSNumber *res = [NSNumber numberWithInteger:(x * y * z)];
+        NSString *res = [NSString stringWithFormat:@"%d\n", (x * y * z)];
         
         /* 結果の出力 */
-        [stdout writeData:[res.stringValue dataUsingEncoding:enc]];
+        [stdout writeData:[res dataUsingEncoding:enc]];
         
     }
     return 0;
