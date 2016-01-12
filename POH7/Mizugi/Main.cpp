@@ -4,14 +4,12 @@ void solve();
 int main() { solve(); return 0; }
 
 #include <iostream>
-#include <algorithm>
-#include <vector>
 
 using namespace std;
 
 void solve() {
     
-    unsigned long long n, r = 1, c = 0, x, md = 1000000000;
+    long long n, r = 1, c = 0, x, md = 1000000000;
     cin >> n;
     while (n > 1) {
         x = n--;
