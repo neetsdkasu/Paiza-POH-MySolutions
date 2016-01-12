@@ -3,8 +3,8 @@
  */
 #import <Foundation/Foundation.h>
 
-NSComparisonResult comp(id a, id b, void* c) {
-    return [(NSNumber*)a compare:(NSNumber*)b];
+NSComparisonResult comp(NSNumber *a, NSNumber *b, void* c) {
+    return [a compare:b];
 }
 
 int main(void){
@@ -79,12 +79,12 @@ int main(void){
         [ys sortUsingFunction:comp context:NULL];
         
         for (NSInteger i = 1; i < xs.count; i++) {
-            NSInteger diff = [(NSNumber*)[xs objectAtIndex:i] integerValue] - [(NSNumber*)[xs objectAtIndex:(i-1)] integerValue];
+            NSInteger diff = [[xs objectAtIndex:i] integerValue] - [[xs objectAtIndex:(i-1)] integerValue];
             if (diff < x) x = diff;
         }
 
         for (NSInteger i = 1; i < ys.count; i++) {
-            NSInteger diff = [(NSNumber*)[ys objectAtIndex:i] integerValue] - [(NSNumber*)[ys objectAtIndex:(i-1)] integerValue];
+            NSInteger diff = [[ys objectAtIndex:i] integerValue] - [[ys objectAtIndex:(i-1)] integerValue];
             if (diff < y) y = diff;
         }
         
