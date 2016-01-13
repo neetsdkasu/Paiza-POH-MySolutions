@@ -11,17 +11,13 @@ reject d v c
     where
         (dv, md) = divMod v d
 
-multiply a b | a == b = res where
-    (x, c1) = reject 5 a 0
-    res = reject 2 x (-c1)
-multiply a b = res where
-    h = div (b + a) 2
-    (aa, c1) = multiply a h
-    (bb, c2) = multiply (h + 1) b
-    aam = mod aa modval
-    bbm = mod bb modval
-    mul = aam * bbm
-    res = (mod mul modval, c1 + c2)
+multiply 1 r c = (r, c)
+multiply n r c = res where
+    (x, c1) = reject 5 n 0
+    (y, c2) = reject 2 x (c - c1)
+    z = mod (r * y) modval
+    v = multiply (n - 1) z c2
+    res = z `seq` c2 `seq` v
 
 doubling (v, 0) = v
 doubling (v, c) = res where
@@ -29,5 +25,5 @@ doubling (v, c) = res where
     res = doubling (w, c - 1)
 
 solve n = res where
-    res = doubling $ multiply 1 n
+    res = doubling $ multiply n 1 0
 
