@@ -33,4 +33,31 @@ code size 966 bytes, average time 0.036 sec, max time 0.05 sec
 Python3  
 https://paiza.jp/poh/ando/share/4c9e4957  
 code size 788 bytes, average time 0.024 sec, max time 0.05 sec  
+    
+C++  
+https://paiza.jp/poh/ando/share/58310a37  
+code size 760 bytes, average time 0.01 sec, max time 0.01 sec  
+  
+Objective-C  
+https://paiza.jp/poh/ando/share/05c992ec  
+code size 2477 bytes, average time 0.052 sec, max time 0.10 sec  
+  
+Erlang  
+https://paiza.jp/poh/ando/share/ac5ac6df  
+code size 1138 bytes, average time 0.478 sec, max time 0.54 sec  
+  
+CoffeeScript  
+https://paiza.jp/poh/ando/share/673f83a1  
+code size 577 bytes, average time 0.198 sec, max time 0.21 sec  
+  
+----
+## After Event
+  
+Scala  
+https://paiza.jp/poh/ando/share/07281a27  
+code size 743 bytes, average time 0.544 sec, max time 0.68 sec  
+  
+Haskell  
+https://paiza.jp/poh/ando/share/d9bddd67  
+code size 679 bytes, average time 0.012 sec, max time 0.02 sec  
   
