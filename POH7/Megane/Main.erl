@@ -3,7 +3,7 @@
 -module(main).
 -export([main/1,ngs/1,ngi/1,ngss/1,ngis/1]).
 -import(io,[format/2]).
--import(lists,[sort/1,seq/2,foldl/3,sublist/3,append/2,flatten/1,split/2,nthtail/2,takewhile/2]).
+-import(lists,[sort/1,seq/2,foldl/3,sublist/3,flatten/1,split/2,nthtail/2,takewhile/2,flatmap/2]).
 
 ti(S) -> {V,_} = string:to_integer(S), V.
 gs() -> io:get_line("").
@@ -21,21 +21,19 @@ main(_) ->
     P = ngis(N),
     M = gi(),
     Q = flatten(ngis(M)),
-    T = length(takewhile(fun(E) -> E /= Q end, ggg(N,M,P))),
+    T = length(takewhile(fun(E) -> E /= Q end, flatmap(fun(X)->X end, subpics(N,M,P)))),
     NM = N - M + 1,
     Y = T div NM,
     X = T rem NM,
     format("~w ~w\n",[Y, X]),
     halt().
 
-hhh(_,_,[]) -> [];
-hhh(M,P,[X|XS]) -> [fff(X,M,P)|hhh(M,P,XS)].
+xparts(_,_,[]) -> [];
+xparts(M,P,[X|XS]) -> [cutpic(X,M,P)|xparts(M,P,XS)].
 
-ggg(N,M,P) when length(P) < M -> [];
-ggg(N,M,P) -> append(hhh(M,P,seq(1,N-M+1)),ggg(N,M,nthtail(1,P))).
+subpics(N,M,P) when length(P) < M -> [];
+subpics(N,M,P) -> [xparts(M,P,seq(1,N-M+1))|subpics(N,M,nthtail(1,P))].
 
-fff(I,M,P) ->
+cutpic(I,M,P) ->
     {F,_} = split(M,P),
-    foldl(fun(Pt,R)->append(R,sublist(Pt,I,M)) end,[],F).
-
-
+    foldl(fun(Pt,R)->R ++ sublist(Pt,I,M) end,[],F).
