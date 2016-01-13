@@ -1,7 +1,7 @@
 -- Try POH
 -- author: Leonardone @ NEETSDKASU
 
--- ここら辺の定義ダサい
+-- ここら辺を定義するのはダサいカモ？
 ti s = read s ::Int
 gs = getLine
 gi = fmap ti gs
@@ -12,13 +12,14 @@ ngs n = ngt n gs
 ngi n = ngt n gi
 ngss n = ngt n gss
 ngis n = ngt n gis
+printList = putStrLn . unwords . fmap show
 
 main = do
     n <- gi
     p <- ngis n
     m <- gi
     q <- ngis m
-    putStrLn . unwords . fmap show $ solve n p m q
+    printList $ solve n p m q
 
 solve n p m q = ans where
     i = length $ takeWhile (/= concat q) [ concatMap (take m . drop j) $ take m $ drop i p | i <- [0..n-m], j <- [0..n-m] ]
