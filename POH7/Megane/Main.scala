@@ -20,7 +20,7 @@ object Main extends App {
    
     for (i <- 0 to n - m)
         for (j <- 0 to n - m)
-            if ( (0 until m).map( (y) => (0 until m).map( (x) => q(i+y)(j+x) == p(y)(x) ) ).flatten.reduce( _ & _ ) )
+            if ( (0 until m).flatMap( (y) => (0 until m).map( (x) => q(i+y)(j+x) == p(y)(x) ) ).reduce( _ & _ ) )
                 Console.println(List(i, j).mkString(" "))
 
 }
