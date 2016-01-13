@@ -1,7 +1,6 @@
 -- Try POH
 -- author: Leonardone @ NEETSDKASU
 
-
 main = print . solve . read =<< getLine
 
 modval = 1000000000
@@ -24,12 +23,11 @@ multiply a b = res where
     mul = aam * bbm
     res = (mod mul modval, c1 + c2)
 
-doubling v 0 = v
-doubling v c = res where
+doubling (v, 0) = v
+doubling (v, c) = res where
     w = mod (v * 2) modval
-    res = doubling w (c - 1)
+    res = doubling (w, c - 1)
 
 solve n = res where
-    (x, c) = multiply 1 n
-    res = doubling x c
+    res = doubling $ multiply 1 n
 
