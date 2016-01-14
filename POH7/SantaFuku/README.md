@@ -22,3 +22,27 @@ https://paiza.jp/poh/ando/share/51f87580
     
 Python3 (879 bytes)  
 https://paiza.jp/poh/ando/share/a8edf2ce  
+  
+C++ (828 bytes)  
+https://paiza.jp/poh/ando/share/18ad35bf  
+  
+Objective-C (3073 bytes)  
+https://paiza.jp/poh/ando/share/d15df2a2  
+  
+Erlang (760 bytes)  
+https://paiza.jp/poh/ando/share/80a92790  
+  
+CoffeeScript (672 bytes)  
+https://paiza.jp/poh/ando/share/7d5b5f16  
+  
+----
+## After the Event
+  
+Scala  (872 bytes)  
+https://paiza.jp/poh/ando/share/44fcceea  
+  
+Haskell (750 bytes)  
+https://paiza.jp/poh/ando/share/bb1b98ad  
+  
+  
+  
