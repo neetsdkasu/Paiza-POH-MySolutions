@@ -51,7 +51,7 @@ https://paiza.jp/poh/ando/share/673f83a1
 code size 577 bytes, average time 0.198 sec, max time 0.21 sec  
   
 ----
-## After Event
+## After the Event
   
 Scala  
 https://paiza.jp/poh/ando/share/07281a27  
