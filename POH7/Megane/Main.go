@@ -8,6 +8,29 @@ import (
     "fmt"
 )
 
+func solve(mr *MyReader) {
+    
+    n := mr.Gi()
+    p := mr.NGis(n)
+    m := mr.Gi()
+    q := mr.NGis(m)
+    
+    for i := 0; i <= n - m; i++ {
+        for j := 0; j <= n - m; j++ {
+            match := true
+            for y := 0; y < m; y++ {
+                for x := 0; x < m; x++ {
+                    match = match && p[i+y][j+x] == q[y][x]
+                }
+            }
+            if match {
+                fmt.Println(i, j)
+            }
+        }
+    }    
+}
+
+//////////////////////////////////////////////////////////////////
 // 別に fmt.Scanf() を使ってもいいんだけどね、無駄に定義しまくり
 func Ti(s string) (v int) { v, _ = strconv.Atoi(s); return }
 func Tl(s string) (v int64) { v, _ = strconv.ParseInt(s, 10, 64); return }
@@ -35,24 +58,3 @@ func MinMax(v int, vs ...int) (mn, mx int) { mn, mx = v, v; for _, x := range vs
 
 func main() { solve(NewMyReader()) }
 
-func solve(mr *MyReader) {
-    
-    n := mr.Gi()
-    p := mr.NGis(n)
-    m := mr.Gi()
-    q := mr.NGis(m)
-    
-    for i := 0; i <= n - m; i++ {
-        for j := 0; j <= n - m; j++ {
-            match := true
-            for y := 0; y < m; y++ {
-                for x := 0; x < m; x++ {
-                    match = match && p[i+y][j+x] == q[y][x]
-                }
-            }
-            if match {
-                fmt.Println(i, j)
-            }
-        }
-    }    
-}
