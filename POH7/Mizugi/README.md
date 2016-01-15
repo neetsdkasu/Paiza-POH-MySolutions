@@ -71,3 +71,7 @@ Haskell
 https://paiza.jp/poh/ando/share/f1662f70  
 code size 617 bytes, average time 0.098 sec, max time 0.25 sec  
   
+Go  
+https://paiza.jp/poh/ando/share/3138ca27  
+code size 2579 bytes, average time 0.016 sec, max time 0.03 sec  
+   
