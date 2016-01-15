@@ -44,5 +44,6 @@ https://paiza.jp/poh/ando/share/44fcceea
 Haskell (750 bytes)  
 https://paiza.jp/poh/ando/share/bb1b98ad  
   
-  
+Go (2740 bytes)  
+https://paiza.jp/poh/ando/share/ef291351  
   
