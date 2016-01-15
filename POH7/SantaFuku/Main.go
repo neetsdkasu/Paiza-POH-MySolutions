@@ -23,11 +23,11 @@ func solve(mr *MyReader) {
     }
     sort.Ints(xs)
     sort.Ints(ys)
-    min := func(vs []int, r int) int {
+    minval := func(vs []int, r int) int {
        for i := 1; i < len(vs); i++ { r = Min(r, vs[i] - vs[i-1]) }; return r 
     }
-    xmin := min(xs, x)
-    ymin := min(ys, y)
+    xmin := minval(xs, x)
+    ymin := minval(ys, y)
     ans := xmin * ymin * z
     fmt.Println(ans)
 }
