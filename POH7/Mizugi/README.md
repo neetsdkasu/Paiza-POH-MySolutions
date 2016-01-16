@@ -75,3 +75,11 @@ Go
 https://paiza.jp/poh/ando/share/3138ca27  
 code size 2579 bytes, average time 0.016 sec, max time 0.03 sec  
    
+F#  
+https://paiza.jp/poh/ando/share/f2922c92  
+code size 1150 bytes, average time 0.144 sec, max time 0.28 sec  
+  
+F# (use mutable)  
+https://paiza.jp/poh/ando/share/119c8cdd  
+code size 1134 bytes, average time 0.082 sec, max time 0.12 sec  
+   
