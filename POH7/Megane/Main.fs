@@ -21,10 +21,10 @@ let solve() =
     let n = gi()
     let p = ngis n
     let m = gi()
-    let q = Array.concat <| ngis m
+    let q = ngis m
     for i in 0 .. n - m do
         for j in 0 .. n - m do 
-            let t = Array.concat <| Array.map (fun (a : int[]) -> a.[j .. j + m - 1]) p.[i .. i + m - 1]
+            let t = Array.map (fun (a : int[]) -> a.[j .. j + m - 1]) p.[i .. i + m - 1]
             if t = q then printfn "%d %d" i j
 
 (* --------------------------------------------------- *)
