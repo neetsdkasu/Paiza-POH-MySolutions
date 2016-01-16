@@ -83,3 +83,7 @@ F# (use mutable)
 https://paiza.jp/poh/ando/share/119c8cdd  
 code size 1134 bytes, average time 0.082 sec, max time 0.12 sec  
    
+Clojure  
+https://paiza.jp/poh/ando/share/c94cab5b   
+code size 912 bytes, average time 1.496 sec, max time 1.81 sec  
+  
