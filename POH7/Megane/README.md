@@ -65,3 +65,7 @@ Go
 https://paiza.jp/poh/ando/share/0ca23342  
 code size 2658 bytes, average time 0.01 sec, max time 0.01 sec  
   
+F#  
+https://paiza.jp/poh/ando/share/f293fed3  
+code size 986 byts, average time 0.15 sec, max time 0.15 sec  
+  
