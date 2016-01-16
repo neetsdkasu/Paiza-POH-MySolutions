@@ -42,10 +42,6 @@ Objective-C
 https://paiza.jp/poh/ando/share/05c992ec  
 code size 2477 bytes, average time 0.052 sec, max time 0.10 sec  
   
-Erlang  
-https://paiza.jp/poh/ando/share/ac5ac6df  
-code size 1138 bytes, average time 0.478 sec, max time 0.54 sec  
-  
 CoffeeScript  
 https://paiza.jp/poh/ando/share/673f83a1  
 code size 577 bytes, average time 0.198 sec, max time 0.21 sec  
@@ -67,5 +63,9 @@ code size 2658 bytes, average time 0.01 sec, max time 0.01 sec
   
 F#  
 https://paiza.jp/poh/ando/share/f293fed3  
-code size 986 byts, average time 0.15 sec, max time 0.15 sec  
+code size 986 bytes, average time 0.15 sec, max time 0.15 sec  
+  
+Erlang  
+https://paiza.jp/poh/ando/share/0c429c6a  
+code size 1040 bytes, average time 0.474 sec, max time 0.56 sec  
   
