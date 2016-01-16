@@ -47,3 +47,6 @@ https://paiza.jp/poh/ando/share/bb1b98ad
 Go (2740 bytes)  
 https://paiza.jp/poh/ando/share/ef291351  
   
+F# (1158 bytes)    
+https://paiza.jp/poh/ando/share/5542eddd  
+  
