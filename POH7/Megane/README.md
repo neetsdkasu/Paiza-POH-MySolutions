@@ -58,8 +58,8 @@ https://paiza.jp/poh/ando/share/07281a27
 code size 743 bytes, average time 0.544 sec, max time 0.68 sec  
   
 Haskell  
-https://paiza.jp/poh/ando/share/d9bddd67  
-code size 679 bytes, average time 0.012 sec, max time 0.02 sec  
+https://paiza.jp/poh/ando/share/48626c52  
+code size 680 bytes, average time 0.012 sec, max time 0.02 sec  
   
 Go  
 https://paiza.jp/poh/ando/share/0ca23342  
