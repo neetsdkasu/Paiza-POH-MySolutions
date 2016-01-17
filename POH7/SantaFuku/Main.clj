@@ -2,15 +2,14 @@
 ; author: Leonardone @ NEETSDKASU
 (def gs read-line)
 (defn gi [] (read-string (gs)))
-(defn gss [] (list* (.split (gs) " ")))
+(defn gss [] (list* (.split (gs) " "))) ; gisのmapがlistを返すのでgssも揃える
 (defn gis [] (map read-string (gss)))
-(defn ngt [n f] (for [_ (range n)] (f)))
+(defn ngt [n f] (reverse (loop [c n r []] (if (= c 0) r (recur (dec c) (cons (f) r))))))  ; forやmapだと遅延評価で読み込み順が狂うう
 (defn ngs [n] (ngt n gs))
 (defn ngi [n] (ngt n gi))
 (defn ngss [n] (ngt n gss))
 (defn ngis [n] (ngt n gis))
 ; ============================================
-
 
 (defn minval [vs v]
     (let [vss (sort vs)]
@@ -25,6 +24,7 @@
         (* xmin ymin z)
     ))
 
+; ============================================
 
 (defn main []
     (let [[x y z n] (gis)
@@ -33,5 +33,6 @@
         (println ans)
     ))
 
-
+; ============================================
 (main)
+; ============================================
