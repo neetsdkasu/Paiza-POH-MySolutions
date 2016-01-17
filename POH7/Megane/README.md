@@ -69,3 +69,7 @@ Erlang
 https://paiza.jp/poh/ando/share/0c429c6a  
 code size 1040 bytes, average time 0.474 sec, max time 0.56 sec  
   
+Clojure  
+https://paiza.jp/poh/ando/share/3bb5b81f  
+code size 1181 bytes, average time 1.378 sec, max time 1.53 sec  
+  
