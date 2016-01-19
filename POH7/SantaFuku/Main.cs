@@ -8,7 +8,7 @@ public class Solver
 {
     public static void Main()
     {
-       int x, y, z, n; Ib(Gis(), out x, out y, out z, out n);
+       int x, y, z, n; Bv(Gis(), out x, out y, out z, out n);
        var xs = Arr(0, x).ToList();
        var ys = Arr(0, y).ToList();
        foreach (var da in NGis(n))
@@ -33,9 +33,12 @@ public class Solver
     static int[]    NGi(int n) { return NGt(n, Gi); }
     static string[][] NGss(int n) { return NGt(n, Gss); }
     static int[][]    NGis(int n) { return NGt(n, Gis); }
-    static void Ib(int[] a, out int v1, out int v2) { v1 = a[0]; v2 = a[1]; }
-    static void Ib(int[] a, out int v1, out int v2, out int v3) { v1 = a[0]; v2 = a[1]; v3 = a[2]; }
-    static void Ib(int[] a, out int v1, out int v2, out int v3, out int v4) { v1 = a[0]; v2 = a[1]; v3 = a[2]; v4 = a[3]; }
+    static void Bv<T>(T[] a, out T v1) { v1 = a[0]; }
+    static void Bv<T>(T[] a, out T v1, out T v2) { v1 = a[0]; v2 = a[1]; }
+    static void Bv<T>(T[] a, out T v1, out T v2, out T v3) { v1 = a[0]; v2 = a[1]; v3 = a[2]; }
+    static void Bv<T>(T[] a, out T v1, out T v2, out T v3, out T v4) { v1 = a[0]; v2 = a[1]; v3 = a[2]; v4 = a[3]; }
+    static void Bv<T>(T[] a, out T v1, out T v2, out T v3, out T v4, out T v5) { v1 = a[0]; v2 = a[1]; v3 = a[2]; v4 = a[3]; v5 = a[4]; }
+    static void Bv<T>(T[] a, out T v1, out T v2, out T v3, out T v4, out T v5, out T v6) { v1 = a[0]; v2 = a[1]; v3 = a[2]; v4 = a[3]; v5 = a[4]; v6 = a[5]; }
     static T[] Arr<T>(params T[] p) { return p; }
     ///////////////////////////////////////////////////////////////////
 }
