@@ -10,10 +10,9 @@ sub ngs { ngt shift @_, \&gs }
 sub ngi { ngt shift @_, \&gi }
 sub ngss { ngt shift @_, sub { [gss] } }
 sub ngis { ngt shift @_, sub { [gis] } }
-sub min { my $v = pop @_; for $x (@_) { if ($x < $v) { $v = $x} } $v }
-sub max { my $v = pop @_; for $x (@_) { if ($x > $v) { $v = $x} } $v }
 sub isort { sort {$a <=> $b} @_ }
 # -----------------------------------------------------------------------------
+use List::Util qw(min);
 
 
 sub solve {
@@ -23,9 +22,9 @@ sub solve {
     for (ngis $n) {
         my ($d, $a) = @{$_};
         if ($d == 0) {
-            push @xs, $a;
+            push @xs, $a
         } else {
-            push @ys, $a;
+            push @ys, $a
         }
     }
     sub minval {
@@ -35,12 +34,12 @@ sub solve {
             $v = min $v, $w - $p;
             $p = $w
         }
-        $v;
+        $v
     }
     $x = minval($x, isort @xs);
     $y = minval($y, isort @ys);
     my $ans = $x * $y * $z;
-    print "$ans\n";
+    print "$ans\n"
 }
 
-solve;
+solve
