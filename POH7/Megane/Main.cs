@@ -13,10 +13,10 @@ public class Solver
        var n = Gi();
        var p = NGis(n);
        var m = Gi();
-       var q = NGis(m).SelectMany( x => x ).ToArray();
+       var q = NGis(m).SelectMany( x => x );
        FOR(0, n + m + 1, i => { // 普通のfor文でいい気がするにょ
             FOR(0, n + m + 1, j => {
-                var t = p.Skip(i).Take(m).SelectMany( v => v.Skip(j).Take(m) ).ToArray();
+                var t = p.Skip(i).Take(m).SelectMany( v => v.Skip(j).Take(m) );
                 if (q.SequenceEqual(t))
                 {
                     Console.WriteLine("{0} {1}", i, j);
