@@ -15,6 +15,7 @@
                      05 c     BINARY-DOUBLE VALUE 0.
                      05 r     BINARY-DOUBLE VALUE 1.
                      05 z     PIC Z(9).
+                     05 j     BINARY-LONG.
        PROCEDURE DIVISION.
        MainRoutine SECTION.
        000-Main.
@@ -26,12 +27,17 @@
                     DIVIDE x BY 5 GIVING x
                     MOVE INTEGER(x) TO x
               END-PERFORM.
+              MOVE 0 TO j.
               PERFORM WITH TEST AFTER VARYING i FROM 1 BY 1 UNTIL i = n
                      MOVE i TO x
-                     PERFORM WITH TEST BEFORE UNTIL MOD(x, 5) <> 0
-                            DIVIDE x BY 5 GIVING x 
-                            MOVE INTEGER(x) TO x
-                     END-PERFORM
+                     ADD 1 TO j
+                     IF j = 5 THEN
+                            PERFORM WITH TEST BEFORE UNTIL MOD(x, 5) <> 0
+                                   DIVIDE x BY 5 GIVING x 
+                                   MOVE INTEGER(x) TO x
+                            END-PERFORM
+                            MOVE 0 TO j
+                     END-IF
                      IF c > 0 THEN
                             PERFORM WITH TEST BEFORE UNTIL MOD(x, 2) <> 0
                                    DIVIDE x BY 2 GIVING x 
