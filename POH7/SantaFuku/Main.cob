@@ -10,7 +10,6 @@
        WORKING-STORAGE SECTION.
               01 Variables.
                      05 str_val   PIC X(100).
-                     05 val       BINARY-DOUBLE VALUE 0.
                      05 j         BINARY-SHORT.
                      05 tbl       OCCURS 101 TIMES.
                             07 xs        BINARY-DOUBLE.
@@ -32,7 +31,7 @@
        MainRoutine SECTION.
        000-Main.
               ACCEPT str_val.
-              UNSTRING str_val DELIMITED BY " " INTO x y z n
+              UNSTRING str_val DELIMITED BY SPACE INTO x y z n
               *> DISPLAY x y z n
               MOVE x TO xmin.
               MOVE y TO ymin.
@@ -41,7 +40,7 @@
               IF n > 0 THEN
                      SUBTRACT 1 FROM n
                      ACCEPT str_val
-                     UNSTRING str_val DELIMITED BY " " INTO d a
+                     UNSTRING str_val DELIMITED BY SPACE INTO d a
                      *> DISPLAY d a
                      IF d = 0 THEN
                             GO TO 002-Calc-Xmin
