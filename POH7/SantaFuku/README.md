@@ -74,3 +74,11 @@ https://paiza.jp/poh/ando/share/17a1c6e6
 COBOL (3249 bytes)  
 https://paiza.jp/poh/ando/share/f53d85dd  
   
+----
+### failed
+  
+Bash  
+https://paiza.jp/poh/ando/share/5b269ad7  
+60点…  
+paiza.ioやideoneでは最悪ケース(例えばd=0が99個)でも1秒もかからないのにPOHでは3秒かかるってどういうことだよ…  
+  
