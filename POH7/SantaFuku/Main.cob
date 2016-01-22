@@ -65,14 +65,12 @@
                             GO TO 001-Split
                      WHEN 4 ALSO ANY
                             MOVE val TO n
-                            GO TO 001-Split
-                     WHEN 5 ALSO ANY
                             IF n > 0 THEN
                                    GO TO 000-Main
                             ELSE
                                    GO TO 006-Answer
                             END-IF
-                     WHEN ANY ALSO 0
+                     WHEN ANY ALSO 1
                             MOVE val TO d
                             GO TO 001-Split
                      WHEN OTHER
