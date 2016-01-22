@@ -73,3 +73,31 @@ Clojure
 https://paiza.jp/poh/ando/share/3bb5b81f  
 code size 1181 bytes, average time 1.378 sec, max time 1.53 sec  
   
+Python2  
+https://paiza.jp/poh/ando/share/efb3d95a  
+code size 837 bytes, average time 0.032 sec, max time 0.04 sec  
+  
+Perl  
+https://paiza.jp/poh/ando/share/7ad2db8c  
+code size 1646 bytes, average time 0.012 sec, max time 0.02 sec  
+  
+C#  
+https://paiza.jp/poh/ando/share/1f364ecb  
+code size 2300 bytes, average time 0.062 sec, max time 0.07 sec  
+  
+VB.NET  
+https://paiza.jp/poh/ando/share/441b88ea  
+code size 3400 bytes, average time 0.038 sec, max time 0.04 sec  
+  
+D  
+https://paiza.jp/poh/ando/share/b4ce2f30  
+code size 1655 bytes, average time 0.01 sec, max time 0.01 sec  
+  
+R  
+https://paiza.jp/poh/ando/share/27caa9e2  
+code size 1688 bytes, average time 0.242 sec, max time 0.42 sec  
+  
+COBOL  
+https://paiza.jp/poh/ando/share/47275834  
+code size 2653 bytes, average time 0.012 sec, max time 0.01 sec  
+  
