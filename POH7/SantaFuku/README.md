@@ -53,3 +53,24 @@ https://paiza.jp/poh/ando/share/5542eddd
 Clojure  (1218 bytes)  
 https://paiza.jp/poh/ando/share/b7c8f4d5  
   
+Python2  (993 bytes)  
+https://paiza.jp/poh/ando/share/0cec8423  
+  
+Perl (1164 bytes)  
+https://paiza.jp/poh/ando/share/447bc6c0  
+  
+C# (2117 bytes)  
+https://paiza.jp/poh/ando/share/82089da5  
+  
+VB.NET (3054 bytes)  
+https://paiza.jp/poh/ando/share/19113165  
+  
+D (1647 bytes)   
+https://paiza.jp/poh/ando/share/a3ac1c99  
+  
+R (1745 bytes)  
+https://paiza.jp/poh/ando/share/17a1c6e6  
+  
+COBOL (3249 bytes)  
+https://paiza.jp/poh/ando/share/f53d85dd  
+  
