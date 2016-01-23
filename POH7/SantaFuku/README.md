@@ -78,7 +78,10 @@ https://paiza.jp/poh/ando/share/f53d85dd
 ### failed
   
 Bash  
-https://paiza.jp/poh/ando/share/5b269ad7  
+https://paiza.jp/poh/ando/share/2616b669  
 60点…  
-paiza.ioやideoneでは最悪ケース(例えばd=0が99個)でも1秒もかからないのにPOHでは3秒かかるってどういうことだよ…  
+総当りで求める から ソートして求めるに変えたら  
+paiza.ioやideoneでは速度上がったのにPOHでは相変わらず3秒・・・  
+まぁどちらもたぶんO(n^2)くらい？だから遅いっちゃ遅いけど  
+  
   
