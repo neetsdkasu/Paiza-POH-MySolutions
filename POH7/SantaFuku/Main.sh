@@ -1,7 +1,7 @@
 #!/bin/bash
 # Try POH
 # author: Leonardone @ NEETSDKASU
-declare -i x y z n d a t i j k xmin ymin;
+declare -i x y z n d a i k xmin ymin;
 declare -ai xs ys;
 read x y z n;
 xmin=$x;
@@ -18,17 +18,15 @@ for ((;n;n--)) do #
 done;
 k=0;
 for i in ${xs[@]}; do #
-    t=$((i - k));
-    if ((t < xmin)); then #
-        xmin=$t;
+    if (( (i - k) < xmin )); then #
+        xmin=$((i - k));
     fi;
     k=$i;
 done;
 k=0;
 for i in ${ys[@]}; do #
-    t=$((i - k));
-    if ((t < ymin)); then #
-        ymin=$t;
+    if (( (i - k) < ymin )); then #
+        ymin=$((i - k));
     fi;
     k=$i;
 done;
