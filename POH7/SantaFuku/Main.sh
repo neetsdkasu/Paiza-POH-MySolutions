@@ -6,12 +6,6 @@ declare -ai xs ys;
 read x y z n;
 xmin=$x;
 ymin=$y;
-for ((i=0;i<=x;i++)); do #
-    xs[i]=0;
-done;
-for ((i=0;i<=y;i++)); do #
-    ys[i]=0;
-done;
 xs[0]=1;
 xs[x]=1;
 ys[0]=1;
