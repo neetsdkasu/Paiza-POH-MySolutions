@@ -6,8 +6,10 @@ declare -ai xs ys;
 read x y z n;
 xmin=$x;
 ymin=$y;
-for ((i=101;i;i--)); do #
+for ((i=0;i<=x;i++)); do #
     xs[i]=0;
+done;
+for ((i=0;i<=y;i++)); do #
     ys[i]=0;
 done;
 xs[0]=1;
@@ -23,7 +25,7 @@ for ((;n;n--)) do #
     fi;
 done;
 k=0;
-for ((i=1;i<101;i++)); do #
+for ((i=1;i<=x;i++)); do #
     if ((xs[i])); then #
         t=$((i - k));
         if ((t < xmin)); then #
@@ -33,7 +35,7 @@ for ((i=1;i<101;i++)); do #
     fi;
 done;
 k=0;
-for ((i=1;i<101;i++)); do #
+for ((i=1;i<=y;i++)); do #
     if ((ys[i])); then #
         t=$((i - k));
         if ((t < ymin)); then #
