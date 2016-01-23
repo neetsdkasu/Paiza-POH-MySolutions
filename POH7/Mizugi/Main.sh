@@ -1,22 +1,32 @@
 #!/bin/bash
 # Try POH
 # author: Leonardone @ NEETSDKASU
-typeset -i n i j k b r;
+declare -i n c t r i x j;
 read n;
+c=0;
+t=$(( n / 5 ));
+while (( t > 0 )); do #
+    let c+=t;
+    t=$(( t / 5 ));
+done;
 r=1;
-b=0;
-for ((i=$n; $i; i--)); do { j=$i;
-    for ((;;)); do { p=$(($j % 2));
-        if [[ $p -gt 0 ]]; then break; fi;
-        j=$(($j / 2));
-        b=$(($b + 1));
-    }; done;
-    for ((;;)); do { p=$(($j % 5));
-        if [[ $p -gt 0 ]]; then break; fi;
-        j=$(($j / 5));
-        b=$(($b - 1));
-    }; done;
-    r=$((($r * $j) % 1000000000));
-}; done;
-for ((i=$b; $i; i--)); do r=$((($r * 2) % 1000000000)); done;
-echo $r
+j=5;
+for ((i=1;i<=n;i++)); do #
+    x=$i;
+    if let --j; then #
+        while (( (x % 5) == 0 )); do #
+            x=$(( x / 5));
+        done;
+        j=5;
+    fi;
+    if (( c > 0 )); then #
+        while (( (x & 1) == 0 )); do #
+            x=$(( x >> 1 ));
+            if (( --c == 0 )); then #
+                break;
+            fi;
+        done;
+    fi;
+    r=$(( (r * x) % 1000000000 ));
+done;
+echo $r;
