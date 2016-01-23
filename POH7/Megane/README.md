@@ -101,3 +101,7 @@ COBOL
 https://paiza.jp/poh/ando/share/47275834  
 code size 2653 bytes, average time 0.012 sec, max time 0.01 sec  
   
+Bash  
+https://paiza.jp/poh/ando/share/83a08b2c  
+code size 513 bytes, average time 0.118 sec, max time 0.21 sec  
+  
