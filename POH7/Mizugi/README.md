@@ -114,3 +114,7 @@ code size 1375 bytes, average time 0.85 sec, max time 1.90 sec
 COBOL  
 https://paiza.jp/poh/ando/share/e68afe3c  
 code size 2154 bytes, average time 0.616 sec, max time 1.63 sec  
+  
+Bash(awk)  これをBashで解いたとは言わんじゃろ  
+https://paiza.jp/poh/ando/share/f3a6cf9c  
+code size 436 bytes, average time 0.128 sec, max time 0.33 sec  
