@@ -12,3 +12,13 @@ https://paiza.jp/poh/ando/share/ddabc4b6
   
 Swift (75 bytes)  
 https://paiza.jp/poh/ando/share/33092bd3  
+  
+  
+  
+-----
+### After the Event
+  
+  
+  
+Bash (146 bytes)  
+https://paiza.jp/poh/ando/share/e552dd86  
