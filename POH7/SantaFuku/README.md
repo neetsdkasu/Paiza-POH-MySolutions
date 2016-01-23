@@ -74,5 +74,5 @@ https://paiza.jp/poh/ando/share/17a1c6e6
 COBOL (3249 bytes)  
 https://paiza.jp/poh/ando/share/f53d85dd  
   
-Bash (582 bytes)  
-https://paiza.jp/poh/ando/share/101f50ec  
+Bash (572 bytes)  
+https://paiza.jp/poh/ando/share/dad3072f  
