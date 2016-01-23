@@ -74,14 +74,5 @@ https://paiza.jp/poh/ando/share/17a1c6e6
 COBOL (3249 bytes)  
 https://paiza.jp/poh/ando/share/f53d85dd  
   
-----
-### failed
-  
-Bash  
-https://paiza.jp/poh/ando/share/2616b669  
-60点…  
-総当りで求める から ソートして求めるに変えたら  
-paiza.ioやideoneでは速度上がったのにPOHでは相変わらず3秒・・・  
-まぁどちらもたぶんO(n^2)くらい？だから遅いっちゃ遅いけど  
-  
-  
+Bash (782 bytes)  
+https://paiza.jp/poh/ando/share/eaab0a43  
