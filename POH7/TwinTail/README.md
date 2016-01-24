@@ -21,3 +21,5 @@ https://paiza.jp/poh/ando/share/d205ad1e
 Bash (171 bytes)  
 https://paiza.jp/poh/ando/share/cd404596  
   
+Java (3983 bytes)  
+https://paiza.jp/poh/ando/share/6131298e  
