@@ -27,3 +27,7 @@ https://paiza.jp/poh/ando/share/b7c3ccc6
   
 Java (3240 bytes)  
 https://paiza.jp/poh/ando/share/abe0ad09  
+  
+C (4049 bytes)  
+https://paiza.jp/poh/ando/share/1f739672  
+  
