@@ -1,7 +1,7 @@
        *> Try POH
        *> author: Leonardone @ NEETSDKASU
        *>
-       *> 結果: https://paiza.jp/poh/joshibato/tsubame/result/b873ea35
+       *> 結果: https://paiza.jp/poh/joshibato/tsubame/result/2d2942e8
        *>
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Main.
@@ -27,8 +27,11 @@
        MainRoutine SECTION.
        000-Main.
               *> ACCEPT n.
-              CALL "CBL_OPEN_FILE" USING "/dev/stdin" file-access 0 0 file-handle.
-              CALL "CBL_READ_FILE" USING file-handle file-offset file-nbytes 0 file-buffer.
+              CALL "CBL_OPEN_FILE"
+                     USING "/dev/stdin" file-access 0 0 file-handle.
+              CALL "CBL_READ_FILE"
+                     USING file-handle file-offset
+                            file-nbytes 0 file-buffer.
               CALL "CBL_CLOSE_FILE" USING file-handle.      
               MOVE INTEGER(TRIM(file-buffer)) TO n.
               
