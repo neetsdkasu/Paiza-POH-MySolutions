@@ -60,6 +60,7 @@ https://paiza.jp/poh/joshibato/tsubame/result/e37303c2
 OpenCOBOL  
  ACCEPTの挙動の変え方が分からなくて断念  
  (運任せなやり方なら全テストケース突破可能 https://paiza.jp/poh/joshibato/tsubame/result/2eb7e4e8 )  
+
   
 VisualBasic.NET  
 https://paiza.jp/poh/joshibato/tsubame/result/7247a5fd  
@@ -74,3 +75,9 @@ D
 https://paiza.jp/poh/joshibato/tsubame/result/62a1085b  
    
    
+------
+### After the Event
+
+見事に入力の問題を克服！
+OpenCOBOL  
+https://paiza.jp/poh/joshibato/tsubame/result/0c448c89  
