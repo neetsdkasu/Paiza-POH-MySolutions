@@ -80,4 +80,4 @@ https://paiza.jp/poh/joshibato/tsubame/result/62a1085b
 
 見事に入力の問題を克服！
 OpenCOBOL  
-https://paiza.jp/poh/joshibato/tsubame/result/0c448c89  
+https://paiza.jp/poh/joshibato/tsubame/result/b873ea35
