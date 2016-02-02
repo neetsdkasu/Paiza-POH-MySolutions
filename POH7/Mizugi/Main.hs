@@ -1,29 +1,33 @@
 -- Try POH
 -- author: Leonardone @ NEETSDKASU
+{- **************************************** -}
+ti s = read s ::Int
+gs = getLine
+gi = fmap ti gs
+gss = fmap words gs
+gis = fmap (map ti) gss
+ngt n f = sequence [f | _ <- [1..n]]
+ngs n = ngt n gs
+ngi n = ngt n gi
+ngss n = ngt n gss
+ngis n = ngt n gis
+{- **************************************** -}
 
-main = print . solve . read =<< getLine
+main = print . solve =<< readLn 
 
-modval = 1000000000
+solve n = calc n (count5 n 0) 1
 
-reject d v c
-    | md == 0   = reject d dv (c + 1)
-    | otherwise = (v, c)
-    where
-        (dv, md) = divMod v d
+calc 1 _ r = r
+calc n c r = let (p, k) = reject2 n c in calc (n - 1) k $ modval $ r * (reject5 p)
 
-multiply 1 r c = (r, c)
-multiply n r c = res where
-    (x, c1) = reject 5 n 0
-    (y, c2) = reject 2 x (c - c1)
-    z = mod (r * y) modval
-    v = multiply (n - 1) z c2
-    res = z `seq` c2 `seq` v
+modval x = mod x 1000000000
 
-doubling (v, 0) = v
-doubling (v, c) = res where
-    w = mod (v * 2) modval
-    res = doubling (w, c - 1)
+count5 0 c = c
+count5 n c = let d = div n 5 in count5 d d + c
 
-solve n = res where
-    res = doubling $ multiply n 1 0
+reject5 x | m == 0 = reject5 d where (d, m) = divMod x 5
+reject5 x = x
 
+reject2 x 0 = (x, 0)
+reject2 x c | m == 0 = reject2 d (c - 1) where (d, m) = divMod x 2
+reject2 x c = (x, c)
