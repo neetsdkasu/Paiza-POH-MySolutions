@@ -68,8 +68,8 @@ https://paiza.jp/poh/ando/share/4472e9ad
 ## After the Event
   
 Haskell  
-https://paiza.jp/poh/ando/share/f1662f70  
-code size 617 bytes, average time 0.098 sec, max time 0.25 sec  
+https://paiza.jp/poh/ando/share/bb5dd80e  
+code size 815 bytes, average time 0.046 sec, max time 0.11 sec  
   
 Go  
 https://paiza.jp/poh/ando/share/3138ca27  
