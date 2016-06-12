@@ -4,3 +4,7 @@
 
 CoffeeScript  
 https://paiza.jp/poh/hatsukoi/share/0c985add  
+  
+  
+Bash  
+https://paiza.jp/poh/hatsukoi/share/debe010f  
