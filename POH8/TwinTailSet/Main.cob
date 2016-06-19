@@ -22,7 +22,8 @@
               ACCEPT INT-S.
               ACCEPT INT-T.
               
-              PERFORM WITH TEST AFTER VARYING INT-I FROM 1 BY 1 UNTIL INT-I >= INT-S
+              PERFORM WITH TEST AFTER
+              VARYING INT-I FROM 1 BY 1 UNTIL INT-I >= INT-S
                      MOVE "-" TO STR-R(INT-I:1)
               END-PERFORM.
               
