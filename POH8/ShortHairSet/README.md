@@ -15,4 +15,4 @@ https://paiza.jp/poh/hatsukoi/share/dd214120
   
   
 COBOL    
-https://paiza.jp/poh/hatsukoi/share/d3f79921  
+https://paiza.jp/poh/hatsukoi/share/74ded44a  
