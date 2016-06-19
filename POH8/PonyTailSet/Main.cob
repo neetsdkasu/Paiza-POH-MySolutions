@@ -18,7 +18,8 @@
        MAIN-ROUTINE SECTION.
        000-MAIN.
               
-              PERFORM WITH TEST AFTER VARYING INT-I FROM 1 BY 1 UNTIL INT-I >= 5
+              PERFORM WITH TEST AFTER
+              VARYING INT-I FROM 1 BY 1 UNTIL INT-I >= 5
                      ACCEPT STR-DE
                      IF STR-DE(1:1) = STR-DE(3:1) THEN
                             ADD 1 TO INT-C
