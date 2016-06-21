@@ -11,3 +11,7 @@ https://paiza.jp/poh/hatsukoi/share/08be36a9
   
 Bash  
 https://paiza.jp/poh/hatsukoi/share/a090b0ad  
+  
+  
+COBOL    
+https://paiza.jp/poh/hatsukoi/share/561758d7  
