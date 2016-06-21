@@ -12,3 +12,7 @@ https://paiza.jp/poh/hatsukoi/share/237a6257
   
 Erlang  
 https://paiza.jp/poh/hatsukoi/share/7aad046b  
+  
+  
+COBOL  
+https://paiza.jp/poh/hatsukoi/share/f38d4ae2  
