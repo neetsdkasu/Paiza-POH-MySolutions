@@ -12,3 +12,7 @@ https://paiza.jp/poh/hatsukoi/share/614a03f2
   
 Bash  
 https://paiza.jp/poh/hatsukoi/share/08eb6146  
+  
+  
+COBOL  
+https://paiza.jp/poh/hatsukoi/share/b2da893e  
