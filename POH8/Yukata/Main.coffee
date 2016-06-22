@@ -4,12 +4,11 @@
 
 solve = (mr) ->
     n = mr.gi()
+    ts = mr.ngss n
     x = 0
     b = 0
     c = 0
-    while n > 0
-        n--
-        [t, s] = mr.gss()
+    for [t, s] in ts
         h = parseInt t
         if x > 0
             df = h - b
@@ -39,7 +38,7 @@ solve = (mr) ->
         gi = -> parseInt gs()
         gss = -> gs().split ' '
         gis = -> gss().map (x) -> parseInt x
-        ngt = (n, f) -> f() for _ in [1..n]
+        ngt = (n, f) -> f() while n--
         ngs = (n) -> ngt n, gs
         ngi = (n) -> ngt n, gi
         ngss = (n) -> ngt n, gss
