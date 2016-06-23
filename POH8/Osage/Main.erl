@@ -27,6 +27,6 @@ main(_) ->
     {R,I} = lists:foldl(fun (X,{Y,Z}) -> 
         {Y - X, if X > Y -> Z; true -> Z + 1 end}
         end, {N * 60, 0}, T),
-    if R < 0 -> format("~w~n", [I]); true -> format("OK", []) end,
+    if R < 0 -> format("~w~n", [I]); true -> format("OK~n", []) end,
     halt().
 
