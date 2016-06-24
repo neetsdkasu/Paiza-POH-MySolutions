@@ -11,3 +11,7 @@ https://paiza.jp/poh/hatsukoi/share/6e98eea7
   
 Bash (80点)    
 https://paiza.jp/poh/hatsukoi/share/c1de0664  
+  
+  
+COBOL (60点)  
+https://paiza.jp/poh/hatsukoi/share/91d341e8  
