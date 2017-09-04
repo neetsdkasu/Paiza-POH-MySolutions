@@ -1,7 +1,7 @@
-Paiza-POH-MyAnswers
-===================
+Paiza-POH-MySolutions
+=====================
 
-  My Answers for Paiza POH!(Recruit site's event for Japanese Programmer)
+  My Solutions for Paiza POH!(Recruit site's event for Japanese Programmer)
 
 
 Paiza http://paiza.jp/
